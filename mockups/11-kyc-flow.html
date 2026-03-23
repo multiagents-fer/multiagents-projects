@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Verification Flow - AgentsMX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .pulse-ring { animation: pulseRing 2s infinite; }
+        @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.5); } 70% { box-shadow: 0 0 0 12px rgba(59,130,246,0); } 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); } }
+        .shimmer { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .face-oval { border-radius: 50%; border: 3px dashed rgba(59,130,246,0.7); width: 200px; height: 260px; }
+        .camera-rect { border: 3px dashed rgba(59,130,246,0.7); border-radius: 12px; width: 300px; height: 190px; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-slate-800 border-b border-slate-700 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="text-xl font-bold text-blue-400">AgentsMX</a>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-slate-400">Mi cuenta</span>
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold">JR</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-2">Verificacion de Identidad (KYC)</h1>
+        <p class="text-slate-400 mb-8">Todos los estados del flujo de verificacion</p>
+
+        <!-- STATE SELECTOR -->
+        <div class="flex flex-wrap gap-2 mb-10">
+            <button onclick="showState('not-started')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-medium transition" id="btn-not-started">1. No iniciada</button>
+            <button onclick="showState('document-upload')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-medium transition" id="btn-document-upload">2. Subida de docs</button>
+            <button onclick="showState('in-review')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-medium transition" id="btn-in-review">3. En revision</button>
+            <button onclick="showState('approved')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-medium transition" id="btn-approved">4. Aprobada</button>
+            <button onclick="showState('rejected')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-medium transition" id="btn-rejected">5. Rechazada</button>
+            <button onclick="showState('expired')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-medium transition" id="btn-expired">6. Expirada</button>
+        </div>
+
+        <!-- ========== STATE 1: NOT STARTED ========== -->
+        <div id="state-not-started" class="state-panel">
+            <div class="max-w-lg mx-auto">
+                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2">Verifica tu identidad para comprar</h2>
+                    <p class="text-slate-400 mb-6">Necesitamos verificar tu identidad antes de que puedas realizar compras. El proceso toma menos de 5 minutos.</p>
+                    <div class="space-y-3 text-left mb-8">
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <svg class="w-5 h-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                            <span>INE o pasaporte vigente</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <svg class="w-5 h-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                            <span>Selfie para verificacion facial</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <svg class="w-5 h-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                            <span>Comprobante de domicilio reciente</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition">
+                        Iniciar verificacion
+                    </button>
+                    <p class="text-xs text-slate-500 mt-4">Tus datos estan protegidos con cifrado de extremo a extremo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== STATE 2: DOCUMENT UPLOAD STEPPER ========== -->
+        <div id="state-document-upload" class="state-panel hidden">
+            <!-- Progress Bar -->
+            <div class="max-w-3xl mx-auto mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <!-- Step indicators -->
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-sm font-bold">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <span class="text-sm text-green-400 font-medium">INE Frente</span>
+                    </div>
+                    <div class="flex-1 h-1 bg-green-600 mx-2 rounded"></div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold pulse-ring">2</div>
+                        <span class="text-sm text-blue-400 font-medium">INE Vuelta</span>
+                    </div>
+                    <div class="flex-1 h-1 bg-slate-700 mx-2 rounded"></div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center text-sm font-bold text-slate-400">3</div>
+                        <span class="text-sm text-slate-400">Selfie</span>
+                    </div>
+                    <div class="flex-1 h-1 bg-slate-700 mx-2 rounded"></div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center text-sm font-bold text-slate-400">4</div>
+                        <span class="text-sm text-slate-400">Domicilio</span>
+                    </div>
+                </div>
+                <div class="w-full bg-slate-700 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 37.5%"></div>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">Paso 2 de 4</p>
+            </div>
+
+            <!-- Sub-step tabs -->
+            <div class="flex gap-4 mb-8 justify-center">
+                <button onclick="showSubStep('ine-front')" id="btn-ine-front" class="px-4 py-2 bg-slate-700 rounded-lg text-sm">Paso 1: INE Frente</button>
+                <button onclick="showSubStep('ine-back')" id="btn-ine-back" class="px-4 py-2 bg-blue-600 rounded-lg text-sm font-medium">Paso 2: INE Vuelta</button>
+                <button onclick="showSubStep('selfie')" id="btn-selfie" class="px-4 py-2 bg-slate-700 rounded-lg text-sm">Paso 3: Selfie</button>
+                <button onclick="showSubStep('address')" id="btn-address" class="px-4 py-2 bg-slate-700 rounded-lg text-sm">Paso 4: Domicilio</button>
+            </div>
+
+            <!-- STEP 1: INE FRENTE -->
+            <div id="substep-ine-front" class="substep-panel hidden">
+                <div class="max-w-lg mx-auto">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-2 text-center">INE - Frente</h3>
+                        <p class="text-sm text-slate-400 text-center mb-6">Coloca tu INE dentro del recuadro</p>
+                        <!-- Camera overlay simulation -->
+                        <div class="bg-black rounded-xl p-8 flex flex-col items-center justify-center mb-4" style="min-height: 300px;">
+                            <div class="camera-rect flex items-center justify-center mb-4">
+                                <p class="text-blue-400 text-sm">Alinea tu INE aqui</p>
+                            </div>
+                            <p class="text-xs text-slate-500">Asegurate de que haya buena iluminacion</p>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Capturar foto
+                        </button>
+                        <!-- Preview after capture -->
+                        <div class="mt-6 border border-slate-600 rounded-xl overflow-hidden">
+                            <div class="bg-slate-700 h-48 flex items-center justify-center">
+                                <span class="text-slate-500 text-sm">[Vista previa de INE Frente capturada]</span>
+                            </div>
+                            <div class="flex">
+                                <button class="flex-1 py-3 bg-green-600 hover:bg-green-700 font-medium transition text-sm">Confirmar</button>
+                                <button class="flex-1 py-3 bg-slate-600 hover:bg-slate-500 font-medium transition text-sm">Retomar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: INE VUELTA -->
+            <div id="substep-ine-back" class="substep-panel">
+                <div class="max-w-lg mx-auto">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-2 text-center">INE - Vuelta</h3>
+                        <p class="text-sm text-slate-400 text-center mb-6">Ahora voltea tu INE y coloca la parte trasera</p>
+                        <div class="bg-black rounded-xl p-8 flex flex-col items-center justify-center mb-4" style="min-height: 300px;">
+                            <div class="camera-rect flex items-center justify-center mb-4">
+                                <p class="text-blue-400 text-sm">Alinea el reverso de tu INE</p>
+                            </div>
+                            <p class="text-xs text-slate-500">Asegurate de que el codigo de barras sea legible</p>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Capturar foto
+                        </button>
+                        <div class="mt-6 border border-slate-600 rounded-xl overflow-hidden">
+                            <div class="bg-slate-700 h-48 flex items-center justify-center">
+                                <span class="text-slate-500 text-sm">[Vista previa de INE Vuelta capturada]</span>
+                            </div>
+                            <div class="flex">
+                                <button class="flex-1 py-3 bg-green-600 hover:bg-green-700 font-medium transition text-sm">Confirmar</button>
+                                <button class="flex-1 py-3 bg-slate-600 hover:bg-slate-500 font-medium transition text-sm">Retomar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: SELFIE -->
+            <div id="substep-selfie" class="substep-panel hidden">
+                <div class="max-w-lg mx-auto">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-2 text-center">Selfie de verificacion</h3>
+                        <p class="text-sm text-slate-400 text-center mb-6">Centra tu rostro en el ovalo y sigue las instrucciones</p>
+                        <div class="bg-black rounded-xl p-8 flex flex-col items-center justify-center mb-4" style="min-height: 350px;">
+                            <div class="face-oval flex items-center justify-center mb-4">
+                                <p class="text-blue-400 text-sm text-center px-4">Centra tu rostro aqui</p>
+                            </div>
+                            <div class="mt-4 bg-blue-600/20 border border-blue-500/30 rounded-lg px-4 py-2">
+                                <p class="text-blue-400 text-sm font-medium text-center">Parpadea 2 veces</p>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-3">Prueba de vida: sigue las instrucciones en pantalla</p>
+                        </div>
+                        <div class="bg-slate-700/50 rounded-lg p-3 mb-4">
+                            <p class="text-xs text-slate-400"><strong class="text-slate-300">Instrucciones de liveness:</strong></p>
+                            <ul class="text-xs text-slate-400 mt-1 space-y-1">
+                                <li>1. Mira directamente a la camara</li>
+                                <li>2. Parpadea 2 veces cuando se te indique</li>
+                                <li>3. Gira ligeramente la cabeza a la derecha</li>
+                            </ul>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Capturar selfie
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: COMPROBANTE DOMICILIO -->
+            <div id="substep-address" class="substep-panel hidden">
+                <div class="max-w-lg mx-auto">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-2 text-center">Comprobante de domicilio</h3>
+                        <p class="text-sm text-slate-400 text-center mb-6">Sube un comprobante reciente (maximo 3 meses)</p>
+                        <!-- Drag & Drop Zone -->
+                        <div class="border-2 border-dashed border-slate-600 hover:border-blue-500 rounded-xl p-10 text-center transition cursor-pointer mb-4">
+                            <svg class="w-12 h-12 text-slate-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                            <p class="text-slate-300 font-medium mb-1">Arrastra tu archivo aqui</p>
+                            <p class="text-sm text-slate-500 mb-3">o haz clic para seleccionar</p>
+                            <button class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm transition">Seleccionar archivo</button>
+                        </div>
+                        <div class="bg-slate-700/50 rounded-lg p-3 space-y-2">
+                            <p class="text-xs text-slate-400"><strong class="text-slate-300">Formatos aceptados:</strong> PDF, JPG, PNG</p>
+                            <p class="text-xs text-slate-400"><strong class="text-slate-300">Tamano maximo:</strong> 10 MB</p>
+                            <p class="text-xs text-slate-400"><strong class="text-slate-300">Documentos validos:</strong></p>
+                            <ul class="text-xs text-slate-400 list-disc list-inside">
+                                <li>Recibo de luz (CFE)</li>
+                                <li>Recibo de agua</li>
+                                <li>Estado de cuenta bancario</li>
+                                <li>Recibo de telefono fijo</li>
+                            </ul>
+                        </div>
+                        <!-- Uploaded file preview -->
+                        <div class="mt-4 bg-slate-700 rounded-lg p-3 flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-600/20 rounded-lg flex items-center justify-center">
+                                <span class="text-red-400 text-xs font-bold">PDF</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium truncate">recibo_cfe_marzo2026.pdf</p>
+                                <p class="text-xs text-slate-400">2.3 MB</p>
+                            </div>
+                            <button class="text-slate-400 hover:text-red-400 transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </button>
+                        </div>
+                        <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition">
+                            Enviar documentos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== STATE 3: IN REVIEW ========== -->
+        <div id="state-in-review" class="state-panel hidden">
+            <div class="max-w-lg mx-auto">
+                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-yellow-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2">Verificacion en proceso</h2>
+                    <p class="text-slate-400 mb-2">Estamos revisando tus documentos</p>
+                    <div class="bg-yellow-600/10 border border-yellow-600/30 rounded-lg px-4 py-2 inline-block mb-6">
+                        <p class="text-yellow-400 text-sm font-medium">Estimado: 24-48 horas</p>
+                    </div>
+                    <!-- Document thumbnails -->
+                    <div class="grid grid-cols-2 gap-3 mt-4">
+                        <div class="bg-slate-700 rounded-lg p-3 flex items-center gap-3">
+                            <div class="w-12 h-8 bg-slate-600 rounded flex items-center justify-center">
+                                <span class="text-[10px] text-slate-400">IMG</span>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs font-medium">INE Frente</p>
+                                <div class="flex items-center gap-1 mt-0.5">
+                                    <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                                    <span class="text-[10px] text-yellow-400">En revision</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-700 rounded-lg p-3 flex items-center gap-3">
+                            <div class="w-12 h-8 bg-slate-600 rounded flex items-center justify-center">
+                                <span class="text-[10px] text-slate-400">IMG</span>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs font-medium">INE Vuelta</p>
+                                <div class="flex items-center gap-1 mt-0.5">
+                                    <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                                    <span class="text-[10px] text-yellow-400">En revision</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-700 rounded-lg p-3 flex items-center gap-3">
+                            <div class="w-12 h-8 bg-slate-600 rounded flex items-center justify-center">
+                                <span class="text-[10px] text-slate-400">IMG</span>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs font-medium">Selfie</p>
+                                <div class="flex items-center gap-1 mt-0.5">
+                                    <svg class="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                                    <span class="text-[10px] text-green-400">Verificada</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-700 rounded-lg p-3 flex items-center gap-3">
+                            <div class="w-12 h-8 bg-slate-600 rounded flex items-center justify-center">
+                                <span class="text-[10px] text-slate-400">PDF</span>
+                            </div>
+                            <div class="text-left flex-1">
+                                <p class="text-xs font-medium">Domicilio</p>
+                                <div class="flex items-center gap-1 mt-0.5">
+                                    <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                                    <span class="text-[10px] text-yellow-400">En revision</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-6">Te notificaremos por email cuando la verificacion este completa</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== STATE 4: APPROVED ========== -->
+        <div id="state-approved" class="state-panel hidden">
+            <div class="max-w-lg mx-auto">
+                <div class="bg-slate-800 border border-green-600/30 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-green-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2 text-green-400">Identidad verificada</h2>
+                    <p class="text-slate-400 mb-6">Tu verificacion fue aprobada exitosamente</p>
+                    <div class="bg-slate-700 rounded-lg p-4 space-y-3 text-left">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Fecha de verificacion</span>
+                            <span class="font-medium">15 Mar 2026</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Valido hasta</span>
+                            <span class="font-medium text-green-400">Mar 2027</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Nivel de verificacion</span>
+                            <span class="font-medium">Completo</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">ID de verificacion</span>
+                            <span class="font-medium font-mono text-xs">KYC-2026-00847</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-green-600/10 border border-green-600/20 rounded-lg p-3">
+                        <p class="text-green-400 text-sm">Ya puedes realizar compras en la plataforma</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== STATE 5: REJECTED ========== -->
+        <div id="state-rejected" class="state-panel hidden">
+            <div class="max-w-lg mx-auto">
+                <div class="bg-slate-800 border border-red-600/30 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2 text-red-400">Verificacion rechazada</h2>
+                    <p class="text-slate-400 mb-6">Algunos documentos necesitan ser enviados nuevamente</p>
+                    <!-- Rejection reasons per document -->
+                    <div class="space-y-3 text-left">
+                        <div class="bg-red-600/10 border border-red-600/20 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-red-400">INE Frente - Imagen borrosa</p>
+                                    <p class="text-xs text-slate-400 mt-1">Tome la foto con mejor iluminacion y asegurese de que el texto sea legible</p>
+                                    <button class="mt-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition">Re-subir INE Frente</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-green-600/10 border border-green-600/20 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-green-400">INE Vuelta - Aprobada</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-red-600/10 border border-red-600/20 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-red-400">Selfie - Rostro no coincide</p>
+                                    <p class="text-xs text-slate-400 mt-1">Asegurese que la selfie muestre su cara completa, sin lentes de sol ni gorras</p>
+                                    <button class="mt-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition">Re-tomar selfie</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-green-600/10 border border-green-600/20 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-green-400">Comprobante de domicilio - Aprobado</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition">
+                        Enviar documentos corregidos
+                    </button>
+                    <p class="text-xs text-slate-500 mt-3">Solo necesitas re-enviar los documentos rechazados</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== STATE 6: EXPIRED ========== -->
+        <div id="state-expired" class="state-panel hidden">
+            <div class="max-w-lg mx-auto">
+                <div class="bg-slate-800 border border-yellow-600/30 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-yellow-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                    </div>
+                    <h2 class="text-xl font-bold mb-2 text-yellow-400">Verificacion expirada</h2>
+                    <p class="text-slate-400 mb-4">Tu verificacion de identidad ha expirado y necesita ser renovada</p>
+                    <div class="bg-slate-700 rounded-lg p-4 space-y-3 text-left mb-6">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Verificada el</span>
+                            <span class="font-medium">15 Mar 2025</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Expiro el</span>
+                            <span class="font-medium text-red-400">15 Mar 2026</span>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-600/10 border border-yellow-600/20 rounded-lg p-3 mb-6">
+                        <p class="text-yellow-400 text-sm">No podras realizar compras hasta que re-verifiques tu identidad</p>
+                    </div>
+                    <button class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 rounded-xl transition">
+                        Re-verificar identidad
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showState(state) {
+            document.querySelectorAll('.state-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('state-' + state).classList.remove('hidden');
+            document.querySelectorAll('[id^="btn-"]').forEach(b => { b.classList.remove('bg-blue-600'); b.classList.add('bg-slate-700'); });
+            const btn = document.getElementById('btn-' + state);
+            if (btn) { btn.classList.remove('bg-slate-700'); btn.classList.add('bg-blue-600'); }
+        }
+        function showSubStep(step) {
+            document.querySelectorAll('.substep-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('substep-' + step).classList.remove('hidden');
+            ['ine-front','ine-back','selfie','address'].forEach(s => {
+                const b = document.getElementById('btn-' + s);
+                if (s === step) { b.classList.remove('bg-slate-700'); b.classList.add('bg-blue-600'); }
+                else { b.classList.remove('bg-blue-600'); b.classList.add('bg-slate-700'); }
+            });
+        }
+        showState('not-started');
+    </script>
+</body>
+</html>

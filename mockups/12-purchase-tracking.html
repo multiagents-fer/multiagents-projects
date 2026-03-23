@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Tracking - AgentsMX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .pulse-blue { animation: pulseDot 2s infinite; }
+        @keyframes pulseDot { 0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.5); } 50% { box-shadow: 0 0 0 8px rgba(59,130,246,0); } }
+        .countdown { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-slate-800 border-b border-slate-700 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="text-xl font-bold text-blue-400">AgentsMX</a>
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-sm text-slate-400 hover:text-white">Mis compras</a>
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold">JR</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- View toggle -->
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-2xl font-bold">Seguimiento de compra</h1>
+                <p class="text-slate-400 text-sm">Orden #ORD-2026-04521</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="showVariation('active')" id="btn-active" class="px-4 py-2 bg-blue-600 rounded-lg text-sm font-medium">Compra activa</button>
+                <button onclick="showVariation('cancelled')" id="btn-cancelled" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm transition">Compra cancelada</button>
+            </div>
+        </div>
+
+        <!-- ========== ACTIVE PURCHASE ========== -->
+        <div id="variation-active">
+            <!-- Countdown Banner -->
+            <div class="bg-yellow-600/10 border border-yellow-600/30 rounded-xl p-4 mb-6 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span class="text-yellow-400 font-medium">Reserva expira en</span>
+                </div>
+                <span class="text-yellow-400 font-bold text-xl countdown" id="countdown">47:15:33</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- LEFT: Timeline -->
+                <div class="lg:col-span-2">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+                        <h2 class="text-lg font-bold mb-6">Progreso de compra</h2>
+                        <div class="relative">
+                            <!-- Timeline line -->
+                            <div class="absolute left-5 top-0 bottom-0 w-0.5 bg-slate-700"></div>
+                            <!-- Completed line overlay -->
+                            <div class="absolute left-5 top-0 w-0.5 bg-green-500" style="height: 52%"></div>
+
+                            <!-- Step 1 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Intencion creada</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 10:30am</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Vehiculo reservado</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 10:31am</p>
+                                    <span class="inline-block mt-1 bg-green-600/20 text-green-400 text-xs px-2 py-0.5 rounded">Reservado hasta Mar 18</span>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Verificacion KYC</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 10:35am</p>
+                                    <span class="inline-block mt-1 bg-green-600/20 text-green-400 text-xs px-2 py-0.5 rounded">Identidad verificada</span>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Financiamiento solicitado</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 11:00am</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Financiamiento aprobado</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 11:45am</p>
+                                    <span class="inline-block mt-1 bg-green-600/20 text-green-400 text-xs px-2 py-0.5 rounded">Financiera Nacional - $5,890/mes</span>
+                                </div>
+                            </div>
+
+                            <!-- Step 6 - Current -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center z-10 flex-shrink-0 pulse-blue">
+                                    <span class="font-bold text-sm">6</span>
+                                </div>
+                                <div class="pt-1.5 bg-blue-600/10 border border-blue-600/20 rounded-lg p-3 -ml-1 flex-1">
+                                    <p class="font-medium text-blue-400">Seguro seleccionado</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 12:00pm</p>
+                                    <span class="inline-block mt-1 bg-blue-600/20 text-blue-400 text-xs px-2 py-0.5 rounded">Qualitas Amplia - $650/mes</span>
+                                    <p class="text-xs text-slate-400 mt-2">Esperando confirmacion de poliza</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 7 - Upcoming -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="font-bold text-sm text-slate-500">7</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500">Pago pendiente</p>
+                                    <p class="text-xs text-slate-600">Pendiente</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 8 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="font-bold text-sm text-slate-500">8</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500">Compra confirmada</p>
+                                    <p class="text-xs text-slate-600">Pendiente</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 9 -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="font-bold text-sm text-slate-500">9</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500">Entrega programada</p>
+                                    <p class="text-xs text-slate-600">Pendiente</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 10 -->
+                            <div class="relative flex items-start gap-4">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="font-bold text-sm text-slate-500">10</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500">Completada</p>
+                                    <p class="text-xs text-slate-600">Pendiente</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Section -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 mt-6">
+                        <h2 class="text-lg font-bold mb-4">Documentos requeridos</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                                    <span class="text-sm">INE (Frente y vuelta)</span>
+                                </div>
+                                <span class="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">Aprobado</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                                    <span class="text-sm">Comprobante de domicilio</span>
+                                </div>
+                                <span class="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">Aprobado</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                                    <span class="text-sm">Comprobante de ingresos</span>
+                                </div>
+                                <span class="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">Subido</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span class="text-sm">Contrato de compraventa</span>
+                                </div>
+                                <span class="text-xs bg-yellow-600/20 text-yellow-400 px-2 py-1 rounded">Pendiente</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span class="text-sm">Poliza de seguro</span>
+                                </div>
+                                <span class="text-xs bg-yellow-600/20 text-yellow-400 px-2 py-1 rounded">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Summary Panel -->
+                <div class="space-y-6">
+                    <!-- Vehicle Card -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                        <div class="bg-slate-700 h-40 flex items-center justify-center">
+                            <span class="text-slate-500">[Toyota Camry 2024 - Foto]</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold">Toyota Camry SE 2024</h3>
+                            <p class="text-sm text-slate-400">15,200 km | Automatico | Gasolina</p>
+                            <p class="text-xl font-bold text-blue-400 mt-2">$385,000 MXN</p>
+                        </div>
+                    </div>
+
+                    <!-- Financing Details -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4">
+                        <h3 class="font-bold mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            Financiamiento
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-slate-400">Financiera</span><span>Financiera Nacional</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Enganche</span><span>$77,000 (20%)</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Plazo</span><span>48 meses</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Tasa</span><span>12.9% anual</span></div>
+                            <div class="flex justify-between font-bold border-t border-slate-700 pt-2"><span>Mensualidad</span><span class="text-blue-400">$5,890</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Insurance Details -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4">
+                        <h3 class="font-bold mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            Seguro
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-slate-400">Aseguradora</span><span>Qualitas</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Cobertura</span><span>Amplia</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Deducible</span><span>5%</span></div>
+                            <div class="flex justify-between font-bold border-t border-slate-700 pt-2"><span>Prima mensual</span><span class="text-blue-400">$650</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Total Breakdown -->
+                    <div class="bg-blue-600/10 border border-blue-600/30 rounded-2xl p-4">
+                        <h3 class="font-bold mb-3">Resumen de costos</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-slate-400">Precio vehiculo</span><span>$385,000</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Enganche</span><span>-$77,000</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Tenencia y placas</span><span>$4,200</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Comision plataforma</span><span>$3,850</span></div>
+                            <div class="flex justify-between font-bold text-lg border-t border-blue-600/30 pt-2 mt-2"><span>Pago inicial total</span><span class="text-blue-400">$85,050</span></div>
+                            <div class="flex justify-between text-slate-400"><span>Pago mensual</span><span>$6,540/mes</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="space-y-3">
+                        <button class="w-full bg-slate-700 hover:bg-slate-600 text-white font-medium py-3 rounded-xl transition flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                            Chat con vendedor
+                        </button>
+                        <button class="w-full border border-red-600/50 text-red-400 hover:bg-red-600/10 font-medium py-3 rounded-xl transition">
+                            Cancelar compra
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CANCELLED PURCHASE ========== -->
+        <div id="variation-cancelled" class="hidden">
+            <div class="bg-red-600/10 border border-red-600/30 rounded-xl p-4 mb-6 flex items-center gap-3">
+                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <div>
+                    <p class="text-red-400 font-medium">Compra cancelada</p>
+                    <p class="text-xs text-slate-400">Cancelada el Mar 16, 2026 a las 3:45pm</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+                        <h2 class="text-lg font-bold mb-6">Historial de compra</h2>
+                        <div class="relative">
+                            <div class="absolute left-5 top-0 bottom-0 w-0.5 bg-slate-700"></div>
+                            <div class="absolute left-5 top-0 w-0.5 bg-green-500" style="height: 30%"></div>
+
+                            <!-- Step 1 - Completed -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Intencion creada</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 10:30am</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 - Completed -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Vehiculo reservado</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 10:31am</p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 - Completed -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-green-400">Verificacion KYC</p>
+                                    <p class="text-xs text-slate-500">Mar 15, 2026 - 10:35am</p>
+                                </div>
+                            </div>
+
+                            <!-- CANCELLATION POINT -->
+                            <div class="relative flex items-start gap-4 mb-6">
+                                <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </div>
+                                <div class="pt-1.5 bg-red-600/10 border border-red-600/20 rounded-lg p-3 -ml-1 flex-1">
+                                    <p class="font-medium text-red-400">Compra cancelada</p>
+                                    <p class="text-xs text-slate-500">Mar 16, 2026 - 3:45pm</p>
+                                    <div class="mt-2 bg-slate-700/50 rounded p-2">
+                                        <p class="text-xs text-slate-400"><strong class="text-slate-300">Razon:</strong> Encontre una mejor oferta en otro lugar</p>
+                                        <p class="text-xs text-slate-400 mt-1"><strong class="text-slate-300">Cancelado por:</strong> Comprador</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Remaining steps - Never reached -->
+                            <div class="relative flex items-start gap-4 mb-6 opacity-40">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="text-sm text-slate-500">4</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500 line-through">Financiamiento solicitado</p>
+                                </div>
+                            </div>
+                            <div class="relative flex items-start gap-4 mb-6 opacity-40">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="text-sm text-slate-500">5</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500 line-through">Financiamiento aprobado</p>
+                                </div>
+                            </div>
+                            <div class="relative flex items-start gap-4 mb-6 opacity-40">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="text-sm text-slate-500">6</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500 line-through">Seguro seleccionado</p>
+                                </div>
+                            </div>
+                            <div class="relative flex items-start gap-4 opacity-40">
+                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center z-10 flex-shrink-0">
+                                    <span class="text-sm text-slate-500">...</span>
+                                </div>
+                                <div class="pt-1.5">
+                                    <p class="font-medium text-slate-500 line-through">Pasos restantes omitidos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Refund info -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 mt-6">
+                        <h2 class="text-lg font-bold mb-4">Informacion de reembolso</h2>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-slate-400">Deposito de reserva</span><span>$5,000</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Comision por cancelacion</span><span class="text-red-400">-$500</span></div>
+                            <div class="flex justify-between font-bold border-t border-slate-700 pt-2"><span>Reembolso total</span><span class="text-green-400">$4,500</span></div>
+                            <div class="flex justify-between text-slate-400"><span>Metodo</span><span>Transferencia bancaria</span></div>
+                            <div class="flex justify-between text-slate-400"><span>Estimado</span><span>3-5 dias habiles</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Vehicle reference -->
+                <div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden opacity-60">
+                        <div class="bg-slate-700 h-40 flex items-center justify-center relative">
+                            <span class="text-slate-500">[Toyota Camry 2024 - Foto]</span>
+                            <div class="absolute top-3 right-3 bg-red-600 text-xs px-2 py-1 rounded font-medium">Cancelado</div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold">Toyota Camry SE 2024</h3>
+                            <p class="text-sm text-slate-400">15,200 km | Automatico | Gasolina</p>
+                            <p class="text-xl font-bold text-slate-500 mt-2">$385,000 MXN</p>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition">
+                        Buscar otro vehiculo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showVariation(v) {
+            document.getElementById('variation-active').classList.toggle('hidden', v !== 'active');
+            document.getElementById('variation-cancelled').classList.toggle('hidden', v !== 'cancelled');
+            document.getElementById('btn-active').classList.toggle('bg-blue-600', v === 'active');
+            document.getElementById('btn-active').classList.toggle('bg-slate-700', v !== 'active');
+            document.getElementById('btn-cancelled').classList.toggle('bg-blue-600', v === 'cancelled');
+            document.getElementById('btn-cancelled').classList.toggle('bg-slate-700', v !== 'cancelled');
+        }
+        // Countdown timer
+        let totalSeconds = 47*3600 + 15*60 + 33;
+        setInterval(() => {
+            if (totalSeconds <= 0) return;
+            totalSeconds--;
+            const h = Math.floor(totalSeconds / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = totalSeconds % 60;
+            document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }, 1000);
+    </script>
+</body>
+</html>

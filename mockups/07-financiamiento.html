@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financiamiento - Vehicle Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        input[type="range"] { -webkit-appearance: none; background: transparent; }
+        input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #3b82f6 var(--val, 20%), #334155 var(--val, 20%)); }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #3b82f6; margin-top: -7px; box-shadow: 0 0 8px rgba(59,130,246,0.5); cursor: pointer; }
+        .tab-active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        .step-active { background: #3b82f6; color: white; }
+        .step-done { background: #22c55e; color: white; }
+        .step-pending { background: #334155; color: #94a3b8; }
+        @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4); } 50% { box-shadow: 0 0 12px 4px rgba(59,130,246,0.2); } }
+        .pulse-glow { animation: pulse-glow 2s infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { animation: spin 1s linear infinite; }
+        .skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">AutoMarket</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-slate-400">
+                    <a href="#" class="hover:text-white transition">Comprar</a>
+                    <a href="#" class="hover:text-white transition">Vender</a>
+                    <a href="#" class="text-blue-400 font-medium">Financiamiento</a>
+                    <a href="#" class="hover:text-white transition">Seguros</a>
+                    <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center">
+                        <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <div class="flex gap-8 border-b border-slate-700 text-sm font-medium">
+            <button class="pb-3 tab-active" id="tab-calc">Calculadora</button>
+            <button class="pb-3 text-slate-400 hover:text-slate-200 transition" id="tab-app">Solicitud</button>
+            <button class="pb-3 text-slate-400 hover:text-slate-200 transition" id="tab-offers">Ofertas en Tiempo Real</button>
+        </div>
+    </div>
+
+    <!-- CALCULATOR VIEW -->
+    <div id="view-calc" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Vehicle Info Bar -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-slate-700 rounded-lg flex items-center justify-center">
+                    <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h.01M16 17h.01M3 11l1.5-5A2 2 0 016.4 4h11.2a2 2 0 011.9 1.5L21 11M3 11v6a1 1 0 001 1h1a2 2 0 004 0h6a2 2 0 004 0h1a1 1 0 001-1v-6M3 11h18"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold text-white">Toyota Camry 2023</h2>
+                    <p class="text-sm text-slate-400">Sedan | Automatico | 15,000 km</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl font-bold text-white">$285,000</p>
+                <p class="text-xs text-slate-400">Precio de venta</p>
+            </div>
+        </div>
+
+        <!-- Calculator Controls -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left: Sliders -->
+            <div class="space-y-8">
+                <!-- Enganche Slider -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label class="text-sm font-medium text-slate-300">Enganche</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" value="$57,000" class="w-28 bg-slate-700 border border-slate-600 rounded-lg px-3 py-1.5 text-sm text-white text-right font-medium focus:border-blue-500 focus:outline-none">
+                            <span class="text-sm font-semibold text-blue-400 bg-blue-500/10 px-2 py-1 rounded">20%</span>
+                        </div>
+                    </div>
+                    <input type="range" min="10" max="90" value="20" class="w-full" style="--val:22%">
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>10% ($28,500)</span>
+                        <span>50% ($142,500)</span>
+                        <span>90% ($256,500)</span>
+                    </div>
+                </div>
+
+                <!-- Plazo Slider -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label class="text-sm font-medium text-slate-300">Plazo</label>
+                        <span class="text-lg font-bold text-white">36 meses</span>
+                    </div>
+                    <input type="range" min="0" max="4" value="2" class="w-full" style="--val:50%">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-500">12</span>
+                        <span class="text-slate-500">24</span>
+                        <span class="text-blue-400 font-medium">36</span>
+                        <span class="text-slate-500">48</span>
+                        <span class="text-slate-500">60</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500 -mt-1">
+                        <span>meses</span>
+                        <span>meses</span>
+                        <span>meses</span>
+                        <span>meses</span>
+                        <span>meses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Results Panel -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-800/50 border border-slate-700 rounded-xl p-6 space-y-6">
+                <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider">Resumen del Credito</h3>
+                <div class="text-center py-4">
+                    <p class="text-sm text-slate-400 mb-1">Pago mensual estimado</p>
+                    <p class="text-5xl font-bold text-white">$6,200</p>
+                    <p class="text-sm text-slate-400 mt-1">MXN / mes</p>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-slate-900/50 rounded-lg p-3 text-center">
+                        <p class="text-xs text-slate-400 mb-1">Tasa anual</p>
+                        <p class="text-lg font-bold text-blue-400">12.5%</p>
+                    </div>
+                    <div class="bg-slate-900/50 rounded-lg p-3 text-center">
+                        <p class="text-xs text-slate-400 mb-1">CAT</p>
+                        <p class="text-lg font-bold text-amber-400">15.2%</p>
+                    </div>
+                    <div class="bg-slate-900/50 rounded-lg p-3 text-center">
+                        <p class="text-xs text-slate-400 mb-1">Total a pagar</p>
+                        <p class="text-lg font-bold text-white">$354,600</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/30 rounded-lg p-3 flex items-center gap-2 text-xs text-slate-400">
+                    <svg class="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Tasas referenciales. La tasa final depende de tu historial crediticio y la financiera seleccionada.
+                </div>
+            </div>
+        </div>
+
+        <!-- Amortization Chart -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-sm font-medium text-slate-300">Tabla de Amortizacion</h3>
+                <div class="flex items-center gap-4 text-xs">
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-blue-500 rounded-sm"></span> Capital</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-amber-500 rounded-sm"></span> Interes</span>
+                </div>
+            </div>
+            <!-- Area Chart Placeholder -->
+            <div class="relative h-64 bg-slate-900/50 rounded-lg overflow-hidden">
+                <svg class="w-full h-full" viewBox="0 0 600 200" preserveAspectRatio="none">
+                    <!-- Grid lines -->
+                    <line x1="0" y1="50" x2="600" y2="50" stroke="#334155" stroke-width="0.5"/>
+                    <line x1="0" y1="100" x2="600" y2="100" stroke="#334155" stroke-width="0.5"/>
+                    <line x1="0" y1="150" x2="600" y2="150" stroke="#334155" stroke-width="0.5"/>
+                    <!-- Interest area -->
+                    <path d="M0,10 L50,18 L100,28 L150,42 L200,58 L250,78 L300,100 L350,125 L400,148 L450,168 L500,182 L550,192 L600,198 L600,200 L0,200Z" fill="rgba(245,158,11,0.15)" stroke="none"/>
+                    <!-- Capital area -->
+                    <path d="M0,10 L50,15 L100,22 L150,32 L200,44 L250,60 L300,80 L350,104 L400,132 L450,158 L500,178 L550,190 L600,198 L600,200 L0,200Z" fill="rgba(59,130,246,0.2)" stroke="none"/>
+                    <!-- Interest line -->
+                    <path d="M0,10 L50,18 L100,28 L150,42 L200,58 L250,78 L300,100 L350,125 L400,148 L450,168 L500,182 L550,192 L600,198" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                    <!-- Capital line -->
+                    <path d="M0,10 L50,15 L100,22 L150,32 L200,44 L250,60 L300,80 L350,104 L400,132 L450,158 L500,178 L550,190 L600,198" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                </svg>
+                <!-- Y-axis labels -->
+                <div class="absolute left-2 top-0 text-xs text-slate-500 space-y-10">
+                    <p>$6,200</p>
+                    <p>$4,650</p>
+                    <p>$3,100</p>
+                    <p>$1,550</p>
+                </div>
+                <!-- X-axis labels -->
+                <div class="absolute bottom-1 left-0 right-0 flex justify-between px-8 text-xs text-slate-500">
+                    <span>Mes 1</span><span>Mes 6</span><span>Mes 12</span><span>Mes 18</span><span>Mes 24</span><span>Mes 30</span><span>Mes 36</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario Comparison -->
+        <div>
+            <h3 class="text-sm font-medium text-slate-300 mb-4">Comparacion de Escenarios</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- 24 meses -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition">
+                    <div class="text-center mb-4">
+                        <p class="text-sm text-slate-400">24 meses</p>
+                        <p class="text-3xl font-bold text-white mt-1">$8,450</p>
+                        <p class="text-xs text-slate-400">/mes</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between"><span class="text-slate-400">Tasa anual</span><span class="text-white">11.8%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">CAT</span><span class="text-white">14.5%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Total a pagar</span><span class="text-white font-medium">$316,800</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Costo financiero</span><span class="text-amber-400">$88,800</span></div>
+                    </div>
+                </div>
+                <!-- 36 meses - Recommended -->
+                <div class="bg-slate-800 border-2 border-blue-500 rounded-xl p-6 relative pulse-glow">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full">Recomendado</div>
+                    <div class="text-center mb-4">
+                        <p class="text-sm text-slate-400">36 meses</p>
+                        <p class="text-3xl font-bold text-blue-400 mt-1">$6,200</p>
+                        <p class="text-xs text-slate-400">/mes</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between"><span class="text-slate-400">Tasa anual</span><span class="text-white">12.5%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">CAT</span><span class="text-white">15.2%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Total a pagar</span><span class="text-white font-medium">$354,600</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Costo financiero</span><span class="text-amber-400">$126,600</span></div>
+                    </div>
+                </div>
+                <!-- 48 meses -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition">
+                    <div class="text-center mb-4">
+                        <p class="text-sm text-slate-400">48 meses</p>
+                        <p class="text-3xl font-bold text-white mt-1">$5,100</p>
+                        <p class="text-xs text-slate-400">/mes</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between"><span class="text-slate-400">Tasa anual</span><span class="text-white">13.5%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">CAT</span><span class="text-white">16.4%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Total a pagar</span><span class="text-white font-medium">$388,800</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Costo financiero</span><span class="text-amber-400">$160,800</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center py-4">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3.5 rounded-xl transition shadow-lg shadow-blue-500/25 text-lg">
+                Solicitar credito formal
+                <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+            <p class="text-xs text-slate-500 mt-3">Sin compromiso. Recibe ofertas de multiples financieras.</p>
+        </div>
+    </div>
+
+    <!-- APPLICATION VIEW -->
+    <div id="view-app" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hidden">
+        <!-- Step Indicators -->
+        <div class="flex items-center justify-center gap-0 mb-10">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full step-done flex items-center justify-center text-sm font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-sm text-green-400 font-medium">Datos personales</span>
+            </div>
+            <div class="w-12 h-px bg-slate-600 mx-2"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full step-active flex items-center justify-center text-sm font-bold">2</div>
+                <span class="text-sm text-white font-medium">Datos laborales</span>
+            </div>
+            <div class="w-12 h-px bg-slate-600 mx-2"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-sm font-medium">3</div>
+                <span class="text-sm text-slate-400">Referencias</span>
+            </div>
+            <div class="w-12 h-px bg-slate-600 mx-2"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-sm font-medium">4</div>
+                <span class="text-sm text-slate-400">Consentimiento</span>
+            </div>
+        </div>
+
+        <!-- Form Step 2: Datos Laborales -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-8 space-y-6">
+            <h2 class="text-xl font-semibold text-white">Datos Laborales</h2>
+            <p class="text-sm text-slate-400">Ingresa tu informacion laboral para evaluar tu capacidad de pago.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Empresa</label>
+                    <input type="text" value="Tecnologias Avanzadas SA de CV" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Puesto</label>
+                    <input type="text" value="Gerente de Proyectos" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Antiguedad</label>
+                    <select class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                        <option>Menos de 1 ano</option>
+                        <option selected>1-3 anos</option>
+                        <option>3-5 anos</option>
+                        <option>Mas de 5 anos</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Ingreso mensual neto</label>
+                    <input type="text" value="$35,000" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Telefono de empresa</label>
+                    <input type="text" value="55 1234 5678" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Tipo de contrato</label>
+                    <select class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                        <option selected>Indeterminado</option>
+                        <option>Determinado</option>
+                        <option>Honorarios</option>
+                        <option>Independiente</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Bureau Consent -->
+            <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4 mt-6">
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" checked class="mt-1 w-4 h-4 bg-slate-700 border-slate-600 rounded text-blue-500 focus:ring-blue-500 focus:ring-offset-0">
+                    <div class="text-xs text-slate-400 leading-relaxed">
+                        <span class="text-slate-300 font-medium">Autorizacion de consulta al Buro de Credito.</span> Por este conducto autorizo expresamente a Vehicle Marketplace, S.A.P.I. de C.V. para que por conducto de sus funcionarios facultados lleve a cabo investigaciones sobre mi comportamiento crediticio en las Sociedades de Informacion Crediticia (SIC) que estime conveniente. Asi mismo, declaro que conozco la naturaleza y alcance de la informacion que se solicitara, del uso que se le dara y que se podra realizar consultas periodicas de mi historial crediticio.
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between pt-4">
+                <button class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition">
+                    <svg class="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Anterior
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition">
+                    Siguiente
+                    <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Submit Button (shown at step 4) -->
+        <div class="text-center mt-8">
+            <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-10 py-3.5 rounded-xl transition shadow-lg shadow-green-500/25">
+                <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                Enviar solicitud
+            </button>
+        </div>
+    </div>
+
+    <!-- REAL-TIME OFFERS VIEW -->
+    <div id="view-offers" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hidden">
+        <!-- Timer -->
+        <div class="flex items-center justify-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-400 spinner" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </div>
+            <div>
+                <p class="text-sm text-slate-400">Evaluando tu solicitud...</p>
+                <p class="text-2xl font-bold text-white font-mono">2:34</p>
+            </div>
+        </div>
+
+        <!-- Status per Financiera -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-slate-800 border border-slate-700 rounded-lg p-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-blue-400 spinner" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-white">Financiera A</p>
+                    <p class="text-xs text-blue-400">Evaluando...</p>
+                </div>
+            </div>
+            <div class="bg-slate-800 border border-green-500/30 rounded-lg p-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-white">Financiera B</p>
+                    <p class="text-xs text-green-400">Aprobado</p>
+                </div>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 rounded-lg p-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-400">Financiera C</p>
+                    <p class="text-xs text-slate-500">Rechazado</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offer Cards -->
+        <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Ofertas Recibidas</h3>
+        <div class="space-y-4">
+            <!-- Card 1: Best Offer -->
+            <div class="bg-slate-800 border-2 border-green-500/40 rounded-xl p-6 relative">
+                <div class="absolute -top-3 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    Mejor oferta
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl flex items-center justify-center border border-blue-500/30">
+                            <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-lg">Financiera Nacional</p>
+                            <p class="text-xs text-slate-400">48 meses | Tasa fija</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">Tasa</p>
+                            <p class="text-lg font-bold text-green-400">11.5%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">CAT</p>
+                            <p class="text-lg font-bold text-white">14.2%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">Mensualidad</p>
+                            <p class="text-lg font-bold text-white">$5,890</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">Total</p>
+                            <p class="text-lg font-bold text-white">$282,720</p>
+                        </div>
+                    </div>
+                    <button class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2.5 rounded-lg transition whitespace-nowrap">
+                        Aceptar oferta
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-xl flex items-center justify-center border border-purple-500/30">
+                            <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-lg">Credito Auto Plus</p>
+                            <p class="text-xs text-slate-400">48 meses | Tasa fija</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">Tasa</p>
+                            <p class="text-lg font-bold text-white">13.2%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">CAT</p>
+                            <p class="text-lg font-bold text-white">16.1%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">Mensualidad</p>
+                            <p class="text-lg font-bold text-white">$6,150</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400">Total</p>
+                            <p class="text-lg font-bold text-white">$295,200</p>
+                        </div>
+                    </div>
+                    <button class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-6 py-2.5 rounded-lg transition whitespace-nowrap">
+                        Seleccionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3: Skeleton -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 skeleton rounded-xl"></div>
+                        <div class="space-y-2">
+                            <div class="h-5 w-40 skeleton rounded"></div>
+                            <div class="h-3 w-24 skeleton rounded"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                        <div class="text-center space-y-2"><div class="h-3 w-10 skeleton rounded mx-auto"></div><div class="h-6 w-16 skeleton rounded mx-auto"></div></div>
+                        <div class="text-center space-y-2"><div class="h-3 w-10 skeleton rounded mx-auto"></div><div class="h-6 w-16 skeleton rounded mx-auto"></div></div>
+                        <div class="text-center space-y-2"><div class="h-3 w-10 skeleton rounded mx-auto"></div><div class="h-6 w-16 skeleton rounded mx-auto"></div></div>
+                        <div class="text-center space-y-2"><div class="h-3 w-10 skeleton rounded mx-auto"></div><div class="h-6 w-16 skeleton rounded mx-auto"></div></div>
+                    </div>
+                    <div class="h-10 w-28 skeleton rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        const tabs = { calc: document.getElementById('tab-calc'), app: document.getElementById('tab-app'), offers: document.getElementById('tab-offers') };
+        const views = { calc: document.getElementById('view-calc'), app: document.getElementById('view-app'), offers: document.getElementById('view-offers') };
+        Object.keys(tabs).forEach(key => {
+            tabs[key].addEventListener('click', () => {
+                Object.values(tabs).forEach(t => { t.classList.remove('tab-active'); t.classList.add('text-slate-400'); });
+                Object.values(views).forEach(v => v.classList.add('hidden'));
+                tabs[key].classList.add('tab-active');
+                tabs[key].classList.remove('text-slate-400');
+                views[key].classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

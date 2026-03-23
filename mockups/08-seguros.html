@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguros - Vehicle Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        input[type="range"] { -webkit-appearance: none; background: transparent; }
+        input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #3b82f6 var(--val, 50%), #334155 var(--val, 50%)); }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #3b82f6; margin-top: -7px; box-shadow: 0 0 8px rgba(59,130,246,0.5); cursor: pointer; }
+        .tab-active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        .coverage-selected { border-color: #3b82f6; background: rgba(59,130,246,0.05); }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">AutoMarket</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-slate-400">
+                    <a href="#" class="hover:text-white transition">Comprar</a>
+                    <a href="#" class="hover:text-white transition">Vender</a>
+                    <a href="#" class="hover:text-white transition">Financiamiento</a>
+                    <a href="#" class="text-blue-400 font-medium">Seguros</a>
+                    <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center">
+                        <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <div class="flex gap-8 border-b border-slate-700 text-sm font-medium">
+            <button class="pb-3 tab-active" id="tab-quote">Cotizar</button>
+            <button class="pb-3 text-slate-400 hover:text-slate-200 transition" id="tab-compare">Comparar</button>
+            <button class="pb-3 text-slate-400 hover:text-slate-200 transition" id="tab-contract">Contratar</button>
+        </div>
+    </div>
+
+    <!-- QUOTE VIEW -->
+    <div id="view-quote" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        <!-- Vehicle Data (pre-filled) -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+            <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Datos del Vehiculo</h3>
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-slate-700 rounded-lg flex items-center justify-center">
+                    <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h.01M16 17h.01M3 11l1.5-5A2 2 0 016.4 4h11.2a2 2 0 011.9 1.5L21 11M3 11v6a1 1 0 001 1h1a2 2 0 004 0h6a2 2 0 004 0h1a1 1 0 001-1v-6M3 11h18"/></svg>
+                </div>
+                <div>
+                    <p class="text-lg font-semibold text-white">Toyota Camry 2023</p>
+                    <p class="text-sm text-slate-400">Valor: $285,000 MXN</p>
+                </div>
+                <div class="ml-auto">
+                    <span class="bg-green-500/10 text-green-400 text-xs font-medium px-3 py-1 rounded-full border border-green-500/20">Datos precargados</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Driver Data -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 space-y-6">
+            <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider">Datos del Conductor</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Age Slider -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <label class="text-sm font-medium text-slate-300">Edad</label>
+                        <span class="text-lg font-bold text-white">32 anos</span>
+                    </div>
+                    <input type="range" min="18" max="80" value="32" class="w-full" style="--val:23%">
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>18</span><span>40</span><span>60</span><span>80</span>
+                    </div>
+                </div>
+                <!-- Gender -->
+                <div class="space-y-3">
+                    <label class="text-sm font-medium text-slate-300">Genero</label>
+                    <div class="flex gap-3">
+                        <label class="flex-1 bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 text-center cursor-pointer">
+                            <input type="radio" name="gender" checked class="hidden">
+                            <span class="text-sm text-blue-400 font-medium">Masculino</span>
+                        </label>
+                        <label class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-3 text-center cursor-pointer hover:border-slate-500 transition">
+                            <input type="radio" name="gender" class="hidden">
+                            <span class="text-sm text-slate-300 font-medium">Femenino</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Postal Code -->
+                <div class="space-y-3">
+                    <label class="text-sm font-medium text-slate-300">Codigo Postal</label>
+                    <input type="text" value="06600" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                    <p class="text-xs text-slate-500">Ciudad de Mexico, Condesa</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coverage Type Selection -->
+        <div>
+            <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Tipo de Cobertura</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Basica -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 cursor-pointer hover:border-slate-600 transition">
+                    <div class="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Basica</h4>
+                    <ul class="space-y-1.5 text-sm text-slate-400 mb-4">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Responsabilidad civil
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Gastos medicos
+                        </li>
+                    </ul>
+                    <div class="border-t border-slate-700 pt-4">
+                        <p class="text-2xl font-bold text-white">$350<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                    </div>
+                </div>
+
+                <!-- Amplia - Selected -->
+                <div class="bg-slate-800 border-2 border-blue-500 rounded-xl p-6 cursor-pointer coverage-selected relative">
+                    <div class="absolute -top-3 right-4 bg-blue-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">Popular</div>
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4 border border-blue-500/30">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Amplia</h4>
+                    <ul class="space-y-1.5 text-sm text-slate-400 mb-4">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Responsabilidad civil
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Gastos medicos
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Robo total
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Danos materiales
+                        </li>
+                    </ul>
+                    <div class="border-t border-slate-700 pt-4">
+                        <p class="text-2xl font-bold text-blue-400">$650<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                    </div>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 cursor-pointer hover:border-slate-600 transition">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-lg flex items-center justify-center mb-4 border border-amber-500/30">
+                        <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Premium</h4>
+                    <ul class="space-y-1.5 text-sm text-slate-400 mb-4">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Todo riesgo
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Auto sustituto
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Asistencia vial 24/7
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Cristales y llantas
+                        </li>
+                    </ul>
+                    <div class="border-t border-slate-700 pt-4">
+                        <p class="text-2xl font-bold text-white">$950<span class="text-sm font-normal text-slate-400">/mes</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-3.5 rounded-xl transition shadow-lg shadow-blue-500/25 text-lg">
+                Cotizar ahora
+                <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- COMPARISON VIEW -->
+    <div id="view-compare" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hidden">
+        <h2 class="text-xl font-semibold text-white mb-6">Comparacion de Aseguradoras</h2>
+        <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="text-left p-4 text-slate-400 font-medium w-48">Cobertura</th>
+                            <th class="p-4 text-center">
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center border border-red-500/20">
+                                        <span class="text-red-400 font-bold text-xs">Q</span>
+                                    </div>
+                                    <span class="text-white font-semibold">Qualitas</span>
+                                </div>
+                            </th>
+                            <th class="p-4 text-center relative">
+                                <div class="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-b-md">Mejor valor</div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/20">
+                                        <span class="text-blue-400 font-bold text-xs">GNP</span>
+                                    </div>
+                                    <span class="text-white font-semibold">GNP</span>
+                                </div>
+                            </th>
+                            <th class="p-4 text-center">
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20">
+                                        <span class="text-indigo-400 font-bold text-xs">AXA</span>
+                                    </div>
+                                    <span class="text-white font-semibold">AXA</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Responsabilidad civil</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Gastos medicos</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Robo total</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Danos materiales</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Cristales</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-slate-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Asistencia vial</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Auto sustituto</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-slate-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center bg-green-500/5"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-slate-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                        </tr>
+                        <!-- Price row -->
+                        <tr class="border-b border-slate-700/50 bg-slate-900/30">
+                            <td class="p-4 text-white font-semibold">Precio mensual</td>
+                            <td class="p-4 text-center"><span class="text-xl font-bold text-white">$580</span><span class="text-slate-400 text-xs">/mes</span></td>
+                            <td class="p-4 text-center bg-green-500/5"><span class="text-xl font-bold text-green-400">$650</span><span class="text-slate-400 text-xs">/mes</span></td>
+                            <td class="p-4 text-center"><span class="text-xl font-bold text-white">$720</span><span class="text-slate-400 text-xs">/mes</span></td>
+                        </tr>
+                        <!-- Deducible row -->
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Deducible</td>
+                            <td class="p-4 text-center text-white font-medium">5%</td>
+                            <td class="p-4 text-center bg-green-500/5 text-green-400 font-medium">3%</td>
+                            <td class="p-4 text-center text-white font-medium">5%</td>
+                        </tr>
+                        <!-- Rating row -->
+                        <tr class="border-b border-slate-700/50">
+                            <td class="p-4 text-slate-300">Calificacion</td>
+                            <td class="p-4 text-center">
+                                <div class="flex items-center justify-center gap-1">
+                                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    <span class="text-white font-medium">4.2</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-center bg-green-500/5">
+                                <div class="flex items-center justify-center gap-1">
+                                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    <span class="text-white font-medium">4.5</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-center">
+                                <div class="flex items-center justify-center gap-1">
+                                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    <span class="text-white font-medium">4.3</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- CTA row -->
+                        <tr>
+                            <td class="p-4"></td>
+                            <td class="p-4 text-center"><button class="bg-slate-700 hover:bg-slate-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition">Contratar</button></td>
+                            <td class="p-4 text-center bg-green-500/5"><button class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition">Contratar</button></td>
+                            <td class="p-4 text-center"><button class="bg-slate-700 hover:bg-slate-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition">Contratar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTRACT VIEW -->
+    <div id="view-contract" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 hidden">
+        <!-- Summary Card -->
+        <div class="bg-gradient-to-r from-blue-500/10 to-green-500/10 border border-blue-500/20 rounded-xl p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-sm font-medium text-slate-400 uppercase tracking-wider">Resumen del Seguro Seleccionado</h3>
+                <span class="bg-green-500/10 text-green-400 text-xs font-medium px-2 py-1 rounded-full border border-green-500/20">Mejor valor</span>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <div class="w-14 h-14 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/30">
+                    <span class="text-blue-400 font-bold">GNP</span>
+                </div>
+                <div>
+                    <p class="text-lg font-semibold text-white">GNP Seguros - Cobertura Amplia</p>
+                    <p class="text-sm text-slate-400">Toyota Camry 2023 | Deducible 3%</p>
+                </div>
+                <p class="ml-auto text-2xl font-bold text-white">$650<span class="text-sm font-normal text-slate-400">/mes</span></p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Responsabilidad civil</span>
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Gastos medicos</span>
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Robo total</span>
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Danos materiales</span>
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Cristales</span>
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Asistencia vial</span>
+                <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-full">Auto sustituto</span>
+            </div>
+        </div>
+
+        <!-- Additional Data Form -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 space-y-5">
+            <h3 class="text-lg font-semibold text-white">Datos Adicionales</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Numero de serie (VIN)</label>
+                    <input type="text" value="JTDKN3DU5A0123456" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Placas</label>
+                    <input type="text" value="ABC-123-A" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">RFC</label>
+                    <input type="text" value="GARM850101HDF" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Domicilio</label>
+                    <input type="text" value="Av. Insurgentes Sur 1234, Col. Del Valle" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 space-y-5">
+            <h3 class="text-lg font-semibold text-white">Metodo de Pago</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <label class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 cursor-pointer flex items-center gap-3">
+                    <input type="radio" name="payment" checked class="text-blue-500">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-8 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="#1e40af" opacity="0.3"/><text x="12" y="11" text-anchor="middle" font-size="6" fill="#60a5fa">VISA</text></svg>
+                        <span class="text-sm text-white font-medium">Tarjeta de credito</span>
+                    </div>
+                </label>
+                <label class="bg-slate-700/50 border border-slate-600 rounded-lg p-4 cursor-pointer flex items-center gap-3 hover:border-slate-500 transition">
+                    <input type="radio" name="payment" class="text-blue-500">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-8 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="#065f46" opacity="0.3"/><text x="12" y="11" text-anchor="middle" font-size="5" fill="#34d399">DEBIT</text></svg>
+                        <span class="text-sm text-slate-300 font-medium">Tarjeta de debito</span>
+                    </div>
+                </label>
+                <label class="bg-slate-700/50 border border-slate-600 rounded-lg p-4 cursor-pointer flex items-center gap-3 hover:border-slate-500 transition">
+                    <input type="radio" name="payment" class="text-blue-500">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-8 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 16"><rect width="24" height="16" rx="2" fill="#78350f" opacity="0.3"/><text x="12" y="11" text-anchor="middle" font-size="5" fill="#fbbf24">SPEI</text></svg>
+                        <span class="text-sm text-slate-300 font-medium">Transferencia</span>
+                    </div>
+                </label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Numero de tarjeta</label>
+                    <input type="text" value="4532 **** **** 7890" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1.5">Vencimiento</label>
+                        <input type="text" value="12/27" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1.5">CVV</label>
+                        <input type="password" value="123" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-white text-sm focus:border-blue-500 focus:outline-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto">
+                <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">Poliza Confirmada</h3>
+            <p class="text-slate-400 text-sm">Tu poliza ha sido emitida exitosamente</p>
+            <div class="bg-slate-800 rounded-lg p-4 inline-block">
+                <p class="text-xs text-slate-400 mb-1">Numero de poliza</p>
+                <p class="text-xl font-bold text-green-400 font-mono">GNP-2023-0847291</p>
+            </div>
+            <p class="text-xs text-slate-500">Recibiras un correo con los detalles y tu poliza en PDF.</p>
+        </div>
+    </div>
+
+    <script>
+        const tabs = { quote: document.getElementById('tab-quote'), compare: document.getElementById('tab-compare'), contract: document.getElementById('tab-contract') };
+        const views = { quote: document.getElementById('view-quote'), compare: document.getElementById('view-compare'), contract: document.getElementById('view-contract') };
+        Object.keys(tabs).forEach(key => {
+            tabs[key].addEventListener('click', () => {
+                Object.values(tabs).forEach(t => { t.classList.remove('tab-active'); t.classList.add('text-slate-400'); });
+                Object.values(views).forEach(v => v.classList.add('hidden'));
+                tabs[key].classList.add('tab-active');
+                tabs[key].classList.remove('text-slate-400');
+                views[key].classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
