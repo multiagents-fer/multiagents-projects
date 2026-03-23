@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Vehicle Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .sidebar-active { background: rgba(59,130,246,0.1); border-right: 2px solid #3b82f6; color: #3b82f6; }
+        .tab-active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0f172a; } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex">
+
+    <!-- Left Sidebar -->
+    <aside class="w-64 bg-slate-800 border-r border-slate-700 min-h-screen flex flex-col fixed left-0 top-0 bottom-0 z-40">
+        <div class="p-5 border-b border-slate-700">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                    <span class="text-lg font-bold text-white">AutoMarket</span>
+                    <p class="text-xs text-slate-400">Panel Admin</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 py-4">
+            <a href="#" class="flex items-center gap-3 px-5 py-3 sidebar-active text-sm font-medium" id="nav-dashboard">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-white hover:bg-slate-700/50 transition text-sm font-medium" id="nav-inventory">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                Inventario
+            </a>
+            <a href="#" class="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-white hover:bg-slate-700/50 transition text-sm font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                Usuarios
+            </a>
+            <a href="#" class="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-white hover:bg-slate-700/50 transition text-sm font-medium" id="nav-partners">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                Partners
+            </a>
+            <a href="#" class="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-white hover:bg-slate-700/50 transition text-sm font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Configuracion
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-700">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-xs font-bold text-white">AM</div>
+                <div>
+                    <p class="text-sm font-medium text-white">Admin Master</p>
+                    <p class="text-xs text-slate-400">admin@automarket.mx</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64">
+        <!-- Top Bar -->
+        <header class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-30 px-6 py-4 flex items-center justify-between">
+            <div>
+                <h1 class="text-xl font-semibold text-white" id="page-title">Dashboard</h1>
+                <p class="text-xs text-slate-400">Ultima actualizacion: hace 5 minutos</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="relative bg-slate-700 p-2 rounded-lg hover:bg-slate-600 transition">
+                    <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">3</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="view-dashboard" class="p-6 space-y-6">
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <span class="bg-green-500/10 text-green-400 text-xs font-medium px-2 py-0.5 rounded-full">+8.2%</span>
+                    </div>
+                    <p class="text-2xl font-bold text-white">12,450</p>
+                    <p class="text-sm text-slate-400">Usuarios</p>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h.01M16 17h.01M3 11l1.5-5A2 2 0 016.4 4h11.2a2 2 0 011.9 1.5L21 11M3 11v6a1 1 0 001 1h1a2 2 0 004 0h6a2 2 0 004 0h1a1 1 0 001-1v-6M3 11h18"/></svg>
+                        </div>
+                        <span class="bg-green-500/10 text-green-400 text-xs font-medium px-2 py-0.5 rounded-full">+3.1%</span>
+                    </div>
+                    <p class="text-2xl font-bold text-white">11,234</p>
+                    <p class="text-sm text-slate-400">Vehiculos</p>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                        </div>
+                        <span class="bg-green-500/10 text-green-400 text-xs font-medium px-2 py-0.5 rounded-full">+22%</span>
+                    </div>
+                    <p class="text-2xl font-bold text-white">156</p>
+                    <p class="text-sm text-slate-400">Transacciones</p>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <span class="bg-green-500/10 text-green-400 text-xs font-medium px-2 py-0.5 rounded-full">+15%</span>
+                    </div>
+                    <p class="text-2xl font-bold text-white">$4.5M</p>
+                    <p class="text-sm text-slate-400">Revenue</p>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Revenue Chart -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-slate-300 mb-4">Revenue ultimos 12 meses</h3>
+                    <div class="relative h-48">
+                        <svg class="w-full h-full" viewBox="0 0 500 180" preserveAspectRatio="none">
+                            <line x1="0" y1="45" x2="500" y2="45" stroke="#1e293b" stroke-width="1"/>
+                            <line x1="0" y1="90" x2="500" y2="90" stroke="#1e293b" stroke-width="1"/>
+                            <line x1="0" y1="135" x2="500" y2="135" stroke="#1e293b" stroke-width="1"/>
+                            <path d="M0,140 L42,130 L83,125 L125,115 L167,105 L208,95 L250,80 L292,70 L333,55 L375,45 L417,35 L458,25 L500,15" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+                            <path d="M0,140 L42,130 L83,125 L125,115 L167,105 L208,95 L250,80 L292,70 L333,55 L375,45 L417,35 L458,25 L500,15 L500,180 L0,180Z" fill="url(#revGrad)"/>
+                            <defs><linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(59,130,246,0.15)"/><stop offset="100%" stop-color="rgba(59,130,246,0)"/></linearGradient></defs>
+                        </svg>
+                        <div class="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-slate-500 px-1">
+                            <span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span><span>Ene</span><span>Feb</span><span>Mar</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Transactions Bar Chart -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-slate-300 mb-4">Transacciones por mes</h3>
+                    <div class="flex items-end justify-between h-48 gap-2 px-2">
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:45%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Abr</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:52%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">May</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:48%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Jun</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:58%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Jul</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:62%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Ago</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:55%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Sep</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:70%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Oct</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:65%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Nov</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:75%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Dic</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:80%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Ene</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500/20 rounded-t" style="height:85%"><div class="w-full h-full bg-blue-500 rounded-t opacity-60"></div></div>
+                            <span class="text-xs text-slate-500">Feb</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-1">
+                            <div class="w-full bg-blue-500 rounded-t" style="height:95%"></div>
+                            <span class="text-xs text-blue-400 font-medium">Mar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversion Funnel -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                <h3 class="text-sm font-medium text-slate-300 mb-6">Funnel de Conversion</h3>
+                <div class="flex items-center justify-between gap-2">
+                    <div class="flex-1 text-center">
+                        <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mb-2">
+                            <p class="text-2xl font-bold text-white">45K</p>
+                            <p class="text-xs text-slate-400">Visitas</p>
+                        </div>
+                        <p class="text-xs text-slate-500">100%</p>
+                    </div>
+                    <svg class="w-6 h-6 text-slate-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <div class="flex-1 text-center">
+                        <div class="bg-purple-500/10 border border-purple-500/20 rounded-xl p-4 mb-2">
+                            <p class="text-2xl font-bold text-white">8K</p>
+                            <p class="text-xs text-slate-400">Favoritos</p>
+                        </div>
+                        <p class="text-xs text-slate-500">17.8%</p>
+                    </div>
+                    <svg class="w-6 h-6 text-slate-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <div class="flex-1 text-center">
+                        <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-2">
+                            <p class="text-2xl font-bold text-white">2K</p>
+                            <p class="text-xs text-slate-400">Intenciones</p>
+                        </div>
+                        <p class="text-xs text-slate-500">4.4%</p>
+                    </div>
+                    <svg class="w-6 h-6 text-slate-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <div class="flex-1 text-center">
+                        <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-4 mb-2">
+                            <p class="text-2xl font-bold text-green-400">156</p>
+                            <p class="text-xs text-slate-400">Compras</p>
+                        </div>
+                        <p class="text-xs text-slate-500">0.35%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Alerts -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Activity Table -->
+                <div class="lg:col-span-2 bg-slate-800 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-slate-300 mb-4">Actividad Reciente</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead><tr class="text-slate-400 text-xs border-b border-slate-700">
+                                <th class="text-left pb-3 font-medium">Timestamp</th>
+                                <th class="text-left pb-3 font-medium">Usuario</th>
+                                <th class="text-left pb-3 font-medium">Accion</th>
+                                <th class="text-left pb-3 font-medium">Detalle</th>
+                            </tr></thead>
+                            <tbody class="divide-y divide-slate-700/50">
+                                <tr><td class="py-3 text-slate-400 text-xs">Hoy 14:32</td><td class="py-3 text-white">Carlos M.</td><td class="py-3"><span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Compra</span></td><td class="py-3 text-slate-300">Toyota Camry 2023</td></tr>
+                                <tr><td class="py-3 text-slate-400 text-xs">Hoy 14:15</td><td class="py-3 text-white">Maria L.</td><td class="py-3"><span class="bg-blue-500/10 text-blue-400 text-xs px-2 py-0.5 rounded-full">Solicitud</span></td><td class="py-3 text-slate-300">Credito $285,000</td></tr>
+                                <tr><td class="py-3 text-slate-400 text-xs">Hoy 13:48</td><td class="py-3 text-white">Roberto S.</td><td class="py-3"><span class="bg-purple-500/10 text-purple-400 text-xs px-2 py-0.5 rounded-full">Publicacion</span></td><td class="py-3 text-slate-300">Honda Civic 2022</td></tr>
+                                <tr><td class="py-3 text-slate-400 text-xs">Hoy 13:22</td><td class="py-3 text-white">Ana P.</td><td class="py-3"><span class="bg-amber-500/10 text-amber-400 text-xs px-2 py-0.5 rounded-full">Seguro</span></td><td class="py-3 text-slate-300">Poliza GNP Amplia</td></tr>
+                                <tr><td class="py-3 text-slate-400 text-xs">Hoy 12:55</td><td class="py-3 text-white">Luis G.</td><td class="py-3"><span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Compra</span></td><td class="py-3 text-slate-300">Nissan Sentra 2023</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- System Alerts -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-slate-300 mb-4">Alertas del Sistema</h3>
+                    <div class="space-y-3">
+                        <div class="bg-red-500/5 border border-red-500/20 rounded-lg p-3">
+                            <div class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                <div>
+                                    <p class="text-sm text-red-400 font-medium">Critico</p>
+                                    <p class="text-xs text-slate-400">API de Financiera C sin respuesta desde hace 2h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-amber-500/5 border border-amber-500/20 rounded-lg p-3">
+                            <div class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                <div>
+                                    <p class="text-sm text-amber-400 font-medium">Advertencia</p>
+                                    <p class="text-xs text-slate-400">Scraper de Kavak con 85% de errores</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-amber-500/5 border border-amber-500/20 rounded-lg p-3">
+                            <div class="flex items-start gap-2">
+                                <svg class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                <div>
+                                    <p class="text-sm text-amber-400 font-medium">Advertencia</p>
+                                    <p class="text-xs text-slate-400">Disco al 78% de capacidad en servidor principal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVENTORY VIEW -->
+        <div id="view-inventory" class="p-6 space-y-6 hidden">
+            <!-- Search + Filter + Bulk Actions -->
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+                <div class="flex items-center gap-3 flex-1">
+                    <div class="relative flex-1 max-w-md">
+                        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <input type="text" placeholder="Buscar vehiculo..." class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none">
+                    </div>
+                    <select class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-300 focus:border-blue-500 focus:outline-none">
+                        <option>Todas las marcas</option><option>Toyota</option><option>Honda</option><option>Nissan</option>
+                    </select>
+                    <select class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-300 focus:border-blue-500 focus:outline-none">
+                        <option>Todos los status</option><option>Publicado</option><option>Borrador</option><option>Vendido</option>
+                    </select>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Agregar vehiculo
+                </button>
+            </div>
+
+            <!-- Bulk Action Bar -->
+            <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <span class="text-sm text-blue-300">3 seleccionados</span>
+                <div class="flex items-center gap-2">
+                    <button class="bg-green-500/10 text-green-400 hover:bg-green-500/20 px-3 py-1.5 rounded text-xs font-medium transition">Publicar</button>
+                    <button class="bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 px-3 py-1.5 rounded text-xs font-medium transition">Despublicar</button>
+                    <button class="bg-red-500/10 text-red-400 hover:bg-red-500/20 px-3 py-1.5 rounded text-xs font-medium transition">Eliminar</button>
+                </div>
+            </div>
+
+            <!-- Inventory Table -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead><tr class="text-slate-400 text-xs border-b border-slate-700 bg-slate-900/30">
+                            <th class="p-4 w-10"><input type="checkbox" class="bg-slate-700 border-slate-600 rounded text-blue-500"></th>
+                            <th class="p-4 w-16"></th>
+                            <th class="text-left p-4 font-medium">Marca / Modelo</th>
+                            <th class="text-left p-4 font-medium">Ano</th>
+                            <th class="text-left p-4 font-medium">Precio</th>
+                            <th class="text-left p-4 font-medium">Status</th>
+                            <th class="text-left p-4 font-medium">Fuente</th>
+                            <th class="text-left p-4 font-medium">Dias</th>
+                            <th class="text-right p-4 font-medium">Acciones</th>
+                        </tr></thead>
+                        <tbody class="divide-y divide-slate-700/50">
+                            <tr class="hover:bg-slate-700/30 bg-blue-500/5">
+                                <td class="p-4"><input type="checkbox" checked class="bg-slate-700 border-slate-600 rounded text-blue-500"></td>
+                                <td class="p-4"><div class="w-12 h-9 bg-slate-700 rounded flex items-center justify-center"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div></td>
+                                <td class="p-4 text-white font-medium">Toyota Camry</td>
+                                <td class="p-4 text-slate-300">2023</td>
+                                <td class="p-4 text-white font-medium">$285,000</td>
+                                <td class="p-4"><span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Publicado</span></td>
+                                <td class="p-4 text-slate-400">Kavak</td>
+                                <td class="p-4 text-slate-400">12</td>
+                                <td class="p-4 text-right"><div class="flex items-center justify-end gap-1"><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30 bg-blue-500/5">
+                                <td class="p-4"><input type="checkbox" checked class="bg-slate-700 border-slate-600 rounded text-blue-500"></td>
+                                <td class="p-4"><div class="w-12 h-9 bg-slate-700 rounded flex items-center justify-center"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div></td>
+                                <td class="p-4 text-white font-medium">Honda Civic</td>
+                                <td class="p-4 text-slate-300">2022</td>
+                                <td class="p-4 text-white font-medium">$245,000</td>
+                                <td class="p-4"><span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Publicado</span></td>
+                                <td class="p-4 text-slate-400">Albacar</td>
+                                <td class="p-4 text-slate-400">8</td>
+                                <td class="p-4 text-right"><div class="flex items-center justify-end gap-1"><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30 bg-blue-500/5">
+                                <td class="p-4"><input type="checkbox" checked class="bg-slate-700 border-slate-600 rounded text-blue-500"></td>
+                                <td class="p-4"><div class="w-12 h-9 bg-slate-700 rounded flex items-center justify-center"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div></td>
+                                <td class="p-4 text-white font-medium">Nissan Sentra</td>
+                                <td class="p-4 text-slate-300">2023</td>
+                                <td class="p-4 text-white font-medium">$218,000</td>
+                                <td class="p-4"><span class="bg-amber-500/10 text-amber-400 text-xs px-2 py-0.5 rounded-full">Borrador</span></td>
+                                <td class="p-4 text-slate-400">Finakar</td>
+                                <td class="p-4 text-slate-400">3</td>
+                                <td class="p-4 text-right"><div class="flex items-center justify-end gap-1"><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-4"><input type="checkbox" class="bg-slate-700 border-slate-600 rounded text-blue-500"></td>
+                                <td class="p-4"><div class="w-12 h-9 bg-slate-700 rounded flex items-center justify-center"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div></td>
+                                <td class="p-4 text-white font-medium">Mazda 3</td>
+                                <td class="p-4 text-slate-300">2022</td>
+                                <td class="p-4 text-white font-medium">$310,000</td>
+                                <td class="p-4"><span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Publicado</span></td>
+                                <td class="p-4 text-slate-400">Kavak</td>
+                                <td class="p-4 text-slate-400">22</td>
+                                <td class="p-4 text-right"><div class="flex items-center justify-end gap-1"><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-4"><input type="checkbox" class="bg-slate-700 border-slate-600 rounded text-blue-500"></td>
+                                <td class="p-4"><div class="w-12 h-9 bg-slate-700 rounded flex items-center justify-center"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div></td>
+                                <td class="p-4 text-white font-medium">VW Jetta</td>
+                                <td class="p-4 text-slate-300">2023</td>
+                                <td class="p-4 text-white font-medium">$335,000</td>
+                                <td class="p-4"><span class="bg-slate-500/10 text-slate-400 text-xs px-2 py-0.5 rounded-full">Vendido</span></td>
+                                <td class="p-4 text-slate-400">Albacar</td>
+                                <td class="p-4 text-slate-400">45</td>
+                                <td class="p-4 text-right"><div class="flex items-center justify-end gap-1"><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button><button class="p-1.5 hover:bg-slate-700 rounded transition"><svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTNERS VIEW -->
+        <div id="view-partners" class="p-6 space-y-6 hidden">
+            <div class="flex items-center justify-between">
+                <h2 class="text-lg font-semibold text-white">Partners</h2>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition">+ Agregar partner</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Partner 1: Financiera Nacional -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/20">
+                                <span class="text-blue-400 font-bold text-xs">FN</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Financiera Nacional</p>
+                                <span class="bg-blue-500/10 text-blue-400 text-xs px-2 py-0.5 rounded-full">Financiera</span>
+                            </div>
+                        </div>
+                        <div class="w-2.5 h-2.5 bg-green-400 rounded-full" title="Activo"></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div><p class="text-lg font-bold text-white">234</p><p class="text-xs text-slate-400">Solicitudes</p></div>
+                        <div><p class="text-lg font-bold text-green-400">68%</p><p class="text-xs text-slate-400">Aprobacion</p></div>
+                        <div><p class="text-lg font-bold text-white">4.2h</p><p class="text-xs text-slate-400">Avg time</p></div>
+                    </div>
+                </div>
+                <!-- Partner 2: GNP Seguros -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center border border-green-500/20">
+                                <span class="text-green-400 font-bold text-xs">GNP</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-white">GNP Seguros</p>
+                                <span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Aseguradora</span>
+                            </div>
+                        </div>
+                        <div class="w-2.5 h-2.5 bg-green-400 rounded-full" title="Activo"></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div><p class="text-lg font-bold text-white">189</p><p class="text-xs text-slate-400">Solicitudes</p></div>
+                        <div><p class="text-lg font-bold text-green-400">92%</p><p class="text-xs text-slate-400">Aprobacion</p></div>
+                        <div><p class="text-lg font-bold text-white">1.5h</p><p class="text-xs text-slate-400">Avg time</p></div>
+                    </div>
+                </div>
+                <!-- Partner 3: Credito Auto Plus -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center border border-purple-500/20">
+                                <span class="text-purple-400 font-bold text-xs">CA+</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Credito Auto Plus</p>
+                                <span class="bg-blue-500/10 text-blue-400 text-xs px-2 py-0.5 rounded-full">Financiera</span>
+                            </div>
+                        </div>
+                        <div class="w-2.5 h-2.5 bg-amber-400 rounded-full" title="Lento"></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div><p class="text-lg font-bold text-white">156</p><p class="text-xs text-slate-400">Solicitudes</p></div>
+                        <div><p class="text-lg font-bold text-amber-400">55%</p><p class="text-xs text-slate-400">Aprobacion</p></div>
+                        <div><p class="text-lg font-bold text-white">8.1h</p><p class="text-xs text-slate-400">Avg time</p></div>
+                    </div>
+                </div>
+                <!-- Partner 4: Qualitas -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center border border-red-500/20">
+                                <span class="text-red-400 font-bold text-xs">Q</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Qualitas</p>
+                                <span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Aseguradora</span>
+                            </div>
+                        </div>
+                        <div class="w-2.5 h-2.5 bg-green-400 rounded-full" title="Activo"></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div><p class="text-lg font-bold text-white">312</p><p class="text-xs text-slate-400">Solicitudes</p></div>
+                        <div><p class="text-lg font-bold text-green-400">88%</p><p class="text-xs text-slate-400">Aprobacion</p></div>
+                        <div><p class="text-lg font-bold text-white">2.3h</p><p class="text-xs text-slate-400">Avg time</p></div>
+                    </div>
+                </div>
+                <!-- Partner 5: Financiera C (down) -->
+                <div class="bg-slate-800 border border-red-500/20 rounded-xl p-5 hover:border-red-500/30 transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center">
+                                <span class="text-slate-400 font-bold text-xs">FC</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Financiera C</p>
+                                <span class="bg-blue-500/10 text-blue-400 text-xs px-2 py-0.5 rounded-full">Financiera</span>
+                            </div>
+                        </div>
+                        <div class="w-2.5 h-2.5 bg-red-400 rounded-full" title="Caida"></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div><p class="text-lg font-bold text-white">89</p><p class="text-xs text-slate-400">Solicitudes</p></div>
+                        <div><p class="text-lg font-bold text-red-400">32%</p><p class="text-xs text-slate-400">Aprobacion</p></div>
+                        <div><p class="text-lg font-bold text-white">--</p><p class="text-xs text-slate-400">Avg time</p></div>
+                    </div>
+                </div>
+                <!-- Partner 6: AXA -->
+                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20">
+                                <span class="text-indigo-400 font-bold text-xs">AXA</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-white">AXA Seguros</p>
+                                <span class="bg-green-500/10 text-green-400 text-xs px-2 py-0.5 rounded-full">Aseguradora</span>
+                            </div>
+                        </div>
+                        <div class="w-2.5 h-2.5 bg-green-400 rounded-full" title="Activo"></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div><p class="text-lg font-bold text-white">201</p><p class="text-xs text-slate-400">Solicitudes</p></div>
+                        <div><p class="text-lg font-bold text-green-400">85%</p><p class="text-xs text-slate-400">Aprobacion</p></div>
+                        <div><p class="text-lg font-bold text-white">3.0h</p><p class="text-xs text-slate-400">Avg time</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expanded Partner Detail -->
+            <div class="bg-slate-800 border border-blue-500/30 rounded-xl p-6 space-y-5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/20"><span class="text-blue-400 font-bold text-xs">FN</span></div>
+                        <h3 class="text-lg font-semibold text-white">Financiera Nacional - Configuracion</h3>
+                    </div>
+                    <button class="bg-green-500/10 text-green-400 hover:bg-green-500/20 px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Test Connection
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">API Endpoint</label>
+                        <input type="text" value="https://api.financieranacional.mx/v2" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">API Key</label>
+                        <input type="password" value="sk-fn-xxxxx" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 focus:outline-none">
+                    </div>
+                </div>
+                <!-- Logs table -->
+                <div>
+                    <p class="text-sm text-slate-400 mb-2">Logs recientes</p>
+                    <div class="bg-slate-900 rounded-lg overflow-hidden text-xs font-mono">
+                        <div class="p-2 border-b border-slate-800 flex items-center gap-3"><span class="text-slate-500">14:32:01</span><span class="text-green-400">200</span><span class="text-slate-300">POST /evaluate - 234ms</span></div>
+                        <div class="p-2 border-b border-slate-800 flex items-center gap-3"><span class="text-slate-500">14:31:45</span><span class="text-green-400">200</span><span class="text-slate-300">POST /evaluate - 189ms</span></div>
+                        <div class="p-2 border-b border-slate-800 flex items-center gap-3"><span class="text-slate-500">14:30:12</span><span class="text-amber-400">429</span><span class="text-slate-300">POST /evaluate - Rate limit</span></div>
+                        <div class="p-2 flex items-center gap-3"><span class="text-slate-500">14:28:55</span><span class="text-green-400">200</span><span class="text-slate-300">GET /status - 45ms</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const navItems = {
+            dashboard: { nav: document.getElementById('nav-dashboard'), view: document.getElementById('view-dashboard'), title: 'Dashboard' },
+            inventory: { nav: document.getElementById('nav-inventory'), view: document.getElementById('view-inventory'), title: 'Inventario' },
+            partners: { nav: document.getElementById('nav-partners'), view: document.getElementById('view-partners'), title: 'Partners' }
+        };
+        Object.keys(navItems).forEach(key => {
+            navItems[key].nav.addEventListener('click', (e) => {
+                e.preventDefault();
+                Object.values(navItems).forEach(item => {
+                    item.nav.classList.remove('sidebar-active');
+                    item.nav.classList.add('text-slate-400');
+                    item.view.classList.add('hidden');
+                });
+                navItems[key].nav.classList.add('sidebar-active');
+                navItems[key].nav.classList.remove('text-slate-400');
+                navItems[key].view.classList.remove('hidden');
+                document.getElementById('page-title').textContent = navItems[key].title;
+            });
+        });
+    </script>
+</body>
+</html>
