@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMax - Panel de Administracion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .nav-item.active { background: #fff7ed; color: #ea580c; border-right: 3px solid #ea580c; }
+    </style>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { brand: { 50: '#fff7ed', 100: '#ffedd5', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' } } } } }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col shrink-0">
+            <div class="p-5 border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-sm">AM</div>
+                    <div>
+                        <div class="font-bold text-gray-900">AutoMax</div>
+                        <div class="text-xs text-gray-400">Panel de Administracion</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1 py-4 space-y-0.5">
+                <a href="#" onclick="switchSection('dashboard')" class="nav-item active flex items-center gap-3 px-5 py-2.5 text-sm font-medium transition" id="nav-dashboard">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+                    Dashboard
+                </a>
+                <a href="#" onclick="switchSection('inventario')" class="nav-item flex items-center gap-3 px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-50 transition" id="nav-inventario">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    Mi Inventario
+                </a>
+                <a href="#" onclick="switchSection('equipo')" class="nav-item flex items-center gap-3 px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-50 transition" id="nav-equipo">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+                    Mi Equipo
+                </a>
+                <a href="#" onclick="switchSection('config')" class="nav-item flex items-center gap-3 px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-50 transition" id="nav-config">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Configuracion
+                </a>
+                <a href="#" onclick="switchSection('billing')" class="nav-item flex items-center gap-3 px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-50 transition" id="nav-billing">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                    Billing
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 overflow-y-auto">
+            <!-- Top Header -->
+            <header class="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
+                <h1 class="text-lg font-semibold text-gray-900" id="pageTitle">Dashboard</h1>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full">automax.agentsmx.com</span>
+                    <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-semibold text-xs">JG</div>
+                </div>
+            </header>
+
+            <!-- DASHBOARD Section -->
+            <div id="section-dashboard" class="section p-8">
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-4 gap-5 mb-8">
+                    <div class="bg-white rounded-xl border border-gray-200 p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm text-gray-400">Mis Vehiculos</span>
+                            <div class="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg></div>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-900">234</p>
+                        <p class="text-xs text-emerald-500 mt-1">+12 este mes</p>
+                    </div>
+                    <div class="bg-white rounded-xl border border-gray-200 p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm text-gray-400">Mis Usuarios</span>
+                            <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-900">1,250</p>
+                        <p class="text-xs text-emerald-500 mt-1">+85 este mes</p>
+                    </div>
+                    <div class="bg-white rounded-xl border border-gray-200 p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm text-gray-400">Ventas del Mes</span>
+                            <div class="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-900">12</p>
+                        <p class="text-xs text-emerald-500 mt-1">+3 vs mes pasado</p>
+                    </div>
+                    <div class="bg-white rounded-xl border border-gray-200 p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm text-gray-400">Revenue</span>
+                            <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                        </div>
+                        <p class="text-3xl font-bold text-gray-900">$180,000</p>
+                        <p class="text-xs text-emerald-500 mt-1">+15% vs mes pasado</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- Revenue Chart -->
+                    <div class="col-span-2 bg-white rounded-xl border border-gray-200 p-6">
+                        <h3 class="font-semibold text-gray-900 mb-6">Tendencia de Revenue</h3>
+                        <div class="flex items-end gap-2 h-44">
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-100 rounded-t" style="height:30%"></div><span class="text-[10px] text-gray-400">Sep</span></div>
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-100 rounded-t" style="height:40%"></div><span class="text-[10px] text-gray-400">Oct</span></div>
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-200 rounded-t" style="height:55%"></div><span class="text-[10px] text-gray-400">Nov</span></div>
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-200 rounded-t" style="height:50%"></div><span class="text-[10px] text-gray-400">Dic</span></div>
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-300 rounded-t" style="height:65%"></div><span class="text-[10px] text-gray-400">Ene</span></div>
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-400 rounded-t" style="height:78%"></div><span class="text-[10px] text-gray-400">Feb</span></div>
+                            <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-orange-500 rounded-t" style="height:92%"></div><span class="text-[10px] text-gray-400">Mar</span></div>
+                        </div>
+                    </div>
+                    <!-- Recent Activity -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6">
+                        <h3 class="font-semibold text-gray-900 mb-4">Actividad Reciente</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-3"><div class="w-2 h-2 bg-emerald-400 rounded-full mt-2 shrink-0"></div><div><p class="text-sm text-gray-700">Nuevo vehiculo agregado: <span class="font-medium">Mazda 3 2023</span></p><p class="text-xs text-gray-400">Hace 2 horas</p></div></div>
+                            <div class="flex gap-3"><div class="w-2 h-2 bg-blue-400 rounded-full mt-2 shrink-0"></div><div><p class="text-sm text-gray-700">Usuario registrado: <span class="font-medium">maria@email.com</span></p><p class="text-xs text-gray-400">Hace 4 horas</p></div></div>
+                            <div class="flex gap-3"><div class="w-2 h-2 bg-orange-400 rounded-full mt-2 shrink-0"></div><div><p class="text-sm text-gray-700">Venta completada: <span class="font-medium">Toyota Camry</span></p><p class="text-xs text-gray-400">Ayer</p></div></div>
+                            <div class="flex gap-3"><div class="w-2 h-2 bg-purple-400 rounded-full mt-2 shrink-0"></div><div><p class="text-sm text-gray-700">Financiamiento aprobado: <span class="font-medium">$320,000</span></p><p class="text-xs text-gray-400">Ayer</p></div></div>
+                            <div class="flex gap-3"><div class="w-2 h-2 bg-emerald-400 rounded-full mt-2 shrink-0"></div><div><p class="text-sm text-gray-700">Nuevo vehiculo: <span class="font-medium">VW Jetta 2023</span></p><p class="text-xs text-gray-400">Hace 2 dias</p></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MI INVENTARIO Section -->
+            <div id="section-inventario" class="section hidden p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <input type="text" placeholder="Buscar vehiculos..." class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white w-72 focus:ring-2 focus:ring-orange-100 focus:border-orange-400 outline-none">
+                        <select class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white text-gray-600"><option>Todas las visibilidades</option><option>Mi Sitio</option><option>AgentsMX</option><option>Ambos</option></select>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-600 bg-white hover:bg-gray-50">Acciones en Lote</button>
+                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold">+ Agregar Vehiculo</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <table class="w-full">
+                        <thead><tr class="text-xs text-gray-400 uppercase bg-gray-50"><th class="text-left px-5 py-3"><input type="checkbox" class="rounded"></th><th class="text-left px-5 py-3">Vehiculo</th><th class="text-left px-5 py-3">Precio</th><th class="text-left px-5 py-3">Visibilidad</th><th class="text-left px-5 py-3">Estado</th><th class="px-5 py-3">Acciones</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr class="border-t border-gray-50 hover:bg-gray-50">
+                                <td class="px-5 py-3"><input type="checkbox" class="rounded"></td>
+                                <td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-12 h-9 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-[10px]">IMG</div><div><p class="font-medium text-gray-900">Toyota Camry 2023</p><p class="text-xs text-gray-400">Sedan - Automatico</p></div></div></td>
+                                <td class="px-5 py-3 font-semibold">$420,000</td>
+                                <td class="px-5 py-3"><span class="px-2.5 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-semibold">Mi Sitio</span></td>
+                                <td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Disponible</span></td>
+                                <td class="px-5 py-3 text-center"><button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01"/></svg></button></td>
+                            </tr>
+                            <tr class="border-t border-gray-50 hover:bg-gray-50">
+                                <td class="px-5 py-3"><input type="checkbox" class="rounded"></td>
+                                <td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-12 h-9 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-[10px]">IMG</div><div><p class="font-medium text-gray-900">Honda Civic 2022</p><p class="text-xs text-gray-400">Sedan - Manual</p></div></div></td>
+                                <td class="px-5 py-3 font-semibold">$365,000</td>
+                                <td class="px-5 py-3"><span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">AgentsMX</span></td>
+                                <td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Disponible</span></td>
+                                <td class="px-5 py-3 text-center"><button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01"/></svg></button></td>
+                            </tr>
+                            <tr class="border-t border-gray-50 hover:bg-gray-50">
+                                <td class="px-5 py-3"><input type="checkbox" class="rounded"></td>
+                                <td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-12 h-9 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-[10px]">IMG</div><div><p class="font-medium text-gray-900">Nissan Sentra 2024</p><p class="text-xs text-gray-400">Sedan - CVT</p></div></div></td>
+                                <td class="px-5 py-3 font-semibold">$385,000</td>
+                                <td class="px-5 py-3"><span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-semibold">Ambos</span></td>
+                                <td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Disponible</span></td>
+                                <td class="px-5 py-3 text-center"><button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01"/></svg></button></td>
+                            </tr>
+                            <tr class="border-t border-gray-50 hover:bg-gray-50">
+                                <td class="px-5 py-3"><input type="checkbox" class="rounded"></td>
+                                <td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-12 h-9 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-[10px]">IMG</div><div><p class="font-medium text-gray-900">VW Jetta 2023</p><p class="text-xs text-gray-400">Sedan - Automatico</p></div></div></td>
+                                <td class="px-5 py-3 font-semibold">$395,000</td>
+                                <td class="px-5 py-3"><span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-semibold">Ambos</span></td>
+                                <td class="px-5 py-3"><span class="px-2 py-0.5 bg-amber-50 text-amber-600 rounded-full text-xs font-medium">Reservado</span></td>
+                                <td class="px-5 py-3 text-center"><button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01"/></svg></button></td>
+                            </tr>
+                            <tr class="border-t border-gray-50 hover:bg-gray-50">
+                                <td class="px-5 py-3"><input type="checkbox" class="rounded"></td>
+                                <td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-12 h-9 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-[10px]">IMG</div><div><p class="font-medium text-gray-900">Mazda 3 2023</p><p class="text-xs text-gray-400">Sedan - Automatico</p></div></div></td>
+                                <td class="px-5 py-3 font-semibold">$410,000</td>
+                                <td class="px-5 py-3"><span class="px-2.5 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-semibold">Mi Sitio</span></td>
+                                <td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Disponible</span></td>
+                                <td class="px-5 py-3 text-center"><button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01"/></svg></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MI EQUIPO Section -->
+            <div id="section-equipo" class="section hidden p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <p class="text-sm text-gray-500">5 miembros en tu equipo</p>
+                    <button onclick="document.getElementById('inviteModal').classList.remove('hidden')" class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                        Invitar Miembro
+                    </button>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <table class="w-full">
+                        <thead><tr class="text-xs text-gray-400 uppercase bg-gray-50"><th class="text-left px-5 py-3">Miembro</th><th class="text-left px-5 py-3">Email</th><th class="text-left px-5 py-3">Rol</th><th class="text-left px-5 py-3">Ultimo Acceso</th><th class="px-5 py-3">Acciones</th></tr></thead>
+                        <tbody class="text-sm">
+                            <tr class="border-t border-gray-50"><td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-semibold text-xs">JG</div><span class="font-medium text-gray-900">Juan Garcia</span></div></td><td class="px-5 py-3 text-gray-500">juan@automax.mx</td><td class="px-5 py-3"><span class="px-2.5 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-semibold">Admin</span></td><td class="px-5 py-3 text-gray-500">Hoy, 10:30</td><td class="px-5 py-3 text-center text-blue-500 text-xs cursor-pointer">Editar</td></tr>
+                            <tr class="border-t border-gray-50"><td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-xs">ML</div><span class="font-medium text-gray-900">Maria Lopez</span></div></td><td class="px-5 py-3 text-gray-500">maria@automax.mx</td><td class="px-5 py-3"><span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">Vendedor</span></td><td class="px-5 py-3 text-gray-500">Hoy, 09:15</td><td class="px-5 py-3 text-center text-blue-500 text-xs cursor-pointer">Editar</td></tr>
+                            <tr class="border-t border-gray-50"><td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-xs">CR</div><span class="font-medium text-gray-900">Carlos Ramirez</span></div></td><td class="px-5 py-3 text-gray-500">carlos@automax.mx</td><td class="px-5 py-3"><span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">Vendedor</span></td><td class="px-5 py-3 text-gray-500">Ayer, 18:00</td><td class="px-5 py-3 text-center text-blue-500 text-xs cursor-pointer">Editar</td></tr>
+                            <tr class="border-t border-gray-50"><td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-semibold text-xs">AP</div><span class="font-medium text-gray-900">Ana Perez</span></div></td><td class="px-5 py-3 text-gray-500">ana@automax.mx</td><td class="px-5 py-3"><span class="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-semibold">Viewer</span></td><td class="px-5 py-3 text-gray-500">Hace 3 dias</td><td class="px-5 py-3 text-center text-blue-500 text-xs cursor-pointer">Editar</td></tr>
+                            <tr class="border-t border-gray-50"><td class="px-5 py-3"><div class="flex items-center gap-3"><div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 font-semibold text-xs">RH</div><span class="font-medium text-gray-900">Roberto Hernandez</span></div></td><td class="px-5 py-3 text-gray-500">roberto@automax.mx</td><td class="px-5 py-3"><span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-semibold">Manager</span></td><td class="px-5 py-3 text-gray-500">Hoy, 11:00</td><td class="px-5 py-3 text-center text-blue-500 text-xs cursor-pointer">Editar</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CONFIGURACION Section -->
+            <div id="section-config" class="section hidden p-8">
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl border border-gray-200 p-6">
+                            <h3 class="font-semibold text-gray-900 mb-4">Logo de Marca</h3>
+                            <div class="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center hover:border-orange-300 transition cursor-pointer">
+                                <div class="w-16 h-16 bg-orange-100 rounded-xl mx-auto mb-3 flex items-center justify-center text-orange-600 font-bold text-xl">AM</div>
+                                <p class="text-sm text-gray-500">Arrastra tu logo o <span class="text-orange-500 font-medium">haz clic para subir</span></p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl border border-gray-200 p-6">
+                            <h3 class="font-semibold text-gray-900 mb-4">Colores de Marca</h3>
+                            <p class="text-xs text-gray-400 mb-4">Plan Pro: Personalizacion completa de colores</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between"><label class="text-sm font-medium text-gray-600">Primario</label><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full border-2 border-gray-200" style="background:#f97316"></div><input type="text" value="#F97316" class="w-24 px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-mono text-center bg-gray-50"></div></div>
+                                <div class="flex items-center justify-between"><label class="text-sm font-medium text-gray-600">Secundario</label><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full border-2 border-gray-200" style="background:#1e293b"></div><input type="text" value="#1E293B" class="w-24 px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-mono text-center bg-gray-50"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 sticky top-8">
+                        <h3 class="font-semibold text-gray-900 mb-4">Vista Previa de Tu Sitio</h3>
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <div class="bg-orange-500 px-4 py-3 flex items-center gap-3">
+                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-white font-bold text-xs">AM</div>
+                                <span class="text-white font-semibold text-sm">AutoMax</span>
+                            </div>
+                            <div class="p-4 bg-gray-50">
+                                <p class="text-xs text-gray-400 mb-3">Tu catalogo se vera asi:</p>
+                                <div class="bg-white rounded-lg p-3 mb-2 flex gap-3">
+                                    <div class="w-16 h-11 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-[9px]">Foto</div>
+                                    <div><p class="text-xs font-semibold text-gray-800">Toyota Camry 2023</p><p class="text-sm font-bold text-orange-500">$420,000</p></div>
+                                </div>
+                                <div class="bg-white rounded-lg p-3 flex gap-3">
+                                    <div class="w-16 h-11 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-[9px]">Foto</div>
+                                    <div><p class="text-xs font-semibold text-gray-800">Honda Civic 2022</p><p class="text-sm font-bold text-orange-500">$365,000</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BILLING Section -->
+            <div id="section-billing" class="section hidden p-8">
+                <div class="max-w-4xl space-y-6">
+                    <!-- Plan Card -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-400">Tu Plan Actual</p>
+                            <p class="text-2xl font-bold text-gray-900 mt-1">Pro - $8,000/mes</p>
+                            <p class="text-sm text-gray-500 mt-1">Renovacion automatica el 1 de cada mes</p>
+                        </div>
+                        <button class="px-5 py-2.5 border border-orange-200 text-orange-600 rounded-lg text-sm font-semibold hover:bg-orange-50 transition">Cambiar Plan</button>
+                    </div>
+
+                    <!-- Usage Bars -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-6">
+                        <h3 class="font-semibold text-gray-900 mb-5">Uso del Plan</h3>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Vehiculos</span><span class="text-gray-900 font-medium">234 / Ilimitado</span></div>
+                                <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-orange-400 h-2 rounded-full" style="width:35%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Usuarios</span><span class="text-gray-900 font-medium">12 / Ilimitado</span></div>
+                                <div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-blue-400 h-2 rounded-full" style="width:10%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commission Breakdown -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <div class="p-5 border-b border-gray-100"><h3 class="font-semibold text-gray-900">Desglose de Comisiones - Marzo 2026</h3></div>
+                        <table class="w-full text-sm">
+                            <thead><tr class="text-xs text-gray-400 uppercase bg-gray-50"><th class="text-left px-5 py-3">Concepto</th><th class="text-left px-5 py-3">Transacciones</th><th class="text-left px-5 py-3">Monto</th></tr></thead>
+                            <tbody>
+                                <tr class="border-t border-gray-50"><td class="px-5 py-3 text-gray-700">Ventas directas</td><td class="px-5 py-3 text-gray-500">8</td><td class="px-5 py-3 font-semibold text-gray-900">$45,000</td></tr>
+                                <tr class="border-t border-gray-50"><td class="px-5 py-3 text-gray-700">Comision financiamiento</td><td class="px-5 py-3 text-gray-500">5</td><td class="px-5 py-3 font-semibold text-gray-900">$12,000</td></tr>
+                                <tr class="border-t border-gray-50"><td class="px-5 py-3 text-gray-700">Comision seguros</td><td class="px-5 py-3 text-gray-500">3</td><td class="px-5 py-3 font-semibold text-gray-900">$5,000</td></tr>
+                                <tr class="border-t border-gray-200 bg-gray-50"><td class="px-5 py-3 font-semibold text-gray-900">Total</td><td class="px-5 py-3"></td><td class="px-5 py-3 font-bold text-gray-900">$62,000</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Invoice History -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <div class="p-5 border-b border-gray-100"><h3 class="font-semibold text-gray-900">Historial de Facturas</h3></div>
+                        <table class="w-full text-sm">
+                            <thead><tr class="text-xs text-gray-400 uppercase bg-gray-50"><th class="text-left px-5 py-3">Fecha</th><th class="text-left px-5 py-3">Concepto</th><th class="text-left px-5 py-3">Monto</th><th class="text-left px-5 py-3">Estado</th><th class="px-5 py-3"></th></tr></thead>
+                            <tbody>
+                                <tr class="border-t border-gray-50"><td class="px-5 py-3">1 Mar 2026</td><td class="px-5 py-3">Plan Pro</td><td class="px-5 py-3 font-semibold">$8,000</td><td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Pagado</span></td><td class="px-5 py-3 text-orange-500 text-xs cursor-pointer">PDF</td></tr>
+                                <tr class="border-t border-gray-50"><td class="px-5 py-3">1 Feb 2026</td><td class="px-5 py-3">Plan Pro</td><td class="px-5 py-3 font-semibold">$8,000</td><td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Pagado</span></td><td class="px-5 py-3 text-orange-500 text-xs cursor-pointer">PDF</td></tr>
+                                <tr class="border-t border-gray-50"><td class="px-5 py-3">1 Ene 2026</td><td class="px-5 py-3">Plan Pro</td><td class="px-5 py-3 font-semibold">$8,000</td><td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Pagado</span></td><td class="px-5 py-3 text-orange-500 text-xs cursor-pointer">PDF</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Invite Modal -->
+    <div id="inviteModal" class="hidden fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+            <div class="flex items-center justify-between mb-5">
+                <h3 class="text-lg font-bold text-gray-900">Invitar Miembro</h3>
+                <button onclick="document.getElementById('inviteModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </div>
+            <div class="space-y-4">
+                <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Email</label><input type="email" placeholder="correo@ejemplo.com" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-100 focus:border-orange-400 outline-none"></div>
+                <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Rol</label><select class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50"><option>Vendedor</option><option>Manager</option><option>Admin</option><option>Viewer</option></select></div>
+                <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2.5 rounded-lg text-sm font-semibold transition">Enviar Invitacion</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchSection(name) {
+            document.querySelectorAll('.section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-item').forEach(el => { el.classList.remove('active'); el.classList.add('text-gray-500'); });
+            document.getElementById('section-' + name).classList.remove('hidden');
+            const nav = document.getElementById('nav-' + name);
+            nav.classList.add('active');
+            nav.classList.remove('text-gray-500');
+            const titles = { dashboard: 'Dashboard', inventario: 'Mi Inventario', equipo: 'Mi Equipo', config: 'Configuracion', billing: 'Billing' };
+            document.getElementById('pageTitle').textContent = titles[name];
+        }
+    </script>
+</body>
+</html>

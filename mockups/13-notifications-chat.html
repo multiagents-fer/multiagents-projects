@@ -14,80 +14,80 @@
         @keyframes typingDot { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen">
+<body class="bg-white shadow-sm text-gray-900 min-h-screen">
 
     <!-- Navbar -->
-    <nav class="bg-slate-800 border-b border-slate-700 px-6 py-4 relative z-50">
+    <nav class="bg-gray-100 border-b border-gray-200 px-6 py-4 relative z-50">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="#" class="text-xl font-bold text-blue-400">AgentsMX</a>
             <div class="flex items-center gap-6">
                 <!-- Notification Bell -->
                 <div class="relative" id="notif-trigger">
-                    <button onclick="toggleNotifDropdown()" class="relative text-slate-400 hover:text-white transition">
+                    <button onclick="toggleNotifDropdown()" class="relative text-gray-500 hover:text-gray-900 transition">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
                         <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center font-bold">7</span>
                     </button>
                     <!-- Dropdown -->
-                    <div id="notif-dropdown" class="hidden absolute right-0 top-12 w-96 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden">
-                        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-700">
+                    <div id="notif-dropdown" class="hidden absolute right-0 top-12 w-96 bg-gray-100 border border-gray-200 rounded-xl shadow-2xl overflow-hidden">
+                        <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
                             <h3 class="font-bold">Notificaciones</h3>
                             <button class="text-xs text-blue-400 hover:text-blue-300">Marcar todas como leidas</button>
                         </div>
                         <div class="max-h-96 overflow-y-auto">
                             <!-- Notification 1 - Unread -->
-                            <div class="flex items-start gap-3 px-4 py-3 bg-blue-600/5 hover:bg-slate-700/50 cursor-pointer border-b border-slate-700/50">
+                            <div class="flex items-start gap-3 px-4 py-3 bg-blue-600/5 hover:bg-gray-200/50 cursor-pointer border-b border-gray-200/50">
                                 <div class="w-10 h-10 bg-green-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                                     <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium">Toyota Camry bajo de precio: <span class="text-green-400">$285,000</span> <span class="text-slate-500 line-through">$270,000</span></p>
-                                    <p class="text-xs text-slate-500 mt-0.5">Hace 2 horas</p>
+                                    <p class="text-sm font-medium">Toyota Camry bajo de precio: <span class="text-green-400">$285,000</span> <span class="text-gray-400 line-through">$270,000</span></p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Hace 2 horas</p>
                                 </div>
                                 <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                             </div>
                             <!-- Notification 2 - Read -->
-                            <div class="flex items-start gap-3 px-4 py-3 hover:bg-slate-700/50 cursor-pointer border-b border-slate-700/50">
+                            <div class="flex items-start gap-3 px-4 py-3 hover:bg-gray-200/50 cursor-pointer border-b border-gray-200/50">
                                 <div class="w-10 h-10 bg-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                                     <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm">Tu verificacion KYC fue aprobada</p>
-                                    <p class="text-xs text-slate-500 mt-0.5">Hace 5 horas</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Hace 5 horas</p>
                                 </div>
                             </div>
                             <!-- Notification 3 - Unread -->
-                            <div class="flex items-start gap-3 px-4 py-3 bg-blue-600/5 hover:bg-slate-700/50 cursor-pointer border-b border-slate-700/50">
+                            <div class="flex items-start gap-3 px-4 py-3 bg-blue-600/5 hover:bg-gray-200/50 cursor-pointer border-b border-gray-200/50">
                                 <div class="w-10 h-10 bg-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                                     <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium">Nueva oferta de financiamiento recibida</p>
-                                    <p class="text-xs text-slate-500 mt-0.5">Hace 1 dia</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Hace 1 dia</p>
                                 </div>
                                 <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                             </div>
                             <!-- Notification 4 - Read -->
-                            <div class="flex items-start gap-3 px-4 py-3 hover:bg-slate-700/50 cursor-pointer border-b border-slate-700/50">
+                            <div class="flex items-start gap-3 px-4 py-3 hover:bg-gray-200/50 cursor-pointer border-b border-gray-200/50">
                                 <div class="w-10 h-10 bg-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                                     <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm">Tu vehiculo favorito Honda Civic fue vendido</p>
-                                    <p class="text-xs text-slate-500 mt-0.5">Hace 2 dias</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Hace 2 dias</p>
                                 </div>
                             </div>
                             <!-- Notification 5 - Read -->
-                            <div class="flex items-start gap-3 px-4 py-3 hover:bg-slate-700/50 cursor-pointer">
+                            <div class="flex items-start gap-3 px-4 py-3 hover:bg-gray-200/50 cursor-pointer">
                                 <div class="w-10 h-10 bg-yellow-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                                     <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm">Bienvenido a AgentsMX</p>
-                                    <p class="text-xs text-slate-500 mt-0.5">Hace 7 dias</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Hace 7 dias</p>
                                 </div>
                             </div>
                         </div>
-                        <a href="#full-notifications" class="block text-center py-3 text-sm text-blue-400 hover:text-blue-300 border-t border-slate-700">Ver todas</a>
+                        <a href="#full-notifications" class="block text-center py-3 text-sm text-blue-400 hover:text-blue-300 border-t border-gray-200">Ver todas</a>
                     </div>
                 </div>
                 <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold">JR</div>
@@ -99,16 +99,16 @@
         <!-- View Selector -->
         <div class="flex flex-wrap gap-2 mb-8">
             <button onclick="showSection('dropdown')" id="btn-dropdown" class="px-4 py-2 bg-blue-600 rounded-lg text-sm font-medium">Dropdown (arriba)</button>
-            <button onclick="showSection('full-page')" id="btn-full-page" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm transition">Todas las notificaciones</button>
-            <button onclick="showSection('settings')" id="btn-settings" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm transition">Configuracion</button>
-            <button onclick="showSection('chat')" id="btn-chat" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm transition">Chat</button>
+            <button onclick="showSection('full-page')" id="btn-full-page" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm transition">Todas las notificaciones</button>
+            <button onclick="showSection('settings')" id="btn-settings" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm transition">Configuracion</button>
+            <button onclick="showSection('chat')" id="btn-chat" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm transition">Chat</button>
         </div>
 
         <!-- ========== SECTION: DROPDOWN NOTE ========== -->
         <div id="section-dropdown" class="section-panel">
-            <div class="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center max-w-md mx-auto">
+            <div class="bg-gray-100 border border-gray-200 rounded-xl p-8 text-center max-w-md mx-auto">
                 <svg class="w-12 h-12 text-blue-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                <p class="text-slate-400">Haz clic en el icono de campana en la barra de navegacion para ver el dropdown de notificaciones</p>
+                <p class="text-gray-500">Haz clic en el icono de campana en la barra de navegacion para ver el dropdown de notificaciones</p>
             </div>
         </div>
 
@@ -116,16 +116,16 @@
         <div id="section-full-page" class="section-panel hidden">
             <h2 class="text-xl font-bold mb-4">Todas las notificaciones</h2>
             <!-- Tabs -->
-            <div class="flex gap-1 bg-slate-800 rounded-lg p-1 mb-6 w-fit">
+            <div class="flex gap-1 bg-gray-100 rounded-lg p-1 mb-6 w-fit">
                 <button class="px-4 py-2 bg-blue-600 rounded-md text-sm font-medium">Todas</button>
-                <button class="px-4 py-2 text-slate-400 hover:text-white rounded-md text-sm transition">No leidas (3)</button>
-                <button class="px-4 py-2 text-slate-400 hover:text-white rounded-md text-sm transition">Precios</button>
-                <button class="px-4 py-2 text-slate-400 hover:text-white rounded-md text-sm transition">Compras</button>
-                <button class="px-4 py-2 text-slate-400 hover:text-white rounded-md text-sm transition">Sistema</button>
+                <button class="px-4 py-2 text-gray-500 hover:text-gray-900 rounded-md text-sm transition">No leidas (3)</button>
+                <button class="px-4 py-2 text-gray-500 hover:text-gray-900 rounded-md text-sm transition">Precios</button>
+                <button class="px-4 py-2 text-gray-500 hover:text-gray-900 rounded-md text-sm transition">Compras</button>
+                <button class="px-4 py-2 text-gray-500 hover:text-gray-900 rounded-md text-sm transition">Sistema</button>
             </div>
             <!-- Full list -->
             <div class="space-y-2">
-                <div class="flex items-start gap-4 bg-blue-600/5 border border-slate-700 rounded-xl p-4 hover:bg-slate-800 transition cursor-pointer">
+                <div class="flex items-start gap-4 bg-blue-600/5 border border-gray-200 rounded-xl p-4 hover:bg-gray-100 transition cursor-pointer">
                     <div class="w-12 h-12 bg-green-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
@@ -134,27 +134,27 @@
                             <p class="font-medium">Toyota Camry bajo de precio</p>
                             <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                         </div>
-                        <p class="text-sm text-slate-400 mt-0.5">El precio cambio de $285,000 a $270,000 - un ahorro de $15,000</p>
-                        <p class="text-xs text-slate-500 mt-1">Hace 2 horas - Precios</p>
+                        <p class="text-sm text-gray-500 mt-0.5">El precio cambio de $285,000 a $270,000 - un ahorro de $15,000</p>
+                        <p class="text-xs text-gray-400 mt-1">Hace 2 horas - Precios</p>
                     </div>
-                    <button class="text-slate-400 hover:text-white">
+                    <button class="text-gray-500 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01"/></svg>
                     </button>
                 </div>
-                <div class="flex items-start gap-4 border border-slate-700 rounded-xl p-4 hover:bg-slate-800 transition cursor-pointer">
+                <div class="flex items-start gap-4 border border-gray-200 rounded-xl p-4 hover:bg-gray-100 transition cursor-pointer">
                     <div class="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
                     <div class="flex-1">
                         <p class="font-medium">Tu verificacion KYC fue aprobada</p>
-                        <p class="text-sm text-slate-400 mt-0.5">Ya puedes realizar compras en la plataforma</p>
-                        <p class="text-xs text-slate-500 mt-1">Hace 5 horas - KYC</p>
+                        <p class="text-sm text-gray-500 mt-0.5">Ya puedes realizar compras en la plataforma</p>
+                        <p class="text-xs text-gray-400 mt-1">Hace 5 horas - KYC</p>
                     </div>
-                    <button class="text-slate-400 hover:text-white">
+                    <button class="text-gray-500 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01"/></svg>
                     </button>
                 </div>
-                <div class="flex items-start gap-4 bg-blue-600/5 border border-slate-700 rounded-xl p-4 hover:bg-slate-800 transition cursor-pointer">
+                <div class="flex items-start gap-4 bg-blue-600/5 border border-gray-200 rounded-xl p-4 hover:bg-gray-100 transition cursor-pointer">
                     <div class="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
@@ -163,36 +163,36 @@
                             <p class="font-medium">Nueva oferta de financiamiento recibida</p>
                             <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                         </div>
-                        <p class="text-sm text-slate-400 mt-0.5">BBVA te ofrece una tasa del 11.5% a 48 meses</p>
-                        <p class="text-xs text-slate-500 mt-1">Hace 1 dia - Compras</p>
+                        <p class="text-sm text-gray-500 mt-0.5">BBVA te ofrece una tasa del 11.5% a 48 meses</p>
+                        <p class="text-xs text-gray-400 mt-1">Hace 1 dia - Compras</p>
                     </div>
-                    <button class="text-slate-400 hover:text-white">
+                    <button class="text-gray-500 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01"/></svg>
                     </button>
                 </div>
-                <div class="flex items-start gap-4 border border-slate-700 rounded-xl p-4 hover:bg-slate-800 transition cursor-pointer">
+                <div class="flex items-start gap-4 border border-gray-200 rounded-xl p-4 hover:bg-gray-100 transition cursor-pointer">
                     <div class="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
                     </div>
                     <div class="flex-1">
                         <p class="font-medium">Tu vehiculo favorito Honda Civic fue vendido</p>
-                        <p class="text-sm text-slate-400 mt-0.5">El Honda Civic 2023 que tenias en favoritos ya no esta disponible</p>
-                        <p class="text-xs text-slate-500 mt-1">Hace 2 dias - Sistema</p>
+                        <p class="text-sm text-gray-500 mt-0.5">El Honda Civic 2023 que tenias en favoritos ya no esta disponible</p>
+                        <p class="text-xs text-gray-400 mt-1">Hace 2 dias - Sistema</p>
                     </div>
-                    <button class="text-slate-400 hover:text-white">
+                    <button class="text-gray-500 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01"/></svg>
                     </button>
                 </div>
-                <div class="flex items-start gap-4 border border-slate-700 rounded-xl p-4 hover:bg-slate-800 transition cursor-pointer">
+                <div class="flex items-start gap-4 border border-gray-200 rounded-xl p-4 hover:bg-gray-100 transition cursor-pointer">
                     <div class="w-12 h-12 bg-yellow-600/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
                     </div>
                     <div class="flex-1">
                         <p class="font-medium">Bienvenido a AgentsMX</p>
-                        <p class="text-sm text-slate-400 mt-0.5">Explora miles de vehiculos y encuentra el tuyo</p>
-                        <p class="text-xs text-slate-500 mt-1">Hace 7 dias - Sistema</p>
+                        <p class="text-sm text-gray-500 mt-0.5">Explora miles de vehiculos y encuentra el tuyo</p>
+                        <p class="text-xs text-gray-400 mt-1">Hace 7 dias - Sistema</p>
                     </div>
-                    <button class="text-slate-400 hover:text-white">
+                    <button class="text-gray-500 hover:text-gray-900">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01"/></svg>
                     </button>
                 </div>
@@ -202,57 +202,57 @@
         <!-- ========== SECTION: NOTIFICATION SETTINGS ========== -->
         <div id="section-settings" class="section-panel hidden">
             <h2 class="text-xl font-bold mb-6">Configuracion de notificaciones</h2>
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+            <div class="bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden">
                 <table class="w-full">
                     <thead>
-                        <tr class="border-b border-slate-700">
-                            <th class="text-left px-6 py-4 text-sm font-medium text-slate-400">Tipo</th>
-                            <th class="px-6 py-4 text-sm font-medium text-slate-400 text-center">In-app</th>
-                            <th class="px-6 py-4 text-sm font-medium text-slate-400 text-center">Email</th>
-                            <th class="px-6 py-4 text-sm font-medium text-slate-400 text-center">Push</th>
-                            <th class="px-6 py-4 text-sm font-medium text-slate-400 text-center">WhatsApp</th>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left px-6 py-4 text-sm font-medium text-gray-500">Tipo</th>
+                            <th class="px-6 py-4 text-sm font-medium text-gray-500 text-center">In-app</th>
+                            <th class="px-6 py-4 text-sm font-medium text-gray-500 text-center">Email</th>
+                            <th class="px-6 py-4 text-sm font-medium text-gray-500 text-center">Push</th>
+                            <th class="px-6 py-4 text-sm font-medium text-gray-500 text-center">WhatsApp</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b border-slate-700/50">
+                        <tr class="border-b border-gray-200/50">
                             <td class="px-6 py-4">
                                 <p class="font-medium text-sm">Cambios de precio</p>
-                                <p class="text-xs text-slate-500">Cuando un vehiculo en favoritos cambia de precio</p>
+                                <p class="text-xs text-gray-400">Cuando un vehiculo en favoritos cambia de precio</p>
                             </td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
-                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-slate-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-slate-400 rounded-full absolute left-1 top-1"></div></div></td>
+                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-gray-300 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-gray-400 rounded-full absolute left-1 top-1"></div></div></td>
                         </tr>
-                        <tr class="border-b border-slate-700/50">
+                        <tr class="border-b border-gray-200/50">
                             <td class="px-6 py-4">
                                 <p class="font-medium text-sm">Compras</p>
-                                <p class="text-xs text-slate-500">Actualizaciones sobre tus compras activas</p>
+                                <p class="text-xs text-gray-400">Actualizaciones sobre tus compras activas</p>
                             </td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                         </tr>
-                        <tr class="border-b border-slate-700/50">
+                        <tr class="border-b border-gray-200/50">
                             <td class="px-6 py-4">
                                 <p class="font-medium text-sm">KYC</p>
-                                <p class="text-xs text-slate-500">Estado de verificacion de identidad</p>
+                                <p class="text-xs text-gray-400">Estado de verificacion de identidad</p>
                             </td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
-                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-slate-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-slate-400 rounded-full absolute left-1 top-1"></div></div></td>
-                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-slate-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-slate-400 rounded-full absolute left-1 top-1"></div></div></td>
+                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-gray-300 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-gray-400 rounded-full absolute left-1 top-1"></div></div></td>
+                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-gray-300 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-gray-400 rounded-full absolute left-1 top-1"></div></div></td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4">
                                 <p class="font-medium text-sm">Sistema</p>
-                                <p class="text-xs text-slate-500">Actualizaciones de la plataforma y mantenimiento</p>
+                                <p class="text-xs text-gray-400">Actualizaciones de la plataforma y mantenimiento</p>
                             </td>
                             <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-blue-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div></div></td>
-                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-slate-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-slate-400 rounded-full absolute left-1 top-1"></div></div></td>
-                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-slate-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-slate-400 rounded-full absolute left-1 top-1"></div></div></td>
-                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-slate-600 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-slate-400 rounded-full absolute left-1 top-1"></div></div></td>
+                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-gray-300 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-gray-400 rounded-full absolute left-1 top-1"></div></div></td>
+                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-gray-300 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-gray-400 rounded-full absolute left-1 top-1"></div></div></td>
+                            <td class="px-6 py-4 text-center"><div class="w-10 h-6 bg-gray-300 rounded-full mx-auto relative cursor-pointer"><div class="w-4 h-4 bg-gray-400 rounded-full absolute left-1 top-1"></div></div></td>
                         </tr>
                     </tbody>
                 </table>
@@ -265,57 +265,57 @@
         <!-- ========== SECTION: CHAT ========== -->
         <div id="section-chat" class="section-panel hidden">
             <h2 class="text-xl font-bold mb-6">Chat</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden" style="height: 600px;">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden" style="height: 600px;">
                 <!-- Conversation List -->
-                <div class="border-r border-slate-700 flex flex-col">
-                    <div class="p-4 border-b border-slate-700">
-                        <input type="text" placeholder="Buscar conversacion..." class="w-full bg-slate-700 rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-600">
+                <div class="border-r border-gray-200 flex flex-col">
+                    <div class="p-4 border-b border-gray-200">
+                        <input type="text" placeholder="Buscar conversacion..." class="w-full bg-gray-200 rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-600">
                     </div>
                     <div class="flex-1 overflow-y-auto">
                         <!-- Conversation 1 - Active/Selected -->
                         <div class="flex items-center gap-3 px-4 py-3 bg-blue-600/10 border-l-2 border-blue-500 cursor-pointer">
                             <div class="relative flex-shrink-0">
                                 <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-sm font-bold">MA</div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-slate-800"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-gray-200"></div>
                             </div>
                             <div class="flex-1 min-w-0">
                                 <div class="flex justify-between items-center">
                                     <p class="text-sm font-medium">Miguel Aguilar</p>
-                                    <span class="text-xs text-slate-500">12:30pm</span>
+                                    <span class="text-xs text-gray-400">12:30pm</span>
                                 </div>
-                                <p class="text-xs text-slate-400 truncate">Claro, el vehiculo esta disponible para...</p>
+                                <p class="text-xs text-gray-500 truncate">Claro, el vehiculo esta disponible para...</p>
                             </div>
                             <div class="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-[10px] font-bold">2</span>
                             </div>
                         </div>
                         <!-- Conversation 2 -->
-                        <div class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50 cursor-pointer border-b border-slate-700/30">
+                        <div class="flex items-center gap-3 px-4 py-3 hover:bg-gray-200/50 cursor-pointer border-b border-gray-200/30">
                             <div class="relative flex-shrink-0">
                                 <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-sm font-bold">LP</div>
                             </div>
                             <div class="flex-1 min-w-0">
                                 <div class="flex justify-between items-center">
                                     <p class="text-sm font-medium">Laura Perez</p>
-                                    <span class="text-xs text-slate-500">Ayer</span>
+                                    <span class="text-xs text-gray-400">Ayer</span>
                                 </div>
-                                <p class="text-xs text-slate-400 truncate">Gracias por tu interes, te paso los datos</p>
+                                <p class="text-xs text-gray-500 truncate">Gracias por tu interes, te paso los datos</p>
                             </div>
                             <div class="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-[10px] font-bold">1</span>
                             </div>
                         </div>
                         <!-- Conversation 3 -->
-                        <div class="flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50 cursor-pointer">
+                        <div class="flex items-center gap-3 px-4 py-3 hover:bg-gray-200/50 cursor-pointer">
                             <div class="relative flex-shrink-0">
                                 <div class="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-sm font-bold">RC</div>
                             </div>
                             <div class="flex-1 min-w-0">
                                 <div class="flex justify-between items-center">
                                     <p class="text-sm font-medium">Roberto Cruz</p>
-                                    <span class="text-xs text-slate-500">Mar 10</span>
+                                    <span class="text-xs text-gray-400">Mar 10</span>
                                 </div>
-                                <p class="text-xs text-slate-400 truncate">Perfecto, nos vemos el sabado</p>
+                                <p class="text-xs text-gray-500 truncate">Perfecto, nos vemos el sabado</p>
                             </div>
                         </div>
                     </div>
@@ -324,33 +324,33 @@
                 <!-- Chat Window -->
                 <div class="lg:col-span-2 flex flex-col">
                     <!-- Header -->
-                    <div class="px-4 py-3 border-b border-slate-700 flex items-center justify-between">
+                    <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="relative">
                                 <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold">MA</div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-slate-800"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-gray-200"></div>
                             </div>
                             <div>
                                 <p class="text-sm font-medium">Miguel Aguilar</p>
                                 <p class="text-xs text-green-400">En linea</p>
                             </div>
                         </div>
-                        <div class="bg-slate-700 rounded-lg px-3 py-1">
-                            <p class="text-xs text-slate-400">Toyota Camry SE 2024</p>
+                        <div class="bg-gray-200 rounded-lg px-3 py-1">
+                            <p class="text-xs text-gray-500">Toyota Camry SE 2024</p>
                         </div>
                     </div>
                     <!-- Messages -->
                     <div class="flex-1 overflow-y-auto p-4 space-y-4">
                         <!-- System message -->
                         <div class="text-center">
-                            <span class="text-xs text-slate-500 italic bg-slate-700/30 px-3 py-1 rounded-full">Vehiculo reservado por el comprador - Mar 15, 10:31am</span>
+                            <span class="text-xs text-gray-400 italic bg-gray-200/30 px-3 py-1 rounded-full">Vehiculo reservado por el comprador - Mar 15, 10:31am</span>
                         </div>
                         <!-- Received message -->
                         <div class="flex items-end gap-2 max-w-[80%]">
                             <div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0">MA</div>
-                            <div class="bg-slate-700 rounded-2xl rounded-bl-md px-4 py-2">
+                            <div class="bg-gray-200 rounded-2xl rounded-bl-md px-4 py-2">
                                 <p class="text-sm">Hola! Vi que reservaste el Camry. Excelente eleccion, esta en muy buenas condiciones.</p>
-                                <p class="text-[10px] text-slate-500 mt-1">10:32am</p>
+                                <p class="text-[10px] text-gray-400 mt-1">10:32am</p>
                             </div>
                         </div>
                         <!-- Sent message -->
@@ -376,40 +376,40 @@
                         <!-- Received message with image -->
                         <div class="flex items-end gap-2 max-w-[80%]">
                             <div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0">MA</div>
-                            <div class="bg-slate-700 rounded-2xl rounded-bl-md px-4 py-2">
+                            <div class="bg-gray-200 rounded-2xl rounded-bl-md px-4 py-2">
                                 <p class="text-sm">Es unico dueno, servicio de agencia. Te mando el reporte del mecanico:</p>
-                                <div class="mt-2 bg-slate-600 rounded-lg w-48 h-32 flex items-center justify-center cursor-pointer hover:opacity-80 transition">
-                                    <span class="text-xs text-slate-400">[Reporte mecanico.pdf]</span>
+                                <div class="mt-2 bg-gray-300 rounded-lg w-48 h-32 flex items-center justify-center cursor-pointer hover:opacity-80 transition">
+                                    <span class="text-xs text-gray-500">[Reporte mecanico.pdf]</span>
                                 </div>
-                                <p class="text-[10px] text-slate-500 mt-1">10:40am</p>
+                                <p class="text-[10px] text-gray-400 mt-1">10:40am</p>
                             </div>
                         </div>
                         <!-- Received message -->
                         <div class="flex items-end gap-2 max-w-[80%]">
                             <div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0">MA</div>
-                            <div class="bg-slate-700 rounded-2xl rounded-bl-md px-4 py-2">
+                            <div class="bg-gray-200 rounded-2xl rounded-bl-md px-4 py-2">
                                 <p class="text-sm">Claro, el vehiculo esta disponible para prueba de manejo cuando gustes.</p>
-                                <p class="text-[10px] text-slate-500 mt-1">12:30pm</p>
+                                <p class="text-[10px] text-gray-400 mt-1">12:30pm</p>
                             </div>
                         </div>
                         <!-- Typing indicator -->
                         <div class="flex items-end gap-2 max-w-[80%]">
                             <div class="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0">MA</div>
-                            <div class="bg-slate-700 rounded-2xl rounded-bl-md px-4 py-3">
+                            <div class="bg-gray-200 rounded-2xl rounded-bl-md px-4 py-3">
                                 <div class="flex gap-1">
-                                    <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
-                                    <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
-                                    <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full typing-dot"></div>
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full typing-dot"></div>
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full typing-dot"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Input bar -->
-                    <div class="px-4 py-3 border-t border-slate-700 flex items-center gap-3">
-                        <button class="text-slate-400 hover:text-white transition">
+                    <div class="px-4 py-3 border-t border-gray-200 flex items-center gap-3">
+                        <button class="text-gray-500 hover:text-gray-900 transition">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
                         </button>
-                        <input type="text" placeholder="Escribe un mensaje..." class="flex-1 bg-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-600">
+                        <input type="text" placeholder="Escribe un mensaje..." class="flex-1 bg-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-600">
                         <button class="bg-blue-600 hover:bg-blue-700 p-2.5 rounded-xl transition">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         </button>
@@ -436,8 +436,8 @@
             document.getElementById('section-' + section).classList.remove('hidden');
             ['dropdown','full-page','settings','chat'].forEach(s => {
                 const b = document.getElementById('btn-' + s);
-                if (s === section) { b.classList.remove('bg-slate-700'); b.classList.add('bg-blue-600'); }
-                else { b.classList.remove('bg-blue-600'); b.classList.add('bg-slate-700'); }
+                if (s === section) { b.classList.remove('bg-gray-200'); b.classList.add('bg-blue-600'); }
+                else { b.classList.remove('bg-blue-600'); b.classList.add('bg-gray-200'); }
             });
         }
         document.addEventListener('click', function(e) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'media',
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'sans-serif'] },
@@ -23,43 +23,43 @@
     html { scroll-behavior: smooth; }
     .glass { background:rgba(15,23,42,.6); backdrop-filter:blur(12px); }
     input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; height:16px; width:16px; border-radius:50%; background:#6366f1; cursor:pointer; }
-    input[type=range] { -webkit-appearance:none; height:4px; background:#334155; border-radius:4px; }
+    input[type=range] { -webkit-appearance:none; height:4px; background:#d1d5db; border-radius:4px; }
     .filter-section { border-bottom:1px solid rgba(51,65,85,.5); }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
   <!-- Navbar -->
-  <nav class="fixed top-0 w-full z-50 glass border-b border-slate-800/50">
+  <nav class="fixed top-0 w-full z-50 glass border-b border-gray-200/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center gap-8">
           <a href="01-landing.html" class="text-xl font-bold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">AgentsMX</a>
-          <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-            <a href="02-catalogo.html" class="text-white">Vehiculos</a>
-            <a href="#" class="hover:text-white transition">Financiamiento</a>
-            <a href="#" class="hover:text-white transition">Seguros</a>
-            <a href="#" class="hover:text-white transition">Mercado</a>
+          <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
+            <a href="02-catalogo.html" class="text-gray-900">Vehiculos</a>
+            <a href="#" class="hover:text-gray-900 transition">Financiamiento</a>
+            <a href="#" class="hover:text-gray-900 transition">Seguros</a>
+            <a href="#" class="hover:text-gray-900 transition">Mercado</a>
           </div>
         </div>
         <div class="hidden md:flex items-center gap-3">
           <div class="relative">
-            <input type="text" placeholder="Buscar..." class="w-56 bg-slate-800/60 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-200 placeholder-slate-500">
-            <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" placeholder="Buscar..." class="w-56 bg-gray-100/60 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-700 placeholder-gray-400">
+            <svg class="w-4 h-4 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
-          <button class="text-sm text-slate-300 hover:text-white px-3 py-2 transition">Iniciar sesion</button>
-          <button class="text-sm bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-lg font-medium transition">Registrarse</button>
+          <button class="text-sm text-gray-700 hover:text-gray-900 px-3 py-2 transition">Iniciar sesion</button>
+          <button class="text-sm bg-brand-600 hover:bg-brand-500 text-gray-900 px-4 py-2 rounded-lg font-medium transition">Registrarse</button>
         </div>
-        <button class="md:hidden text-slate-300" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <button class="md:hidden text-gray-700" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 px-4 py-3 space-y-2 text-sm">
-      <a href="02-catalogo.html" class="block py-2 text-white">Vehiculos</a>
-      <a href="#" class="block py-2 text-slate-300">Financiamiento</a>
-      <a href="#" class="block py-2 text-slate-300">Seguros</a>
-      <a href="#" class="block py-2 text-slate-300">Mercado</a>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 px-4 py-3 space-y-2 text-sm">
+      <a href="02-catalogo.html" class="block py-2 text-gray-900">Vehiculos</a>
+      <a href="#" class="block py-2 text-gray-700">Financiamiento</a>
+      <a href="#" class="block py-2 text-gray-700">Seguros</a>
+      <a href="#" class="block py-2 text-gray-700">Mercado</a>
     </div>
   </nav>
 
@@ -67,17 +67,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Breadcrumbs -->
-      <nav class="text-sm text-slate-500 mb-6">
-        <a href="01-landing.html" class="hover:text-white transition">Inicio</a>
+      <nav class="text-sm text-gray-400 mb-6">
+        <a href="01-landing.html" class="hover:text-gray-900 transition">Inicio</a>
         <span class="mx-2">/</span>
-        <span class="text-slate-200">Vehiculos</span>
+        <span class="text-gray-700">Vehiculos</span>
       </nav>
 
       <div class="flex gap-8">
 
         <!-- Sidebar Filters (desktop) -->
         <aside class="hidden lg:block w-72 shrink-0">
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sticky top-24">
+          <div class="bg-white shadow-sm border border-gray-200 rounded-2xl p-5 sticky top-24">
             <div class="flex items-center justify-between mb-5">
               <h2 class="font-semibold text-lg">Filtros</h2>
               <button class="text-xs text-brand-400 hover:text-brand-300 transition">Limpiar filtros</button>
@@ -86,22 +86,22 @@
             <!-- Search -->
             <div class="filter-section pb-4 mb-4">
               <div class="relative">
-                <input type="text" placeholder="Buscar vehiculo..." class="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-200 placeholder-slate-500">
-                <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" placeholder="Buscar vehiculo..." class="w-full bg-gray-100 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-700 placeholder-gray-400">
+                <svg class="w-4 h-4 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
               </div>
             </div>
 
             <!-- Marca -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Marca <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Marca <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div class="space-y-2">
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" checked class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Toyota</span><span class="ml-auto text-xs text-slate-500">342</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Honda</span><span class="ml-auto text-xs text-slate-500">287</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Nissan</span><span class="ml-auto text-xs text-slate-500">256</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Volkswagen</span><span class="ml-auto text-xs text-slate-500">198</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Chevrolet</span><span class="ml-auto text-xs text-slate-500">176</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" checked class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Toyota</span><span class="ml-auto text-xs text-gray-400">342</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Honda</span><span class="ml-auto text-xs text-gray-400">287</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Nissan</span><span class="ml-auto text-xs text-gray-400">256</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Volkswagen</span><span class="ml-auto text-xs text-gray-400">198</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Chevrolet</span><span class="ml-auto text-xs text-gray-400">176</span></label>
                 <button class="text-xs text-brand-400 hover:text-brand-300 mt-1">Ver mas marcas</button>
               </div>
             </div>
@@ -109,26 +109,26 @@
             <!-- Modelo -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Modelo <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Modelo <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div class="space-y-2">
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Camry</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Corolla</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>RAV4</span></label>
-                <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-slate-800 border-slate-600 text-brand-600 focus:ring-brand-500"><span>Hilux</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Camry</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Corolla</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>RAV4</span></label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded bg-gray-100 border-gray-300 text-brand-600 focus:ring-brand-500"><span>Hilux</span></label>
               </div>
             </div>
 
             <!-- Precio -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Precio <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Precio <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div>
                 <div class="flex gap-2 mb-3">
-                  <input type="text" value="$50,000" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                  <span class="text-slate-600 self-center">-</span>
-                  <input type="text" value="$500,000" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <input type="text" value="$50,000" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <span class="text-gray-400 self-center">-</span>
+                  <input type="text" value="$500,000" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <input type="range" min="50000" max="500000" value="200000" class="w-full">
               </div>
@@ -137,13 +137,13 @@
             <!-- Year -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Ano <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Ano <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div>
                 <div class="flex gap-2 mb-3">
-                  <input type="text" value="2015" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                  <span class="text-slate-600 self-center">-</span>
-                  <input type="text" value="2025" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <input type="text" value="2015" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <span class="text-gray-400 self-center">-</span>
+                  <input type="text" value="2025" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <input type="range" min="2015" max="2025" value="2020" class="w-full">
               </div>
@@ -152,13 +152,13 @@
             <!-- Kilometraje -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Kilometraje <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Kilometraje <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div>
                 <div class="flex gap-2 mb-3">
-                  <input type="text" value="0" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
-                  <span class="text-slate-600 self-center">-</span>
-                  <input type="text" value="200,000" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <input type="text" value="0" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <span class="text-gray-400 self-center">-</span>
+                  <input type="text" value="200,000" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <input type="range" min="0" max="200000" value="100000" class="w-full">
               </div>
@@ -167,23 +167,23 @@
             <!-- Transmision -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Transmision <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Transmision <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div class="flex gap-2">
                 <button class="flex-1 text-xs py-2 rounded-lg border border-brand-500 bg-brand-600/10 text-brand-400 font-medium">Manual</button>
-                <button class="flex-1 text-xs py-2 rounded-lg border border-slate-700 text-slate-400 hover:border-slate-600">Automatica</button>
+                <button class="flex-1 text-xs py-2 rounded-lg border border-gray-200 text-gray-500 hover:border-gray-300">Automatica</button>
               </div>
             </div>
 
             <!-- Combustible -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Combustible <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Combustible <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div class="flex flex-wrap gap-2">
-                <button class="text-xs py-1.5 px-3 rounded-lg border border-slate-700 text-slate-400 hover:border-slate-600">Gasolina</button>
-                <button class="text-xs py-1.5 px-3 rounded-lg border border-slate-700 text-slate-400 hover:border-slate-600">Diesel</button>
-                <button class="text-xs py-1.5 px-3 rounded-lg border border-slate-700 text-slate-400 hover:border-slate-600">Hibrido</button>
+                <button class="text-xs py-1.5 px-3 rounded-lg border border-gray-200 text-gray-500 hover:border-gray-300">Gasolina</button>
+                <button class="text-xs py-1.5 px-3 rounded-lg border border-gray-200 text-gray-500 hover:border-gray-300">Diesel</button>
+                <button class="text-xs py-1.5 px-3 rounded-lg border border-gray-200 text-gray-500 hover:border-gray-300">Hibrido</button>
                 <button class="text-xs py-1.5 px-3 rounded-lg border border-brand-500 bg-brand-600/10 text-brand-400 font-medium">Electrico</button>
               </div>
             </div>
@@ -191,14 +191,14 @@
             <!-- Color -->
             <div class="filter-section pb-4 mb-4">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Color <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Color <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div class="flex flex-wrap gap-2">
                 <button class="w-7 h-7 rounded-full bg-white border-2 border-transparent hover:border-brand-400 transition"></button>
-                <button class="w-7 h-7 rounded-full bg-slate-900 border-2 border-slate-600 hover:border-brand-400 transition"></button>
+                <button class="w-7 h-7 rounded-full bg-white shadow-sm border-2 border-gray-300 hover:border-brand-400 transition"></button>
                 <button class="w-7 h-7 rounded-full bg-red-600 border-2 border-transparent hover:border-brand-400 transition"></button>
-                <button class="w-7 h-7 rounded-full bg-blue-600 border-2 border-transparent hover:border-brand-400 transition ring-2 ring-brand-400 ring-offset-2 ring-offset-slate-900"></button>
-                <button class="w-7 h-7 rounded-full bg-slate-400 border-2 border-transparent hover:border-brand-400 transition"></button>
+                <button class="w-7 h-7 rounded-full bg-blue-600 border-2 border-transparent hover:border-brand-400 transition ring-2 ring-brand-400 ring-offset-2 ring-offset-white"></button>
+                <button class="w-7 h-7 rounded-full bg-gray-400 border-2 border-transparent hover:border-brand-400 transition"></button>
                 <button class="w-7 h-7 rounded-full bg-amber-700 border-2 border-transparent hover:border-brand-400 transition"></button>
                 <button class="w-7 h-7 rounded-full bg-green-700 border-2 border-transparent hover:border-brand-400 transition"></button>
               </div>
@@ -207,10 +207,10 @@
             <!-- Ubicacion -->
             <div class="pb-2">
               <button class="flex items-center justify-between w-full text-sm font-medium mb-3" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                Ubicacion <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                Ubicacion <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div>
-                <select class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                <select class="w-full bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                   <option>Todos los estados</option>
                   <option>Ciudad de Mexico</option>
                   <option>Jalisco</option>
@@ -231,34 +231,34 @@
 
           <!-- Active Filters -->
           <div class="flex flex-wrap items-center gap-2 mb-4">
-            <span class="text-xs text-slate-500">Filtros activos:</span>
+            <span class="text-xs text-gray-400">Filtros activos:</span>
             <span class="inline-flex items-center gap-1 bg-brand-600/10 border border-brand-500/30 text-brand-400 text-xs font-medium px-3 py-1 rounded-full">
-              Toyota <button class="hover:text-white ml-1">&times;</button>
+              Toyota <button class="hover:text-gray-900 ml-1">&times;</button>
             </span>
             <span class="inline-flex items-center gap-1 bg-brand-600/10 border border-brand-500/30 text-brand-400 text-xs font-medium px-3 py-1 rounded-full">
-              $50K-$200K <button class="hover:text-white ml-1">&times;</button>
+              $50K-$200K <button class="hover:text-gray-900 ml-1">&times;</button>
             </span>
             <span class="inline-flex items-center gap-1 bg-brand-600/10 border border-brand-500/30 text-brand-400 text-xs font-medium px-3 py-1 rounded-full">
-              2020-2025 <button class="hover:text-white ml-1">&times;</button>
+              2020-2025 <button class="hover:text-gray-900 ml-1">&times;</button>
             </span>
           </div>
 
           <!-- Toolbar -->
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
-            <p class="text-sm text-slate-400"><span class="text-white font-semibold">234</span> vehiculos encontrados</p>
+            <p class="text-sm text-gray-500"><span class="text-gray-900 font-semibold">234</span> vehiculos encontrados</p>
             <div class="flex items-center gap-3">
-              <select class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <select class="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option>Mas relevantes</option>
                 <option>Precio: menor a mayor</option>
                 <option>Precio: mayor a menor</option>
                 <option>Mas recientes</option>
                 <option>Menor kilometraje</option>
               </select>
-              <div class="flex border border-slate-700 rounded-lg overflow-hidden">
-                <button class="p-2 bg-brand-600/10 text-brand-400 border-r border-slate-700">
+              <div class="flex border border-gray-200 rounded-lg overflow-hidden">
+                <button class="p-2 bg-brand-600/10 text-brand-400 border-r border-gray-200">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
                 </button>
-                <button class="p-2 text-slate-500 hover:text-white transition">
+                <button class="p-2 text-gray-400 hover:text-gray-900 transition">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
               </div>
@@ -269,138 +269,138 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
             <!-- Card 1 -->
-            <a href="03-detalle-vehiculo.html" class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5 block">
-              <div class="relative h-44 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <svg class="w-14 h-14 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-                <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition" onclick="event.preventDefault()">
-                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <a href="03-detalle-vehiculo.html" class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5 block">
+              <div class="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <svg class="w-14 h-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+                <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition" onclick="event.preventDefault()">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
-                <span class="absolute top-3 left-3 bg-green-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
+                <span class="absolute top-3 left-3 bg-green-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white text-sm">Toyota Camry 2023</h3>
-                <p class="text-xl font-bold text-white mt-1">$285,000</p>
-                <div class="flex items-center gap-2 text-xs text-slate-400 mt-2">
-                  <span>32,000 km</span><span class="text-slate-600">|</span><span>Automatica</span><span class="text-slate-600">|</span><span>Gasolina</span>
+                <h3 class="font-semibold text-gray-900 text-sm">Toyota Camry 2023</h3>
+                <p class="text-xl font-bold text-gray-900 mt-1">$285,000</p>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                  <span>32,000 km</span><span class="text-gray-400">|</span><span>Automatica</span><span class="text-gray-400">|</span><span>Gasolina</span>
                 </div>
-                <div class="flex items-center gap-1 text-xs text-slate-500 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400 mt-2">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   Ciudad de Mexico
                 </div>
-                <button class="w-full mt-3 py-2 text-xs font-medium border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white transition">Ver detalle</button>
+                <button class="w-full mt-3 py-2 text-xs font-medium border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition">Ver detalle</button>
               </div>
             </a>
 
             <!-- Card 2 -->
-            <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-              <div class="relative h-44 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <svg class="w-14 h-14 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-                <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
+            <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+              <div class="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <svg class="w-14 h-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+                <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
                   <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
-                <span class="absolute top-3 left-3 bg-orange-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Oferta -15%</span>
+                <span class="absolute top-3 left-3 bg-orange-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Oferta -15%</span>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white text-sm">Honda Civic 2022</h3>
-                <p class="text-xl font-bold text-white mt-1">$245,000</p>
-                <div class="flex items-center gap-2 text-xs text-slate-400 mt-2">
-                  <span>48,000 km</span><span class="text-slate-600">|</span><span>Automatica</span><span class="text-slate-600">|</span><span>Gasolina</span>
+                <h3 class="font-semibold text-gray-900 text-sm">Honda Civic 2022</h3>
+                <p class="text-xl font-bold text-gray-900 mt-1">$245,000</p>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                  <span>48,000 km</span><span class="text-gray-400">|</span><span>Automatica</span><span class="text-gray-400">|</span><span>Gasolina</span>
                 </div>
-                <div class="flex items-center gap-1 text-xs text-slate-500 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400 mt-2">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   Guadalajara, Jalisco
                 </div>
-                <button class="w-full mt-3 py-2 text-xs font-medium border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white transition">Ver detalle</button>
+                <button class="w-full mt-3 py-2 text-xs font-medium border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition">Ver detalle</button>
               </div>
             </div>
 
             <!-- Card 3 -->
-            <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-              <div class="relative h-44 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <svg class="w-14 h-14 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-                <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
-                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+              <div class="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <svg class="w-14 h-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+                <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white text-sm">Nissan Sentra 2023</h3>
-                <p class="text-xl font-bold text-white mt-1">$198,000</p>
-                <div class="flex items-center gap-2 text-xs text-slate-400 mt-2">
-                  <span>15,000 km</span><span class="text-slate-600">|</span><span>Manual</span><span class="text-slate-600">|</span><span>Gasolina</span>
+                <h3 class="font-semibold text-gray-900 text-sm">Nissan Sentra 2023</h3>
+                <p class="text-xl font-bold text-gray-900 mt-1">$198,000</p>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                  <span>15,000 km</span><span class="text-gray-400">|</span><span>Manual</span><span class="text-gray-400">|</span><span>Gasolina</span>
                 </div>
-                <div class="flex items-center gap-1 text-xs text-slate-500 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400 mt-2">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   Monterrey, Nuevo Leon
                 </div>
-                <button class="w-full mt-3 py-2 text-xs font-medium border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white transition">Ver detalle</button>
+                <button class="w-full mt-3 py-2 text-xs font-medium border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition">Ver detalle</button>
               </div>
             </div>
 
             <!-- Card 4 -->
-            <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-              <div class="relative h-44 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <svg class="w-14 h-14 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-                <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
-                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+              <div class="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <svg class="w-14 h-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+                <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
-                <span class="absolute top-3 left-3 bg-green-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
+                <span class="absolute top-3 left-3 bg-green-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white text-sm">Volkswagen Jetta 2024</h3>
-                <p class="text-xl font-bold text-white mt-1">$365,000</p>
-                <div class="flex items-center gap-2 text-xs text-slate-400 mt-2">
-                  <span>5,200 km</span><span class="text-slate-600">|</span><span>Automatica</span><span class="text-slate-600">|</span><span>Gasolina</span>
+                <h3 class="font-semibold text-gray-900 text-sm">Volkswagen Jetta 2024</h3>
+                <p class="text-xl font-bold text-gray-900 mt-1">$365,000</p>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                  <span>5,200 km</span><span class="text-gray-400">|</span><span>Automatica</span><span class="text-gray-400">|</span><span>Gasolina</span>
                 </div>
-                <div class="flex items-center gap-1 text-xs text-slate-500 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400 mt-2">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   Puebla, Puebla
                 </div>
-                <button class="w-full mt-3 py-2 text-xs font-medium border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white transition">Ver detalle</button>
+                <button class="w-full mt-3 py-2 text-xs font-medium border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition">Ver detalle</button>
               </div>
             </div>
 
             <!-- Card 5 -->
-            <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-              <div class="relative h-44 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <svg class="w-14 h-14 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-                <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
-                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+              <div class="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <svg class="w-14 h-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+                <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
-                <span class="absolute top-3 left-3 bg-orange-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Oferta -10%</span>
+                <span class="absolute top-3 left-3 bg-orange-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Oferta -10%</span>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white text-sm">Chevrolet Aveo 2021</h3>
-                <p class="text-xl font-bold text-white mt-1">$165,000</p>
-                <div class="flex items-center gap-2 text-xs text-slate-400 mt-2">
-                  <span>62,000 km</span><span class="text-slate-600">|</span><span>Manual</span><span class="text-slate-600">|</span><span>Gasolina</span>
+                <h3 class="font-semibold text-gray-900 text-sm">Chevrolet Aveo 2021</h3>
+                <p class="text-xl font-bold text-gray-900 mt-1">$165,000</p>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                  <span>62,000 km</span><span class="text-gray-400">|</span><span>Manual</span><span class="text-gray-400">|</span><span>Gasolina</span>
                 </div>
-                <div class="flex items-center gap-1 text-xs text-slate-500 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400 mt-2">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   Queretaro
                 </div>
-                <button class="w-full mt-3 py-2 text-xs font-medium border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white transition">Ver detalle</button>
+                <button class="w-full mt-3 py-2 text-xs font-medium border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition">Ver detalle</button>
               </div>
             </div>
 
             <!-- Card 6 -->
-            <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-              <div class="relative h-44 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <svg class="w-14 h-14 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-                <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
-                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+              <div class="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <svg class="w-14 h-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+                <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white text-sm">Mazda 3 2022</h3>
-                <p class="text-xl font-bold text-white mt-1">$310,000</p>
-                <div class="flex items-center gap-2 text-xs text-slate-400 mt-2">
-                  <span>28,000 km</span><span class="text-slate-600">|</span><span>Automatica</span><span class="text-slate-600">|</span><span>Gasolina</span>
+                <h3 class="font-semibold text-gray-900 text-sm">Mazda 3 2022</h3>
+                <p class="text-xl font-bold text-gray-900 mt-1">$310,000</p>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                  <span>28,000 km</span><span class="text-gray-400">|</span><span>Automatica</span><span class="text-gray-400">|</span><span>Gasolina</span>
                 </div>
-                <div class="flex items-center gap-1 text-xs text-slate-500 mt-2">
+                <div class="flex items-center gap-1 text-xs text-gray-400 mt-2">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   Leon, Guanajuato
                 </div>
-                <button class="w-full mt-3 py-2 text-xs font-medium border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white transition">Ver detalle</button>
+                <button class="w-full mt-3 py-2 text-xs font-medium border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition">Ver detalle</button>
               </div>
             </div>
 
@@ -408,10 +408,10 @@
 
           <!-- Load More -->
           <div class="text-center mt-10">
-            <button class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-8 py-3 rounded-xl text-sm transition border border-slate-700">
+            <button class="bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium px-8 py-3 rounded-xl text-sm transition border border-gray-200">
               Cargar mas vehiculos
             </button>
-            <p class="text-xs text-slate-500 mt-2">Mostrando 6 de 234 resultados</p>
+            <p class="text-xs text-gray-400 mt-2">Mostrando 6 de 234 resultados</p>
           </div>
 
         </div>
@@ -421,7 +421,7 @@
 
   <!-- Mobile Filter Button -->
   <div class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-    <button class="bg-brand-600 hover:bg-brand-500 text-white font-medium px-6 py-3 rounded-full text-sm shadow-xl shadow-brand-600/30 flex items-center gap-2 transition">
+    <button class="bg-brand-600 hover:bg-brand-500 text-gray-900 font-medium px-6 py-3 rounded-full text-sm shadow-xl shadow-brand-600/30 flex items-center gap-2 transition">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
       Filtros (3)
     </button>

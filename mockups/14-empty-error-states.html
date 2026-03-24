@@ -8,19 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
-        .shimmer { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        .shimmer { background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
         @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
         .spin { animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen">
+<body class="bg-white shadow-sm text-gray-900 min-h-screen">
 
     <!-- Navbar -->
-    <nav class="bg-slate-800 border-b border-slate-700 px-6 py-4">
+    <nav class="bg-gray-100 border-b border-gray-200 px-6 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="#" class="text-xl font-bold text-blue-400">AgentsMX</a>
-            <span class="text-sm text-slate-400">Estados vacios, error y carga</span>
+            <span class="text-sm text-gray-500">Estados vacios, error y carga</span>
         </div>
     </nav>
 
@@ -28,8 +28,8 @@
         <!-- Section selector -->
         <div class="flex flex-wrap gap-2 mb-8">
             <button onclick="showCategory('empty')" id="btn-empty" class="px-4 py-2 bg-blue-600 rounded-lg text-sm font-medium">Estados vacios</button>
-            <button onclick="showCategory('error')" id="btn-error" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm transition">Estados de error</button>
-            <button onclick="showCategory('loading')" id="btn-loading" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm transition">Estados de carga</button>
+            <button onclick="showCategory('error')" id="btn-error" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm transition">Estados de error</button>
+            <button onclick="showCategory('loading')" id="btn-loading" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm transition">Estados de carga</button>
         </div>
 
         <!-- ========== EMPTY STATES ========== -->
@@ -38,80 +38,80 @@
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
                 <!-- No search results -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">Sin resultados</h3>
-                    <p class="text-sm text-slate-400 mb-4">No encontramos vehiculos con estos filtros</p>
+                    <p class="text-sm text-gray-500 mb-4">No encontramos vehiculos con estos filtros</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Intenta con otros filtros</button>
                 </div>
 
                 <!-- Empty wishlist -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">Aun no tienes favoritos</h3>
-                    <p class="text-sm text-slate-400 mb-4">Guarda vehiculos que te interesen para compararlos despues</p>
+                    <p class="text-sm text-gray-500 mb-4">Guarda vehiculos que te interesen para compararlos despues</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Explorar vehiculos</button>
                 </div>
 
                 <!-- No purchases -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">No tienes compras activas</h3>
-                    <p class="text-sm text-slate-400 mb-4">Cuando inicies una compra, aparecera aqui</p>
+                    <p class="text-sm text-gray-500 mb-4">Cuando inicies una compra, aparecera aqui</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Buscar vehiculo</button>
                 </div>
 
                 <!-- No notifications -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">No tienes notificaciones</h3>
-                    <p class="text-sm text-slate-400 mb-4">Todo al dia!</p>
+                    <p class="text-sm text-gray-500 mb-4">Todo al dia!</p>
                 </div>
 
                 <!-- No conversations -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">No tienes conversaciones</h3>
-                    <p class="text-sm text-slate-400 mb-4">Encuentra un vehiculo y contacta al vendedor</p>
+                    <p class="text-sm text-gray-500 mb-4">Encuentra un vehiculo y contacta al vendedor</p>
                 </div>
 
                 <!-- No KYC -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">Verifica tu identidad</h3>
-                    <p class="text-sm text-slate-400 mb-4">Es rapido y seguro</p>
+                    <p class="text-sm text-gray-500 mb-4">Es rapido y seguro</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Iniciar</button>
                 </div>
 
                 <!-- No financing offers -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">Sin ofertas de financiamiento</h3>
-                    <p class="text-sm text-slate-400 mb-4">Aun no has solicitado financiamiento</p>
+                    <p class="text-sm text-gray-500 mb-4">Aun no has solicitado financiamiento</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Solicitar financiamiento</button>
                 </div>
 
                 <!-- No insurance quotes -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1">Sin cotizaciones de seguro</h3>
-                    <p class="text-sm text-slate-400 mb-4">Cotiza el seguro de tu vehiculo</p>
+                    <p class="text-sm text-gray-500 mb-4">Cotiza el seguro de tu vehiculo</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Cotizar seguro</button>
                 </div>
             </div>
@@ -123,66 +123,66 @@
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
                 <!-- Network error -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3"/></svg>
                     </div>
                     <h3 class="font-bold mb-1 text-red-400">Sin conexion a internet</h3>
-                    <p class="text-sm text-slate-400 mb-4">Revisa tu conexion a internet e intenta de nuevo</p>
+                    <p class="text-sm text-gray-500 mb-4">Revisa tu conexion a internet e intenta de nuevo</p>
                     <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-medium transition">Verificar conexion</button>
                 </div>
 
                 <!-- Server error 500 -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
                     </div>
                     <h3 class="font-bold mb-1 text-red-400">Algo salio mal</h3>
-                    <p class="text-sm text-slate-400 mb-1">Error 500 - Error interno del servidor</p>
-                    <p class="text-xs text-slate-500 mb-4">Estamos trabajando en ello</p>
+                    <p class="text-sm text-gray-500 mb-1">Error 500 - Error interno del servidor</p>
+                    <p class="text-xs text-gray-400 mb-4">Estamos trabajando en ello</p>
                     <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-medium transition">Reintentar</button>
                 </div>
 
                 <!-- Not found 404 -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 bg-yellow-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1 text-yellow-400">Pagina no encontrada</h3>
-                    <p class="text-sm text-slate-400 mb-4">Error 404 - La pagina que buscas no existe o fue movida</p>
+                    <p class="text-sm text-gray-500 mb-4">Error 404 - La pagina que buscas no existe o fue movida</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Ir al inicio</button>
                 </div>
 
                 <!-- Forbidden 403 -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1 text-red-400">No tienes acceso</h3>
-                    <p class="text-sm text-slate-400 mb-4">Error 403 - No tienes acceso a esta seccion</p>
-                    <button class="border border-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition">Contactar soporte</button>
+                    <p class="text-sm text-gray-500 mb-4">Error 403 - No tienes acceso a esta seccion</p>
+                    <button class="border border-gray-300 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition">Contactar soporte</button>
                 </div>
 
                 <!-- Session expired -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 bg-yellow-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1 text-yellow-400">Tu sesion expiro</h3>
-                    <p class="text-sm text-slate-400 mb-4">Por seguridad, tu sesion ha expirado. Inicia sesion nuevamente.</p>
+                    <p class="text-sm text-gray-500 mb-4">Por seguridad, tu sesion ha expirado. Inicia sesion nuevamente.</p>
                     <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition">Iniciar sesion de nuevo</button>
                 </div>
 
                 <!-- Payment failed -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-8 text-center">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 text-center">
                     <div class="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
                     </div>
                     <h3 class="font-bold mb-1 text-red-400">El pago no se pudo procesar</h3>
-                    <p class="text-sm text-slate-400 mb-4">Hubo un problema al procesar tu pago. Verifica los datos e intenta de nuevo.</p>
+                    <p class="text-sm text-gray-500 mb-4">Hubo un problema al procesar tu pago. Verifica los datos e intenta de nuevo.</p>
                     <div class="flex gap-2 justify-center">
                         <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-medium transition">Reintentar</button>
-                        <button class="border border-slate-600 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition">Cambiar metodo de pago</button>
+                        <button class="border border-gray-300 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition">Cambiar metodo de pago</button>
                     </div>
                 </div>
             </div>
@@ -193,9 +193,9 @@
             <h2 class="text-xl font-bold mb-6">Estados de carga</h2>
 
             <!-- Vehicle Card Skeleton -->
-            <h3 class="font-bold text-slate-400 mb-3">Tarjeta de vehiculo (skeleton)</h3>
+            <h3 class="font-bold text-gray-500 mb-3">Tarjeta de vehiculo (skeleton)</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden">
                     <div class="shimmer h-44"></div>
                     <div class="p-4 space-y-3">
                         <div class="shimmer h-5 w-3/4 rounded"></div>
@@ -208,7 +208,7 @@
                         <div class="shimmer h-6 w-1/3 rounded"></div>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden">
                     <div class="shimmer h-44"></div>
                     <div class="p-4 space-y-3">
                         <div class="shimmer h-5 w-2/3 rounded"></div>
@@ -221,7 +221,7 @@
                         <div class="shimmer h-6 w-1/4 rounded"></div>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden">
                     <div class="shimmer h-44"></div>
                     <div class="p-4 space-y-3">
                         <div class="shimmer h-5 w-4/5 rounded"></div>
@@ -236,8 +236,8 @@
             </div>
 
             <!-- Vehicle Detail Skeleton -->
-            <h3 class="font-bold text-slate-400 mb-3">Detalle de vehiculo (skeleton)</h3>
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 mb-10">
+            <h3 class="font-bold text-gray-500 mb-3">Detalle de vehiculo (skeleton)</h3>
+            <div class="bg-gray-100 border border-gray-200 rounded-2xl p-6 mb-10">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="shimmer h-72 rounded-xl"></div>
                     <div class="space-y-4">
@@ -256,15 +256,15 @@
             </div>
 
             <!-- Table Skeleton (Admin) -->
-            <h3 class="font-bold text-slate-400 mb-3">Tabla admin (skeleton)</h3>
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden mb-10">
-                <div class="p-4 flex justify-between items-center border-b border-slate-700">
+            <h3 class="font-bold text-gray-500 mb-3">Tabla admin (skeleton)</h3>
+            <div class="bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden mb-10">
+                <div class="p-4 flex justify-between items-center border-b border-gray-200">
                     <div class="shimmer h-5 w-32 rounded"></div>
                     <div class="shimmer h-9 w-24 rounded-lg"></div>
                 </div>
                 <table class="w-full">
                     <thead>
-                        <tr class="border-b border-slate-700">
+                        <tr class="border-b border-gray-200">
                             <th class="px-4 py-3"><div class="shimmer h-4 w-12 rounded"></div></th>
                             <th class="px-4 py-3"><div class="shimmer h-4 w-20 rounded"></div></th>
                             <th class="px-4 py-3"><div class="shimmer h-4 w-16 rounded"></div></th>
@@ -273,17 +273,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b border-slate-700/50"><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-32 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-20 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-16 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-12 rounded"></div></td></tr>
-                        <tr class="border-b border-slate-700/50"><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-28 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-24 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-14 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-16 rounded"></div></td></tr>
-                        <tr class="border-b border-slate-700/50"><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-36 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-18 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-16 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-14 rounded"></div></td></tr>
+                        <tr class="border-b border-gray-200/50"><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-32 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-20 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-16 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-12 rounded"></div></td></tr>
+                        <tr class="border-b border-gray-200/50"><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-28 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-24 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-14 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-16 rounded"></div></td></tr>
+                        <tr class="border-b border-gray-200/50"><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-36 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-18 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-16 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-14 rounded"></div></td></tr>
                         <tr><td class="px-4 py-3"><div class="shimmer h-4 w-8 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-30 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-22 rounded"></div></td><td class="px-4 py-3"><div class="shimmer h-6 w-14 rounded-full"></div></td><td class="px-4 py-3"><div class="shimmer h-4 w-12 rounded"></div></td></tr>
                     </tbody>
                 </table>
             </div>
 
             <!-- Profile Skeleton -->
-            <h3 class="font-bold text-slate-400 mb-3">Perfil (skeleton)</h3>
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 mb-10">
+            <h3 class="font-bold text-gray-500 mb-3">Perfil (skeleton)</h3>
+            <div class="bg-gray-100 border border-gray-200 rounded-2xl p-6 mb-10">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="shimmer w-16 h-16 rounded-full"></div>
                     <div class="space-y-2">
@@ -312,24 +312,24 @@
             </div>
 
             <!-- KPI Card Skeleton -->
-            <h3 class="font-bold text-slate-400 mb-3">Tarjetas KPI (skeleton)</h3>
+            <h3 class="font-bold text-gray-500 mb-3">Tarjetas KPI (skeleton)</h3>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+                <div class="bg-gray-100 border border-gray-200 rounded-xl p-4">
                     <div class="shimmer h-4 w-24 rounded mb-3"></div>
                     <div class="shimmer h-8 w-16 rounded mb-2"></div>
                     <div class="shimmer h-3 w-20 rounded"></div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+                <div class="bg-gray-100 border border-gray-200 rounded-xl p-4">
                     <div class="shimmer h-4 w-20 rounded mb-3"></div>
                     <div class="shimmer h-8 w-20 rounded mb-2"></div>
                     <div class="shimmer h-3 w-16 rounded"></div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+                <div class="bg-gray-100 border border-gray-200 rounded-xl p-4">
                     <div class="shimmer h-4 w-28 rounded mb-3"></div>
                     <div class="shimmer h-8 w-14 rounded mb-2"></div>
                     <div class="shimmer h-3 w-24 rounded"></div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+                <div class="bg-gray-100 border border-gray-200 rounded-xl p-4">
                     <div class="shimmer h-4 w-22 rounded mb-3"></div>
                     <div class="shimmer h-8 w-18 rounded mb-2"></div>
                     <div class="shimmer h-3 w-20 rounded"></div>
@@ -337,12 +337,12 @@
             </div>
 
             <!-- Full Page Loading Spinner -->
-            <h3 class="font-bold text-slate-400 mb-3">Pantalla completa de carga</h3>
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-16 text-center">
+            <h3 class="font-bold text-gray-500 mb-3">Pantalla completa de carga</h3>
+            <div class="bg-gray-100 border border-gray-200 rounded-2xl p-16 text-center">
                 <div class="flex flex-col items-center justify-center">
                     <div class="text-3xl font-bold text-blue-400 mb-6">AgentsMX</div>
                     <div class="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full spin mb-4"></div>
-                    <p class="text-sm text-slate-400">Cargando...</p>
+                    <p class="text-sm text-gray-500">Cargando...</p>
                 </div>
             </div>
         </div>
@@ -354,8 +354,8 @@
             document.getElementById('cat-' + cat).classList.remove('hidden');
             ['empty','error','loading'].forEach(c => {
                 const b = document.getElementById('btn-' + c);
-                if (c === cat) { b.classList.remove('bg-slate-700'); b.classList.add('bg-blue-600'); }
-                else { b.classList.remove('bg-blue-600'); b.classList.add('bg-slate-700'); }
+                if (c === cat) { b.classList.remove('bg-gray-200'); b.classList.add('bg-blue-600'); }
+                else { b.classList.remove('bg-blue-600'); b.classList.add('bg-gray-200'); }
             });
         }
     </script>

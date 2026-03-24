@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin - White Label Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .tab-btn.active { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
+        .color-dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #e2e8f0; cursor: pointer; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Layout -->
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col shrink-0">
+            <div class="p-6 border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-gray-900">AgentsMX</div>
+                        <div class="text-xs text-gray-400">Super Admin</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1 p-4 space-y-1">
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-500 hover:bg-gray-50 text-sm font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-blue-600 text-sm font-semibold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Tenants
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-500 hover:bg-gray-50 text-sm font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    Plans
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-500 hover:bg-gray-50 text-sm font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Revenue
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-500 hover:bg-gray-50 text-sm font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Settings
+                </a>
+            </nav>
+            <div class="p-4 border-t border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-xs">SA</div>
+                    <div class="text-sm"><div class="font-medium text-gray-900">Super Admin</div><div class="text-xs text-gray-400">admin@agentsmx.com</div></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 overflow-y-auto">
+
+            <!-- TENANT LIST VIEW -->
+            <div id="tenantList">
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">Tenants</h1>
+                            <p class="text-sm text-gray-500 mt-1">Gestiona los partners white label de la plataforma</p>
+                        </div>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            Nuevo Tenant
+                        </button>
+                    </div>
+
+                    <!-- Search & Filters -->
+                    <div class="flex gap-3 mb-6">
+                        <div class="flex-1 relative">
+                            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            <input type="text" placeholder="Buscar tenants..." class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none">
+                        </div>
+                        <select class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white text-gray-600 focus:ring-2 focus:ring-blue-100 outline-none">
+                            <option>Todos los estados</option>
+                            <option>Activo</option>
+                            <option>Trial</option>
+                            <option>Suspendido</option>
+                        </select>
+                        <select class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-white text-gray-600 focus:ring-2 focus:ring-blue-100 outline-none">
+                            <option>Todos los planes</option>
+                            <option>Free</option>
+                            <option>Basic</option>
+                            <option>Pro</option>
+                            <option>Enterprise</option>
+                        </select>
+                    </div>
+
+                    <!-- Tenant Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                        <!-- Tenant 1 -->
+                        <div onclick="showDetail()" class="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-blue-200 transition cursor-pointer group">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold text-sm">AM</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition">AutoMax</h3>
+                                        <p class="text-xs text-gray-400">automax.agentsmx.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span class="text-xs text-emerald-600 font-medium">Activo</span></div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2.5 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-semibold">Pro</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div><span class="text-gray-400">Vehiculos</span><p class="font-semibold text-gray-900">234</p></div>
+                                <div><span class="text-gray-400">Revenue/mes</span><p class="font-semibold text-gray-900">$8,000</p></div>
+                            </div>
+                        </div>
+
+                        <!-- Tenant 2 -->
+                        <div class="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-blue-200 transition cursor-pointer group">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold text-sm">CS</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition">CarroSeguro</h3>
+                                        <p class="text-xs text-gray-400">carroseguro.agentsmx.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span class="text-xs text-emerald-600 font-medium">Activo</span></div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-semibold">Enterprise</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div><span class="text-gray-400">Vehiculos</span><p class="font-semibold text-gray-900">1,520</p></div>
+                                <div><span class="text-gray-400">Revenue/mes</span><p class="font-semibold text-gray-900">$25,000</p></div>
+                            </div>
+                        </div>
+
+                        <!-- Tenant 3 -->
+                        <div class="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-blue-200 transition cursor-pointer group">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-sm">MA</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition">MiAutoMX</h3>
+                                        <p class="text-xs text-gray-400">miautomx.agentsmx.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5"><span class="w-2 h-2 bg-amber-400 rounded-full"></span><span class="text-xs text-amber-600 font-medium">Trial</span></div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2.5 py-1 bg-green-50 text-green-600 rounded-full text-xs font-semibold">Free</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div><span class="text-gray-400">Vehiculos</span><p class="font-semibold text-gray-900">18</p></div>
+                                <div><span class="text-gray-400">Revenue/mes</span><p class="font-semibold text-gray-900">$0</p></div>
+                            </div>
+                        </div>
+
+                        <!-- Tenant 4 -->
+                        <div class="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-blue-200 transition cursor-pointer group">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 bg-red-100 rounded-lg flex items-center justify-center text-red-600 font-bold text-sm">VA</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition">VentaAutos</h3>
+                                        <p class="text-xs text-gray-400">ventaautos.agentsmx.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5"><span class="w-2 h-2 bg-red-400 rounded-full"></span><span class="text-xs text-red-600 font-medium">Suspendido</span></div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">Basic</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div><span class="text-gray-400">Vehiculos</span><p class="font-semibold text-gray-900">87</p></div>
+                                <div><span class="text-gray-400">Revenue/mes</span><p class="font-semibold text-gray-900">$0</p></div>
+                            </div>
+                        </div>
+
+                        <!-- Tenant 5 -->
+                        <div class="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-blue-200 transition cursor-pointer group">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 font-bold text-sm">DP</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition">DrivePro</h3>
+                                        <p class="text-xs text-gray-400">drivepro.agentsmx.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span class="text-xs text-emerald-600 font-medium">Activo</span></div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">Basic</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div><span class="text-gray-400">Vehiculos</span><p class="font-semibold text-gray-900">56</p></div>
+                                <div><span class="text-gray-400">Revenue/mes</span><p class="font-semibold text-gray-900">$3,000</p></div>
+                            </div>
+                        </div>
+
+                        <!-- Tenant 6 -->
+                        <div class="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-blue-200 transition cursor-pointer group">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 bg-teal-100 rounded-lg flex items-center justify-center text-teal-600 font-bold text-sm">AC</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition">AutoCenter</h3>
+                                        <p class="text-xs text-gray-400">autocenter.agentsmx.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span><span class="text-xs text-emerald-600 font-medium">Activo</span></div>
+                            </div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2.5 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-semibold">Pro</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div><span class="text-gray-400">Vehiculos</span><p class="font-semibold text-gray-900">312</p></div>
+                                <div><span class="text-gray-400">Revenue/mes</span><p class="font-semibold text-gray-900">$8,000</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TENANT DETAIL VIEW -->
+            <div id="tenantDetail" class="hidden">
+                <div class="p-8">
+                    <!-- Back + Header -->
+                    <button onclick="showList()" class="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 mb-6 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        Volver a Tenants
+                    </button>
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 font-bold text-lg">AM</div>
+                            <div>
+                                <div class="flex items-center gap-3">
+                                    <h1 class="text-2xl font-bold text-gray-900">AutoMax</h1>
+                                    <span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>Activo</span>
+                                    <span class="px-2.5 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-semibold">Pro</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mt-1">Creado: 15 Enero 2026</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="flex gap-1 border-b border-gray-200 mb-8">
+                        <button onclick="switchTab('config')" class="tab-btn active px-5 py-3 text-sm font-medium border-b-2 transition">Configuracion</button>
+                        <button onclick="switchTab('branding')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition">Branding</button>
+                        <button onclick="switchTab('features')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition">Features</button>
+                        <button onclick="switchTab('billing')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition">Billing</button>
+                        <button onclick="switchTab('metricas')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition">Metricas</button>
+                    </div>
+
+                    <!-- Config Tab -->
+                    <div id="tab-config" class="tab-content">
+                        <div class="max-w-2xl space-y-6">
+                            <div class="bg-white rounded-xl border border-gray-200 p-6 space-y-5">
+                                <h3 class="font-semibold text-gray-900">Informacion General</h3>
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Nombre del Tenant</label><input type="text" value="AutoMax" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none"></div>
+                                    <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Slug</label><input type="text" value="automax" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none"></div>
+                                </div>
+                                <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Subdominio</label><div class="flex"><input type="text" value="automax" class="flex-1 px-4 py-2.5 border border-gray-200 rounded-l-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none"><span class="px-4 py-2.5 bg-gray-100 border border-l-0 border-gray-200 rounded-r-lg text-sm text-gray-500">.agentsmx.com</span></div></div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-600 mb-1.5">Dominio Personalizado</label>
+                                    <input type="text" value="www.automax.mx" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none mb-2">
+                                    <div class="flex items-center gap-2 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+                                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        <span class="text-sm text-emerald-700 font-medium">DNS verificado correctamente</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Email de Contacto</label><input type="email" value="admin@automax.mx" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none"></div>
+                                    <div><label class="block text-sm font-medium text-gray-600 mb-1.5">Telefono</label><input type="tel" value="+52 55 1234 5678" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none"></div>
+                                </div>
+                            </div>
+                            <!-- DNS fail example -->
+                            <div class="bg-white rounded-xl border border-gray-200 p-6">
+                                <h3 class="font-semibold text-gray-900 mb-3">Ejemplo: Dominio sin verificar</h3>
+                                <div class="flex items-start gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
+                                    <svg class="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                    <div class="text-sm text-red-700"><p class="font-medium">DNS no verificado</p><p class="mt-1">Agrega un registro CNAME apuntando a <code class="bg-red-100 px-1.5 py-0.5 rounded text-xs font-mono">automax.agentsmx.com</code> en tu proveedor de DNS.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Branding Tab -->
+                    <div id="tab-branding" class="tab-content hidden">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="space-y-6">
+                                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                                    <h3 class="font-semibold text-gray-900 mb-4">Logo</h3>
+                                    <div class="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center hover:border-blue-300 transition cursor-pointer">
+                                        <div class="w-16 h-16 bg-orange-100 rounded-xl mx-auto mb-3 flex items-center justify-center text-orange-600 font-bold text-xl">AM</div>
+                                        <p class="text-sm text-gray-500">Arrastra un logo o <span class="text-blue-500 font-medium">haz clic para subir</span></p>
+                                        <p class="text-xs text-gray-400 mt-1">PNG, SVG. Max 2MB</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                                    <h3 class="font-semibold text-gray-900 mb-4">Colores</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between"><label class="text-sm font-medium text-gray-600">Primary</label><div class="flex items-center gap-2"><div class="color-dot" style="background:#f97316"></div><input type="text" value="#F97316" class="w-24 px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-mono text-center bg-gray-50"></div></div>
+                                        <div class="flex items-center justify-between"><label class="text-sm font-medium text-gray-600">Secondary</label><div class="flex items-center gap-2"><div class="color-dot" style="background:#1e293b"></div><input type="text" value="#1E293B" class="w-24 px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-mono text-center bg-gray-50"></div></div>
+                                        <div class="flex items-center justify-between"><label class="text-sm font-medium text-gray-600">Accent</label><div class="flex items-center gap-2"><div class="color-dot" style="background:#fbbf24"></div><input type="text" value="#FBBF24" class="w-24 px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-mono text-center bg-gray-50"></div></div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                                    <h3 class="font-semibold text-gray-900 mb-4">Tipografia</h3>
+                                    <select class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm bg-gray-50"><option>Inter</option><option>Poppins</option><option>Roboto</option><option>Open Sans</option><option>Montserrat</option></select>
+                                </div>
+                                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                                    <h3 class="font-semibold text-gray-900 mb-4">Favicon</h3>
+                                    <div class="border-2 border-dashed border-gray-200 rounded-xl p-4 text-center hover:border-blue-300 transition cursor-pointer flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold text-xs shrink-0">AM</div>
+                                        <p class="text-sm text-gray-500">Subir favicon <span class="text-xs text-gray-400">(32x32 PNG/ICO)</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Live Preview -->
+                            <div>
+                                <div class="bg-white rounded-xl border border-gray-200 p-6 sticky top-8">
+                                    <h3 class="font-semibold text-gray-900 mb-4">Vista Previa en Vivo</h3>
+                                    <div class="border border-gray-200 rounded-xl overflow-hidden">
+                                        <div class="bg-orange-500 px-4 py-3 flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-white font-bold text-xs">AM</div>
+                                            <span class="text-white font-semibold text-sm">AutoMax</span>
+                                            <div class="ml-auto flex gap-3 text-white/80 text-xs font-medium">
+                                                <span>Catalogo</span><span>Financiamiento</span><span>Nosotros</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-gray-50">
+                                            <div class="bg-white rounded-lg p-3 mb-3 flex gap-3">
+                                                <div class="w-20 h-14 bg-gray-200 rounded-md flex items-center justify-center text-gray-400 text-xs">Foto</div>
+                                                <div class="flex-1">
+                                                    <p class="text-xs font-semibold text-gray-800">Toyota Camry 2023</p>
+                                                    <p class="text-xs text-gray-400">Sedan - Automatico</p>
+                                                    <p class="text-sm font-bold text-orange-500 mt-1">$420,000</p>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-3 flex gap-3">
+                                                <div class="w-20 h-14 bg-gray-200 rounded-md flex items-center justify-center text-gray-400 text-xs">Foto</div>
+                                                <div class="flex-1">
+                                                    <p class="text-xs font-semibold text-gray-800">Honda Civic 2022</p>
+                                                    <p class="text-xs text-gray-400">Sedan - Manual</p>
+                                                    <p class="text-sm font-bold text-orange-500 mt-1">$365,000</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gray-900 px-4 py-2 text-center">
+                                            <span class="text-gray-500 text-[10px]">Powered by AgentsMX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Tab -->
+                    <div id="tab-features" class="tab-content hidden">
+                        <div class="max-w-2xl space-y-3">
+                            <!-- Toggle items -->
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Catalogo</h4><p class="text-sm text-gray-400">Listado y busqueda de vehiculos. Modulo base obligatorio.</p></div>
+                                <div class="w-11 h-6 bg-blue-500 rounded-full relative cursor-not-allowed opacity-70"><div class="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Financiamiento</h4><p class="text-sm text-gray-400">Cotizador de credito y solicitudes de financiamiento.</p></div>
+                                <div class="w-11 h-6 bg-blue-500 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Seguros</h4><p class="text-sm text-gray-400">Cotizacion y contratacion de seguros vehiculares.</p></div>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute left-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">KYC</h4><p class="text-sm text-gray-400">Verificacion de identidad y documentos del comprador.</p></div>
+                                <div class="w-11 h-6 bg-blue-500 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Chat</h4><p class="text-sm text-gray-400">Mensajeria en tiempo real entre compradores y vendedores.</p></div>
+                                <div class="w-11 h-6 bg-blue-500 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Analytics</h4><p class="text-sm text-gray-400">Dashboard de metricas y reportes de desempeno.</p></div>
+                                <div class="w-11 h-6 bg-blue-500 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Reportes Tecnicos</h4><p class="text-sm text-gray-400">Informes mecanicos y de condicion del vehiculo.</p></div>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute left-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between">
+                                <div><h4 class="font-medium text-gray-900">Comparador</h4><p class="text-sm text-gray-400">Herramienta para comparar vehiculos lado a lado.</p></div>
+                                <div class="w-11 h-6 bg-blue-500 rounded-full relative cursor-pointer"><div class="w-5 h-5 bg-white rounded-full absolute right-0.5 top-0.5 shadow"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Tab -->
+                    <div id="tab-billing" class="tab-content hidden">
+                        <div class="max-w-3xl space-y-6">
+                            <div class="bg-white rounded-xl border border-gray-200 p-6 flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-400">Plan Actual</p>
+                                    <p class="text-xl font-bold text-gray-900 mt-1">Pro - $8,000/mes</p>
+                                    <p class="text-sm text-gray-500 mt-1">Estado: <span class="text-emerald-600 font-medium">Activo</span></p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-gray-400">Proximo Pago</p>
+                                    <p class="text-lg font-semibold text-gray-900 mt-1">1 Abril 2026</p>
+                                    <button class="mt-2 text-sm text-blue-500 font-medium hover:underline">Cambiar Plan</button>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                                <div class="p-5 border-b border-gray-100"><h3 class="font-semibold text-gray-900">Historial de Facturas</h3></div>
+                                <table class="w-full">
+                                    <thead><tr class="text-xs text-gray-400 uppercase"><th class="text-left px-5 py-3">Fecha</th><th class="text-left px-5 py-3">Concepto</th><th class="text-left px-5 py-3">Monto</th><th class="text-left px-5 py-3">Estado</th><th class="px-5 py-3"></th></tr></thead>
+                                    <tbody class="text-sm">
+                                        <tr class="border-t border-gray-50"><td class="px-5 py-3">1 Mar 2026</td><td class="px-5 py-3">Plan Pro - Marzo</td><td class="px-5 py-3 font-semibold">$8,000</td><td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Pagado</span></td><td class="px-5 py-3 text-blue-500 text-xs cursor-pointer">Descargar</td></tr>
+                                        <tr class="border-t border-gray-50"><td class="px-5 py-3">1 Feb 2026</td><td class="px-5 py-3">Plan Pro - Febrero</td><td class="px-5 py-3 font-semibold">$8,000</td><td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Pagado</span></td><td class="px-5 py-3 text-blue-500 text-xs cursor-pointer">Descargar</td></tr>
+                                        <tr class="border-t border-gray-50"><td class="px-5 py-3">1 Ene 2026</td><td class="px-5 py-3">Plan Pro - Enero</td><td class="px-5 py-3 font-semibold">$8,000</td><td class="px-5 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium">Pagado</span></td><td class="px-5 py-3 text-blue-500 text-xs cursor-pointer">Descargar</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metricas Tab -->
+                    <div id="tab-metricas" class="tab-content hidden">
+                        <div class="grid grid-cols-4 gap-5 mb-8">
+                            <div class="bg-white rounded-xl border border-gray-200 p-5"><p class="text-sm text-gray-400">Vehiculos</p><p class="text-2xl font-bold text-gray-900 mt-1">234</p><p class="text-xs text-emerald-500 mt-1">+12 este mes</p></div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5"><p class="text-sm text-gray-400">Usuarios</p><p class="text-2xl font-bold text-gray-900 mt-1">1,250</p><p class="text-xs text-emerald-500 mt-1">+85 este mes</p></div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5"><p class="text-sm text-gray-400">Transacciones</p><p class="text-2xl font-bold text-gray-900 mt-1">12</p><p class="text-xs text-emerald-500 mt-1">+3 este mes</p></div>
+                            <div class="bg-white rounded-xl border border-gray-200 p-5"><p class="text-sm text-gray-400">Revenue</p><p class="text-2xl font-bold text-gray-900 mt-1">$180,000</p><p class="text-xs text-emerald-500 mt-1">+15% vs mes pasado</p></div>
+                        </div>
+                        <div class="bg-white rounded-xl border border-gray-200 p-6">
+                            <h3 class="font-semibold text-gray-900 mb-4">Revenue Mensual</h3>
+                            <div class="flex items-end gap-3 h-48">
+                                <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-blue-100 rounded-t-md" style="height:40%"></div><span class="text-[10px] text-gray-400">Oct</span></div>
+                                <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-blue-100 rounded-t-md" style="height:55%"></div><span class="text-[10px] text-gray-400">Nov</span></div>
+                                <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-blue-100 rounded-t-md" style="height:50%"></div><span class="text-[10px] text-gray-400">Dic</span></div>
+                                <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-blue-200 rounded-t-md" style="height:65%"></div><span class="text-[10px] text-gray-400">Ene</span></div>
+                                <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-blue-300 rounded-t-md" style="height:75%"></div><span class="text-[10px] text-gray-400">Feb</span></div>
+                                <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-blue-500 rounded-t-md" style="height:90%"></div><span class="text-[10px] text-gray-400">Mar</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function showDetail() {
+            document.getElementById('tenantList').classList.add('hidden');
+            document.getElementById('tenantDetail').classList.remove('hidden');
+        }
+        function showList() {
+            document.getElementById('tenantDetail').classList.add('hidden');
+            document.getElementById('tenantList').classList.remove('hidden');
+        }
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => { el.classList.remove('active'); el.classList.add('border-transparent', 'text-gray-400'); });
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            event.target.classList.add('active');
+            event.target.classList.remove('border-transparent', 'text-gray-400');
+        }
+    </script>
+</body>
+</html>

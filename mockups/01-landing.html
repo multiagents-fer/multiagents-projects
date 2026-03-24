@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'media',
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'sans-serif'] },
@@ -25,42 +25,42 @@
     .glass { background:rgba(15,23,42,.6); backdrop-filter:blur(12px); }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
   <!-- Navbar -->
-  <nav class="fixed top-0 w-full z-50 glass border-b border-slate-800/50">
+  <nav class="fixed top-0 w-full z-50 glass border-b border-gray-200/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center gap-8">
           <a href="01-landing.html" class="text-xl font-bold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">AgentsMX</a>
-          <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-            <a href="02-catalogo.html" class="hover:text-white transition">Vehiculos</a>
-            <a href="#" class="hover:text-white transition">Financiamiento</a>
-            <a href="#" class="hover:text-white transition">Seguros</a>
-            <a href="#" class="hover:text-white transition">Mercado</a>
+          <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
+            <a href="02-catalogo.html" class="hover:text-gray-900 transition">Vehiculos</a>
+            <a href="#" class="hover:text-gray-900 transition">Financiamiento</a>
+            <a href="#" class="hover:text-gray-900 transition">Seguros</a>
+            <a href="#" class="hover:text-gray-900 transition">Mercado</a>
           </div>
         </div>
         <div class="hidden md:flex items-center gap-3">
           <div class="relative">
-            <input type="text" placeholder="Buscar..." class="w-56 bg-slate-800/60 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-slate-200 placeholder-slate-500">
-            <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" placeholder="Buscar..." class="w-56 bg-gray-100/60 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-gray-700 placeholder-gray-400">
+            <svg class="w-4 h-4 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
-          <button class="text-sm text-slate-300 hover:text-white px-3 py-2 transition">Iniciar sesion</button>
-          <button class="text-sm bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-lg font-medium transition">Registrarse</button>
+          <button class="text-sm text-gray-700 hover:text-gray-900 px-3 py-2 transition">Iniciar sesion</button>
+          <button class="text-sm bg-brand-600 hover:bg-brand-500 text-gray-900 px-4 py-2 rounded-lg font-medium transition">Registrarse</button>
         </div>
-        <button class="md:hidden text-slate-300" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <button class="md:hidden text-gray-700" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 px-4 py-3 space-y-2 text-sm">
-      <a href="02-catalogo.html" class="block py-2 text-slate-300">Vehiculos</a>
-      <a href="#" class="block py-2 text-slate-300">Financiamiento</a>
-      <a href="#" class="block py-2 text-slate-300">Seguros</a>
-      <a href="#" class="block py-2 text-slate-300">Mercado</a>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 px-4 py-3 space-y-2 text-sm">
+      <a href="02-catalogo.html" class="block py-2 text-gray-700">Vehiculos</a>
+      <a href="#" class="block py-2 text-gray-700">Financiamiento</a>
+      <a href="#" class="block py-2 text-gray-700">Seguros</a>
+      <a href="#" class="block py-2 text-gray-700">Mercado</a>
       <div class="flex gap-2 pt-2">
-        <button class="flex-1 text-sm border border-slate-600 text-slate-300 px-3 py-2 rounded-lg">Iniciar sesion</button>
-        <button class="flex-1 text-sm bg-brand-600 text-white px-3 py-2 rounded-lg">Registrarse</button>
+        <button class="flex-1 text-sm border border-gray-300 text-gray-700 px-3 py-2 rounded-lg">Iniciar sesion</button>
+        <button class="flex-1 text-sm bg-brand-600 text-gray-900 px-3 py-2 rounded-lg">Registrarse</button>
       </div>
     </div>
   </nav>
@@ -68,27 +68,27 @@
   <!-- Hero -->
   <section class="pt-16">
     <div class="relative min-h-[600px] flex items-center overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-brand-800/40 via-slate-950 to-purple-900/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-brand-800/40 via-gray-100 to-purple-900/30"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,.15),transparent_60%)]"></div>
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
         <div class="text-center max-w-3xl mx-auto">
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
             Encuentra tu <span class="bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">vehiculo ideal</span>
           </h1>
-          <p class="text-lg text-slate-400 mb-10 max-w-xl mx-auto">Mas de 11,000 vehiculos verificados de fuentes confiables. Compara, financia y compra en un solo lugar.</p>
-          <div class="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl max-w-2xl mx-auto">
+          <p class="text-lg text-gray-500 mb-10 max-w-xl mx-auto">Mas de 11,000 vehiculos verificados de fuentes confiables. Compara, financia y compra en un solo lugar.</p>
+          <div class="bg-white shadow-sm/80 backdrop-blur border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-2xl max-w-2xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-              <select class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <select class="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option>Marca</option><option>Toyota</option><option>Honda</option><option>Nissan</option><option>Volkswagen</option><option>Chevrolet</option>
               </select>
-              <select class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <select class="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option>Modelo</option><option>Camry</option><option>Civic</option><option>Sentra</option>
               </select>
-              <select class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <select class="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option>Precio maximo</option><option>$100,000</option><option>$200,000</option><option>$300,000</option><option>$500,000</option>
               </select>
             </div>
-            <button class="w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2">
+            <button class="w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-gray-900 font-semibold py-3 px-6 rounded-xl transition-all shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
               Buscar vehiculos
             </button>
@@ -99,24 +99,24 @@
   </section>
 
   <!-- Stats -->
-  <section class="py-16 border-y border-slate-800/50">
+  <section class="py-16 border-y border-gray-200/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center">
           <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">11,000+</div>
-          <div class="text-sm text-slate-400 mt-1 font-medium">Vehiculos</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Vehiculos</div>
         </div>
         <div class="text-center">
           <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">18</div>
-          <div class="text-sm text-slate-400 mt-1 font-medium">Fuentes</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Fuentes</div>
         </div>
         <div class="text-center">
           <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">100%</div>
-          <div class="text-sm text-slate-400 mt-1 font-medium">Verificados</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Verificados</div>
         </div>
         <div class="text-center">
           <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">Inmediato</div>
-          <div class="text-sm text-slate-400 mt-1 font-medium">Financiamiento</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Financiamiento</div>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
       <div class="flex items-end justify-between mb-10">
         <div>
           <h2 class="text-2xl sm:text-3xl font-bold">Vehiculos destacados</h2>
-          <p class="text-slate-400 mt-1">Seleccion curada de los mejores del mercado</p>
+          <p class="text-gray-500 mt-1">Seleccion curada de los mejores del mercado</p>
         </div>
         <a href="02-catalogo.html" class="hidden sm:flex items-center gap-1 text-brand-400 hover:text-brand-300 text-sm font-medium transition">
           Ver todos <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -136,87 +136,87 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="featured-cars">
         <!-- Card 1 -->
-        <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-          <div class="relative h-48 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-            <svg class="w-16 h-16 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-            <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
-              <svg class="w-4 h-4 text-slate-400 group-hover/fav:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+          <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+            <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
+              <svg class="w-4 h-4 text-gray-500 group-hover/fav:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             </button>
-            <span class="absolute top-3 left-3 bg-green-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
+            <span class="absolute top-3 left-3 bg-green-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-white">Toyota Camry</h3>
-            <p class="text-xs text-slate-500 mb-2">2023</p>
-            <p class="text-xl font-bold text-white mb-3">$285,000</p>
-            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-              <span>32,000 km</span><span class="w-1 h-1 bg-slate-600 rounded-full"></span><span>Automatica</span>
+            <h3 class="font-semibold text-gray-900">Toyota Camry</h3>
+            <p class="text-xs text-gray-400 mb-2">2023</p>
+            <p class="text-xl font-bold text-gray-900 mb-3">$285,000</p>
+            <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+              <span>32,000 km</span><span class="w-1 h-1 bg-gray-300 rounded-full"></span><span>Automatica</span>
             </div>
-            <div class="flex items-center gap-1 text-xs text-slate-500">
+            <div class="flex items-center gap-1 text-xs text-gray-400">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               Ciudad de Mexico
             </div>
           </div>
         </div>
         <!-- Card 2 -->
-        <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-          <div class="relative h-48 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-            <svg class="w-16 h-16 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-            <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
-              <svg class="w-4 h-4 text-slate-400 group-hover/fav:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+          <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+            <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
+              <svg class="w-4 h-4 text-gray-500 group-hover/fav:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             </button>
-            <span class="absolute top-3 left-3 bg-orange-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Oferta -15%</span>
+            <span class="absolute top-3 left-3 bg-orange-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Oferta -15%</span>
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-white">Honda Civic</h3>
-            <p class="text-xs text-slate-500 mb-2">2022</p>
-            <p class="text-xl font-bold text-white mb-3">$245,000</p>
-            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-              <span>48,000 km</span><span class="w-1 h-1 bg-slate-600 rounded-full"></span><span>Automatica</span>
+            <h3 class="font-semibold text-gray-900">Honda Civic</h3>
+            <p class="text-xs text-gray-400 mb-2">2022</p>
+            <p class="text-xl font-bold text-gray-900 mb-3">$245,000</p>
+            <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+              <span>48,000 km</span><span class="w-1 h-1 bg-gray-300 rounded-full"></span><span>Automatica</span>
             </div>
-            <div class="flex items-center gap-1 text-xs text-slate-500">
+            <div class="flex items-center gap-1 text-xs text-gray-400">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               Guadalajara, Jalisco
             </div>
           </div>
         </div>
         <!-- Card 3 -->
-        <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-          <div class="relative h-48 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-            <svg class="w-16 h-16 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-            <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
-              <svg class="w-4 h-4 text-slate-400 group-hover/fav:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+          <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+            <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
+              <svg class="w-4 h-4 text-gray-500 group-hover/fav:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             </button>
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-white">Nissan Sentra</h3>
-            <p class="text-xs text-slate-500 mb-2">2023</p>
-            <p class="text-xl font-bold text-white mb-3">$198,000</p>
-            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-              <span>15,000 km</span><span class="w-1 h-1 bg-slate-600 rounded-full"></span><span>Manual</span>
+            <h3 class="font-semibold text-gray-900">Nissan Sentra</h3>
+            <p class="text-xs text-gray-400 mb-2">2023</p>
+            <p class="text-xl font-bold text-gray-900 mb-3">$198,000</p>
+            <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+              <span>15,000 km</span><span class="w-1 h-1 bg-gray-300 rounded-full"></span><span>Manual</span>
             </div>
-            <div class="flex items-center gap-1 text-xs text-slate-500">
+            <div class="flex items-center gap-1 text-xs text-gray-400">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               Monterrey, Nuevo Leon
             </div>
           </div>
         </div>
         <!-- Card 4 -->
-        <div class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-brand-600/5">
-          <div class="relative h-48 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-            <svg class="w-16 h-16 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
-            <button class="absolute top-3 right-3 w-8 h-8 bg-slate-900/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
-              <svg class="w-4 h-4 text-slate-400 group-hover/fav:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <div class="group bg-white shadow-sm border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-200 transition-all hover:shadow-xl hover:shadow-brand-600/5">
+          <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0h-4m4 0h6m-6 0V6a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16"/></svg>
+            <button class="absolute top-3 right-3 w-8 h-8 bg-white shadow-sm/70 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-500 transition group/fav">
+              <svg class="w-4 h-4 text-gray-500 group-hover/fav:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             </button>
-            <span class="absolute top-3 left-3 bg-green-500/90 text-white text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
+            <span class="absolute top-3 left-3 bg-green-500/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-lg">Nuevo</span>
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-white">Volkswagen Jetta</h3>
-            <p class="text-xs text-slate-500 mb-2">2024</p>
-            <p class="text-xl font-bold text-white mb-3">$365,000</p>
-            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-              <span>5,200 km</span><span class="w-1 h-1 bg-slate-600 rounded-full"></span><span>Automatica</span>
+            <h3 class="font-semibold text-gray-900">Volkswagen Jetta</h3>
+            <p class="text-xs text-gray-400 mb-2">2024</p>
+            <p class="text-xl font-bold text-gray-900 mb-3">$365,000</p>
+            <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+              <span>5,200 km</span><span class="w-1 h-1 bg-gray-300 rounded-full"></span><span>Automatica</span>
             </div>
-            <div class="flex items-center gap-1 text-xs text-slate-500">
+            <div class="flex items-center gap-1 text-xs text-gray-400">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               Puebla, Puebla
             </div>
@@ -227,11 +227,11 @@
   </section>
 
   <!-- How it Works -->
-  <section class="py-20 bg-slate-900/50">
+  <section class="py-20 bg-white shadow-sm/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
         <h2 class="text-2xl sm:text-3xl font-bold">Como funciona</h2>
-        <p class="text-slate-400 mt-2">Compra tu vehiculo en 4 simples pasos</p>
+        <p class="text-gray-500 mt-2">Compra tu vehiculo en 4 simples pasos</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center group">
@@ -240,7 +240,7 @@
           </div>
           <div class="text-xs text-brand-400 font-semibold mb-1">Paso 1</div>
           <h3 class="font-semibold text-lg mb-1">Busca</h3>
-          <p class="text-sm text-slate-400">Explora miles de vehiculos con filtros avanzados</p>
+          <p class="text-sm text-gray-500">Explora miles de vehiculos con filtros avanzados</p>
         </div>
         <div class="text-center group">
           <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-purple-600/10 border border-purple-500/20 flex items-center justify-center group-hover:bg-purple-600/20 transition">
@@ -248,7 +248,7 @@
           </div>
           <div class="text-xs text-purple-400 font-semibold mb-1">Paso 2</div>
           <h3 class="font-semibold text-lg mb-1">Compara</h3>
-          <p class="text-sm text-slate-400">Analiza precios, historial y reportes tecnicos</p>
+          <p class="text-sm text-gray-500">Analiza precios, historial y reportes tecnicos</p>
         </div>
         <div class="text-center group">
           <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-600/20 transition">
@@ -256,7 +256,7 @@
           </div>
           <div class="text-xs text-emerald-400 font-semibold mb-1">Paso 3</div>
           <h3 class="font-semibold text-lg mb-1">Financia</h3>
-          <p class="text-sm text-slate-400">Obtén financiamiento aprobado al instante</p>
+          <p class="text-sm text-gray-500">Obtén financiamiento aprobado al instante</p>
         </div>
         <div class="text-center group">
           <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-600/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-600/20 transition">
@@ -264,7 +264,7 @@
           </div>
           <div class="text-xs text-amber-400 font-semibold mb-1">Paso 4</div>
           <h3 class="font-semibold text-lg mb-1">Compra</h3>
-          <p class="text-sm text-slate-400">Cierra la compra segura con garantia incluida</p>
+          <p class="text-sm text-gray-500">Cierra la compra segura con garantia incluida</p>
         </div>
       </div>
     </div>
@@ -275,97 +275,97 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
         <h2 class="text-2xl sm:text-3xl font-bold">Asegura tu vehiculo</h2>
-        <p class="text-slate-400 mt-2">Proteccion completa para tu tranquilidad</p>
+        <p class="text-gray-500 mt-2">Proteccion completa para tu tranquilidad</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Basica -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-all">
-          <div class="text-sm font-semibold text-slate-400 mb-2">Basica</div>
-          <div class="text-3xl font-bold mb-1">$2,400<span class="text-base font-normal text-slate-500">/mes</span></div>
-          <p class="text-sm text-slate-500 mb-6">Cobertura esencial para tu vehiculo</p>
-          <ul class="space-y-3 text-sm text-slate-300 mb-8">
+        <div class="bg-white shadow-sm border border-gray-200 rounded-2xl p-6 hover:border-gray-200 transition-all">
+          <div class="text-sm font-semibold text-gray-500 mb-2">Basica</div>
+          <div class="text-3xl font-bold mb-1">$2,400<span class="text-base font-normal text-gray-400">/mes</span></div>
+          <p class="text-sm text-gray-400 mb-6">Cobertura esencial para tu vehiculo</p>
+          <ul class="space-y-3 text-sm text-gray-700 mb-8">
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Responsabilidad civil</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Gastos medicos</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Asistencia vial</li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-slate-500">Danos materiales</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-slate-500">Robo total</span></li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-gray-400">Danos materiales</span></li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-gray-400">Robo total</span></li>
           </ul>
-          <button class="w-full py-2.5 border border-slate-700 text-slate-300 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Cotizar</button>
+          <button class="w-full py-2.5 border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-100 transition">Cotizar</button>
         </div>
         <!-- Amplia -->
-        <div class="relative bg-gradient-to-b from-brand-600/10 to-slate-900 border-2 border-brand-500/40 rounded-2xl p-6">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Popular</div>
+        <div class="relative bg-gradient-to-b from-brand-600/10 to-gray-50 border-2 border-brand-500/40 rounded-2xl p-6">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full">Popular</div>
           <div class="text-sm font-semibold text-brand-400 mb-2">Amplia</div>
-          <div class="text-3xl font-bold mb-1">$4,800<span class="text-base font-normal text-slate-500">/mes</span></div>
-          <p class="text-sm text-slate-500 mb-6">La opcion mas elegida por nuestros usuarios</p>
-          <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <div class="text-3xl font-bold mb-1">$4,800<span class="text-base font-normal text-gray-400">/mes</span></div>
+          <p class="text-sm text-gray-400 mb-6">La opcion mas elegida por nuestros usuarios</p>
+          <ul class="space-y-3 text-sm text-gray-700 mb-8">
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Responsabilidad civil</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Gastos medicos</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Asistencia vial</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Danos materiales</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Robo total</li>
           </ul>
-          <button class="w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-sm font-medium transition shadow-lg shadow-brand-600/20">Cotizar</button>
+          <button class="w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-gray-900 rounded-xl text-sm font-medium transition shadow-lg shadow-brand-600/20">Cotizar</button>
         </div>
         <!-- Premium -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-all">
+        <div class="bg-white shadow-sm border border-gray-200 rounded-2xl p-6 hover:border-gray-200 transition-all">
           <div class="text-sm font-semibold text-amber-400 mb-2">Premium</div>
-          <div class="text-3xl font-bold mb-1">$7,200<span class="text-base font-normal text-slate-500">/mes</span></div>
-          <p class="text-sm text-slate-500 mb-6">Proteccion total sin preocupaciones</p>
-          <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <div class="text-3xl font-bold mb-1">$7,200<span class="text-base font-normal text-gray-400">/mes</span></div>
+          <p class="text-sm text-gray-400 mb-6">Proteccion total sin preocupaciones</p>
+          <ul class="space-y-3 text-sm text-gray-700 mb-8">
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Todo lo de Amplia</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Auto sustituto 30 dias</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Deducible $0 primer evento</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Cobertura internacional</li>
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Asistencia legal</li>
           </ul>
-          <button class="w-full py-2.5 border border-slate-700 text-slate-300 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Cotizar</button>
+          <button class="w-full py-2.5 border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-100 transition">Cotizar</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800/50 bg-slate-950 py-14">
+  <footer class="border-t border-gray-200/50 bg-gray-50 py-14">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
         <div>
           <div class="text-lg font-bold bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent mb-4">AgentsMX</div>
-          <p class="text-sm text-slate-500">El marketplace de vehiculos mas grande y confiable de Mexico.</p>
+          <p class="text-sm text-gray-400">El marketplace de vehiculos mas grande y confiable de Mexico.</p>
         </div>
         <div>
           <h4 class="text-sm font-semibold mb-3">Marketplace</h4>
-          <ul class="space-y-2 text-sm text-slate-400">
-            <li><a href="#" class="hover:text-white transition">Vehiculos</a></li>
-            <li><a href="#" class="hover:text-white transition">Financiamiento</a></li>
-            <li><a href="#" class="hover:text-white transition">Seguros</a></li>
-            <li><a href="#" class="hover:text-white transition">Valuacion</a></li>
+          <ul class="space-y-2 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-gray-900 transition">Vehiculos</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Financiamiento</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Seguros</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Valuacion</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-sm font-semibold mb-3">Empresa</h4>
-          <ul class="space-y-2 text-sm text-slate-400">
-            <li><a href="#" class="hover:text-white transition">Nosotros</a></li>
-            <li><a href="#" class="hover:text-white transition">Blog</a></li>
-            <li><a href="#" class="hover:text-white transition">Contacto</a></li>
-            <li><a href="#" class="hover:text-white transition">Trabaja con nosotros</a></li>
+          <ul class="space-y-2 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-gray-900 transition">Nosotros</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Blog</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Contacto</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Trabaja con nosotros</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-sm font-semibold mb-3">Legal</h4>
-          <ul class="space-y-2 text-sm text-slate-400">
-            <li><a href="#" class="hover:text-white transition">Terminos de uso</a></li>
-            <li><a href="#" class="hover:text-white transition">Privacidad</a></li>
-            <li><a href="#" class="hover:text-white transition">Cookies</a></li>
+          <ul class="space-y-2 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-gray-900 transition">Terminos de uso</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Privacidad</a></li>
+            <li><a href="#" class="hover:text-gray-900 transition">Cookies</a></li>
           </ul>
         </div>
       </div>
-      <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-slate-500">2026 AgentsMX. Todos los derechos reservados.</p>
+      <div class="border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-gray-400">2026 AgentsMX. Todos los derechos reservados.</p>
         <div class="flex items-center gap-4">
-          <a href="#" class="text-slate-500 hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-          <a href="#" class="text-slate-500 hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
-          <a href="#" class="text-slate-500 hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-gray-900 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-gray-900 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="#" class="text-gray-400 hover:text-gray-900 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
         </div>
       </div>
     </div>

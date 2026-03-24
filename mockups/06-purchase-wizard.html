@@ -8,21 +8,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Inter', sans-serif; }
-    body { background-color: #0f172a; }
-    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #3b82f6; cursor: pointer; border: 3px solid #1e293b; }
-    input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; background: #334155; outline: none; }
+    body { background-color: #f9fafb; }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #3b82f6; cursor: pointer; border: 3px solid #ffffff; }
+    input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; background: #d1d5db; outline: none; }
     .step-active { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
     .step-done { background: #22c55e; color: white; }
-    .step-pending { background: #334155; color: #94a3b8; }
+    .step-pending { background: #d1d5db; color: #94a3b8; }
   </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen">
+<body class="bg-white shadow-sm text-gray-900 min-h-screen">
 
   <!-- Top Bar -->
-  <header class="bg-slate-800/80 backdrop-blur-xl border-b border-slate-700/50 sticky top-0 z-50">
+  <header class="bg-gray-100/80 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <a href="#" class="text-slate-400 hover:text-white transition-colors">
+        <a href="#" class="text-gray-500 hover:text-gray-900 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         </a>
         <span class="text-lg font-bold">Proceso de Compra</span>
@@ -42,63 +42,63 @@
         <div class="w-9 h-9 rounded-full step-active flex items-center justify-center text-sm font-bold" id="circle-1">1</div>
         <span class="text-sm font-medium hidden sm:inline" id="label-1">Vehiculo</span>
       </div>
-      <div class="flex-1 h-0.5 mx-2 bg-slate-700 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-1"></div></div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-1"></div></div>
       <div class="flex items-center gap-2 cursor-pointer" onclick="goStep(2)">
         <div class="w-9 h-9 rounded-full step-pending flex items-center justify-center text-sm font-bold" id="circle-2">2</div>
-        <span class="text-sm font-medium text-slate-500 hidden sm:inline" id="label-2">Identidad</span>
+        <span class="text-sm font-medium text-gray-400 hidden sm:inline" id="label-2">Identidad</span>
       </div>
-      <div class="flex-1 h-0.5 mx-2 bg-slate-700 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-2"></div></div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-2"></div></div>
       <div class="flex items-center gap-2 cursor-pointer" onclick="goStep(3)">
         <div class="w-9 h-9 rounded-full step-pending flex items-center justify-center text-sm font-bold" id="circle-3">3</div>
-        <span class="text-sm font-medium text-slate-500 hidden sm:inline" id="label-3">Financiamiento</span>
+        <span class="text-sm font-medium text-gray-400 hidden sm:inline" id="label-3">Financiamiento</span>
       </div>
-      <div class="flex-1 h-0.5 mx-2 bg-slate-700 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-3"></div></div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-3"></div></div>
       <div class="flex items-center gap-2 cursor-pointer" onclick="goStep(4)">
         <div class="w-9 h-9 rounded-full step-pending flex items-center justify-center text-sm font-bold" id="circle-4">4</div>
-        <span class="text-sm font-medium text-slate-500 hidden sm:inline" id="label-4">Seguro</span>
+        <span class="text-sm font-medium text-gray-400 hidden sm:inline" id="label-4">Seguro</span>
       </div>
-      <div class="flex-1 h-0.5 mx-2 bg-slate-700 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-4"></div></div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 rounded"><div class="h-full bg-blue-600 rounded transition-all duration-500" style="width:0%" id="bar-4"></div></div>
       <div class="flex items-center gap-2 cursor-pointer" onclick="goStep(5)">
         <div class="w-9 h-9 rounded-full step-pending flex items-center justify-center text-sm font-bold" id="circle-5">5</div>
-        <span class="text-sm font-medium text-slate-500 hidden sm:inline" id="label-5">Confirmacion</span>
+        <span class="text-sm font-medium text-gray-400 hidden sm:inline" id="label-5">Confirmacion</span>
       </div>
     </div>
 
     <!-- STEP 1: Vehiculo -->
     <div id="step-1">
-      <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 overflow-hidden">
+      <div class="bg-gray-100/60 backdrop-blur-xl rounded-2xl border border-gray-200/50 overflow-hidden">
         <div class="md:flex">
-          <div class="md:w-2/5 h-64 md:h-auto bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
-            <svg class="w-32 h-32 text-slate-600" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 6h5l3 5v6h-2M3 17h2m0 0h10M5 17V9.5L7.5 6H13m-8 5h8"/></svg>
+          <div class="md:w-2/5 h-64 md:h-auto bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <svg class="w-32 h-32 text-gray-400" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 6h5l3 5v6h-2M3 17h2m0 0h10M5 17V9.5L7.5 6H13m-8 5h8"/></svg>
           </div>
           <div class="p-6 md:w-3/5">
             <div class="flex items-start justify-between mb-4">
               <div>
                 <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Vehiculo seleccionado</span>
                 <h2 class="text-2xl font-bold mt-1">Honda CR-V 2023</h2>
-                <p class="text-slate-400 text-sm mt-0.5">EX-L | Automatico | Gasolina</p>
+                <p class="text-gray-500 text-sm mt-0.5">EX-L | Automatico | Gasolina</p>
               </div>
             </div>
             <div class="grid grid-cols-3 gap-3 mb-6">
-              <div class="bg-slate-900/50 rounded-xl p-3 text-center">
-                <p class="text-xs text-slate-500">Ano</p>
+              <div class="bg-white shadow-sm/50 rounded-xl p-3 text-center">
+                <p class="text-xs text-gray-400">Ano</p>
                 <p class="font-bold">2023</p>
               </div>
-              <div class="bg-slate-900/50 rounded-xl p-3 text-center">
-                <p class="text-xs text-slate-500">Kilometraje</p>
+              <div class="bg-white shadow-sm/50 rounded-xl p-3 text-center">
+                <p class="text-xs text-gray-400">Kilometraje</p>
                 <p class="font-bold">12,000 km</p>
               </div>
-              <div class="bg-slate-900/50 rounded-xl p-3 text-center">
-                <p class="text-xs text-slate-500">Color</p>
+              <div class="bg-white shadow-sm/50 rounded-xl p-3 text-center">
+                <p class="text-xs text-gray-400">Color</p>
                 <p class="font-bold">Blanco</p>
               </div>
             </div>
             <div class="flex items-end justify-between">
               <div>
-                <p class="text-xs text-slate-500">Precio</p>
-                <p class="text-3xl font-bold text-white">$285,000</p>
+                <p class="text-xs text-gray-400">Precio</p>
+                <p class="text-3xl font-bold text-gray-900">$285,000</p>
               </div>
-              <span class="text-xs text-slate-500">Ubicacion: CDMX</span>
+              <span class="text-xs text-gray-400">Ubicacion: CDMX</span>
             </div>
           </div>
         </div>
@@ -107,32 +107,32 @@
 
     <!-- STEP 2: KYC -->
     <div id="step-2" class="hidden">
-      <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6">
+      <div class="bg-gray-100/60 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-6">
         <h3 class="text-xl font-bold mb-2">Verificacion de identidad</h3>
-        <p class="text-slate-400 text-sm mb-6">Necesitamos verificar tu identidad para continuar con la compra</p>
+        <p class="text-gray-500 text-sm mb-6">Necesitamos verificar tu identidad para continuar con la compra</p>
 
         <!-- Verified State (shown) -->
         <div id="kyc-verified" class="hidden">
           <div class="bg-green-500/10 border border-green-500/20 rounded-2xl p-8 text-center">
             <div class="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/25">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
             </div>
             <h4 class="text-lg font-bold text-green-400">Identidad verificada</h4>
-            <p class="text-sm text-slate-400 mt-1">Verificado el 15 de Marzo, 2024</p>
+            <p class="text-sm text-gray-500 mt-1">Verificado el 15 de Marzo, 2024</p>
           </div>
         </div>
 
         <!-- Upload Stepper (shown by default) -->
         <div id="kyc-upload" class="space-y-3">
           <div class="flex items-center gap-4 p-4 bg-green-500/5 border border-green-500/10 rounded-xl">
-            <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
             <div class="flex-1">
               <p class="font-medium text-sm">INE - Frente</p>
               <p class="text-xs text-green-400">Documento aprobado</p>
             </div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-green-500/5 border border-green-500/10 rounded-xl">
-            <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
             <div class="flex-1">
               <p class="font-medium text-sm">INE - Vuelta</p>
               <p class="text-xs text-green-400">Documento aprobado</p>
@@ -146,32 +146,32 @@
             </div>
             <button class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-medium transition-colors">Subir</button>
           </div>
-          <div class="flex items-center gap-4 p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl">
-            <div class="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center shrink-0"><span class="text-sm font-bold text-slate-500">4</span></div>
+          <div class="flex items-center gap-4 p-4 bg-white shadow-sm/30 border border-gray-200/50 rounded-xl">
+            <div class="w-10 h-10 bg-gray-200 rounded-xl flex items-center justify-center shrink-0"><span class="text-sm font-bold text-gray-400">4</span></div>
             <div class="flex-1">
-              <p class="font-medium text-sm text-slate-500">Comprobante de domicilio</p>
-              <p class="text-xs text-slate-600">Recibo de luz, agua o telefono</p>
+              <p class="font-medium text-sm text-gray-400">Comprobante de domicilio</p>
+              <p class="text-xs text-gray-400">Recibo de luz, agua o telefono</p>
             </div>
           </div>
         </div>
 
         <!-- Toggle for demo -->
         <div class="mt-4 text-center">
-          <button onclick="document.getElementById('kyc-verified').classList.toggle('hidden');document.getElementById('kyc-upload').classList.toggle('hidden')" class="text-xs text-slate-500 hover:text-slate-400">[Demo: Alternar estado verificado]</button>
+          <button onclick="document.getElementById('kyc-verified').classList.toggle('hidden');document.getElementById('kyc-upload').classList.toggle('hidden')" class="text-xs text-gray-400 hover:text-gray-500">[Demo: Alternar estado verificado]</button>
         </div>
       </div>
     </div>
 
     <!-- STEP 3: Financiamiento -->
     <div id="step-3" class="hidden">
-      <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6 mb-6">
+      <div class="bg-gray-100/60 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-6 mb-6">
         <h3 class="text-xl font-bold mb-2">Financiamiento</h3>
-        <p class="text-slate-400 text-sm mb-6">Elige como deseas pagar tu vehiculo</p>
+        <p class="text-gray-500 text-sm mb-6">Elige como deseas pagar tu vehiculo</p>
 
         <!-- Toggle -->
-        <div class="flex bg-slate-900/50 rounded-xl p-1 mb-6">
-          <button onclick="toggleFinance(true)" id="fin-yes" class="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-white transition-all">Quiero financiamiento</button>
-          <button onclick="toggleFinance(false)" id="fin-no" class="flex-1 py-2.5 rounded-lg text-sm font-semibold text-slate-400 transition-all">Pago de contado</button>
+        <div class="flex bg-white shadow-sm/50 rounded-xl p-1 mb-6">
+          <button onclick="toggleFinance(true)" id="fin-yes" class="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-gray-900 transition-all">Quiero financiamiento</button>
+          <button onclick="toggleFinance(false)" id="fin-no" class="flex-1 py-2.5 rounded-lg text-sm font-semibold text-gray-500 transition-all">Pago de contado</button>
         </div>
 
         <!-- Finance Options -->
@@ -179,33 +179,33 @@
           <!-- Sliders -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label class="flex items-center justify-between text-sm font-medium text-slate-300 mb-2">
+              <label class="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
                 <span>Enganche</span>
                 <span class="text-blue-400 font-bold" id="enganche-val">20% - $57,000</span>
               </label>
               <input type="range" min="10" max="90" value="20" class="w-full" oninput="updateEnganche(this.value)">
-              <div class="flex justify-between text-xs text-slate-500 mt-1"><span>10%</span><span>90%</span></div>
+              <div class="flex justify-between text-xs text-gray-400 mt-1"><span>10%</span><span>90%</span></div>
             </div>
             <div>
-              <label class="flex items-center justify-between text-sm font-medium text-slate-300 mb-2">
+              <label class="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
                 <span>Plazo</span>
                 <span class="text-blue-400 font-bold" id="plazo-val">48 meses</span>
               </label>
               <input type="range" min="12" max="60" step="6" value="48" class="w-full" oninput="updatePlazo(this.value)">
-              <div class="flex justify-between text-xs text-slate-500 mt-1"><span>12</span><span>60</span></div>
+              <div class="flex justify-between text-xs text-gray-400 mt-1"><span>12</span><span>60</span></div>
             </div>
           </div>
 
           <!-- Monthly Payment Display -->
           <div class="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 border border-blue-500/20 rounded-2xl p-5 text-center mb-6">
-            <p class="text-sm text-slate-400">Pago mensual estimado</p>
-            <p class="text-4xl font-bold text-white mt-1" id="monthly-payment">$6,200</p>
-            <p class="text-xs text-slate-500 mt-1">*Sujeto a aprobacion crediticia</p>
+            <p class="text-sm text-gray-500">Pago mensual estimado</p>
+            <p class="text-4xl font-bold text-gray-900 mt-1" id="monthly-payment">$6,200</p>
+            <p class="text-xs text-gray-400 mt-1">*Sujeto a aprobacion crediticia</p>
           </div>
 
           <!-- Mini Amortization Chart -->
-          <div class="bg-slate-900/50 rounded-xl p-4 mb-6">
-            <p class="text-sm font-medium text-slate-400 mb-3">Amortizacion estimada</p>
+          <div class="bg-white shadow-sm/50 rounded-xl p-4 mb-6">
+            <p class="text-sm font-medium text-gray-500 mb-3">Amortizacion estimada</p>
             <div class="flex items-end gap-1 h-24">
               <div class="flex-1 bg-blue-600 rounded-t" style="height:90%"><div class="bg-blue-400 rounded-t" style="height:10%"></div></div>
               <div class="flex-1 bg-blue-600 rounded-t" style="height:85%"><div class="bg-blue-400 rounded-t" style="height:15%"></div></div>
@@ -218,7 +218,7 @@
               <div class="flex-1 bg-blue-600 rounded-t" style="height:15%"><div class="bg-blue-400 rounded-t" style="height:85%"></div></div>
               <div class="flex-1 bg-blue-600 rounded-t" style="height:5%"><div class="bg-blue-400 rounded-t" style="height:95%"></div></div>
             </div>
-            <div class="flex justify-between text-xs text-slate-500 mt-2">
+            <div class="flex justify-between text-xs text-gray-400 mt-2">
               <span>Mes 1</span>
               <div class="flex gap-4"><span class="flex items-center gap-1"><span class="w-2 h-2 bg-blue-600 rounded-sm"></span>Interes</span><span class="flex items-center gap-1"><span class="w-2 h-2 bg-blue-400 rounded-sm"></span>Capital</span></div>
               <span>Mes 48</span>
@@ -229,44 +229,44 @@
           <h4 class="font-semibold mb-3">Ofertas de financiamiento</h4>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- Offer 1 - Best -->
-            <div class="relative bg-slate-900/50 border-2 border-green-500/30 rounded-2xl p-5 hover:border-green-500/50 transition-all">
-              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-green-500 rounded-full text-xs font-bold text-white">Mejor oferta</span>
+            <div class="relative bg-white shadow-sm/50 border-2 border-green-500/30 rounded-2xl p-5 hover:border-green-500/50 transition-all">
+              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-green-500 rounded-full text-xs font-bold text-gray-900">Mejor oferta</span>
               <div class="text-center mb-4 pt-2">
                 <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-600 rounded-xl mx-auto mb-2 flex items-center justify-center text-lg font-bold">BN</div>
                 <p class="font-semibold text-sm">BancoNorte</p>
               </div>
               <div class="space-y-2 text-sm">
-                <div class="flex justify-between"><span class="text-slate-400">Tasa</span><span class="font-semibold">12.5%</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">CAT</span><span class="font-semibold">16.8%</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">Mensualidad</span><span class="font-bold text-green-400">$5,890</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Tasa</span><span class="font-semibold">12.5%</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">CAT</span><span class="font-semibold">16.8%</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Mensualidad</span><span class="font-bold text-green-400">$5,890</span></div>
               </div>
-              <button class="w-full mt-4 py-2.5 bg-green-600 hover:bg-green-500 text-white font-semibold rounded-xl text-sm transition-colors">Seleccionar</button>
+              <button class="w-full mt-4 py-2.5 bg-green-600 hover:bg-green-500 text-gray-900 font-semibold rounded-xl text-sm transition-colors">Seleccionar</button>
             </div>
             <!-- Offer 2 -->
-            <div class="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-5 hover:border-blue-500/30 transition-all">
+            <div class="bg-white shadow-sm/50 border border-gray-200/50 rounded-2xl p-5 hover:border-blue-500/30 transition-all">
               <div class="text-center mb-4">
                 <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl mx-auto mb-2 flex items-center justify-center text-lg font-bold">CF</div>
                 <p class="font-semibold text-sm">CreditoFacil</p>
               </div>
               <div class="space-y-2 text-sm">
-                <div class="flex justify-between"><span class="text-slate-400">Tasa</span><span class="font-semibold">13.9%</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">CAT</span><span class="font-semibold">18.2%</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">Mensualidad</span><span class="font-bold">$6,200</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Tasa</span><span class="font-semibold">13.9%</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">CAT</span><span class="font-semibold">18.2%</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Mensualidad</span><span class="font-bold">$6,200</span></div>
               </div>
-              <button class="w-full mt-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-xl text-sm transition-colors">Seleccionar</button>
+              <button class="w-full mt-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold rounded-xl text-sm transition-colors">Seleccionar</button>
             </div>
             <!-- Offer 3 -->
-            <div class="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-5 hover:border-blue-500/30 transition-all">
+            <div class="bg-white shadow-sm/50 border border-gray-200/50 rounded-2xl p-5 hover:border-blue-500/30 transition-all">
               <div class="text-center mb-4">
                 <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-purple-600 rounded-xl mx-auto mb-2 flex items-center justify-center text-lg font-bold">FA</div>
                 <p class="font-semibold text-sm">FinAuto</p>
               </div>
               <div class="space-y-2 text-sm">
-                <div class="flex justify-between"><span class="text-slate-400">Tasa</span><span class="font-semibold">14.5%</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">CAT</span><span class="font-semibold">19.1%</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">Mensualidad</span><span class="font-bold">$6,450</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Tasa</span><span class="font-semibold">14.5%</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">CAT</span><span class="font-semibold">19.1%</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Mensualidad</span><span class="font-bold">$6,450</span></div>
               </div>
-              <button class="w-full mt-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-xl text-sm transition-colors">Seleccionar</button>
+              <button class="w-full mt-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold rounded-xl text-sm transition-colors">Seleccionar</button>
             </div>
           </div>
         </div>
@@ -277,33 +277,33 @@
             <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <h4 class="text-lg font-bold">Pago de contado</h4>
-          <p class="text-slate-400 text-sm mt-1">Total a pagar: <span class="text-white font-bold">$285,000</span></p>
-          <p class="text-xs text-slate-500 mt-2">Se coordinara la forma de pago en el siguiente paso</p>
+          <p class="text-gray-500 text-sm mt-1">Total a pagar: <span class="text-gray-900 font-bold">$285,000</span></p>
+          <p class="text-xs text-gray-400 mt-2">Se coordinara la forma de pago en el siguiente paso</p>
         </div>
       </div>
     </div>
 
     <!-- STEP 4: Seguro -->
     <div id="step-4" class="hidden">
-      <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6">
+      <div class="bg-gray-100/60 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-6">
         <h3 class="text-xl font-bold mb-2">Seguro vehicular</h3>
-        <p class="text-slate-400 text-sm mb-6">Protege tu inversion con un seguro</p>
+        <p class="text-gray-500 text-sm mb-6">Protege tu inversion con un seguro</p>
 
         <!-- Toggle -->
-        <div class="flex bg-slate-900/50 rounded-xl p-1 mb-6">
-          <button onclick="toggleInsurance(true)" id="ins-yes" class="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-white transition-all">Quiero seguro</button>
-          <button onclick="toggleInsurance(false)" id="ins-no" class="flex-1 py-2.5 rounded-lg text-sm font-semibold text-slate-400 transition-all">No por ahora</button>
+        <div class="flex bg-white shadow-sm/50 rounded-xl p-1 mb-6">
+          <button onclick="toggleInsurance(true)" id="ins-yes" class="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 text-gray-900 transition-all">Quiero seguro</button>
+          <button onclick="toggleInsurance(false)" id="ins-no" class="flex-1 py-2.5 rounded-lg text-sm font-semibold text-gray-500 transition-all">No por ahora</button>
         </div>
 
         <div id="insurance-options">
           <!-- Coverage Type Cards -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <button onclick="selectCoverage(this)" class="p-5 bg-slate-900/50 border border-slate-700/50 rounded-2xl text-left hover:border-blue-500/30 transition-all">
-              <div class="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center mb-3">
-                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <button onclick="selectCoverage(this)" class="p-5 bg-white shadow-sm/50 border border-gray-200/50 rounded-2xl text-left hover:border-blue-500/30 transition-all">
+              <div class="w-10 h-10 bg-gray-200 rounded-xl flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               </div>
               <h4 class="font-semibold">Basica</h4>
-              <p class="text-xs text-slate-400 mt-1">Responsabilidad civil y robo total</p>
+              <p class="text-xs text-gray-500 mt-1">Responsabilidad civil y robo total</p>
               <p class="text-lg font-bold text-blue-400 mt-2">$8,500/ano</p>
             </button>
             <button onclick="selectCoverage(this)" class="p-5 bg-blue-600/10 border-2 border-blue-500/30 rounded-2xl text-left ring-2 ring-blue-500/30">
@@ -311,15 +311,15 @@
                 <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               </div>
               <h4 class="font-semibold">Amplia</h4>
-              <p class="text-xs text-slate-400 mt-1">Basica + danos materiales + asistencia</p>
+              <p class="text-xs text-gray-500 mt-1">Basica + danos materiales + asistencia</p>
               <p class="text-lg font-bold text-blue-400 mt-2">$12,500/ano</p>
             </button>
-            <button onclick="selectCoverage(this)" class="p-5 bg-slate-900/50 border border-slate-700/50 rounded-2xl text-left hover:border-blue-500/30 transition-all">
+            <button onclick="selectCoverage(this)" class="p-5 bg-white shadow-sm/50 border border-gray-200/50 rounded-2xl text-left hover:border-blue-500/30 transition-all">
               <div class="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center mb-3">
                 <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
               </div>
               <h4 class="font-semibold">Premium</h4>
-              <p class="text-xs text-slate-400 mt-1">Amplia + auto sustituto + 0 deducible</p>
+              <p class="text-xs text-gray-500 mt-1">Amplia + auto sustituto + 0 deducible</p>
               <p class="text-lg font-bold text-blue-400 mt-2">$18,900/ano</p>
             </button>
           </div>
@@ -328,120 +328,120 @@
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
-                <tr class="border-b border-slate-700">
-                  <th class="text-left py-3 px-3 text-slate-400 font-medium">Cobertura</th>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-3 px-3 text-gray-500 font-medium">Cobertura</th>
                   <th class="text-center py-3 px-3 font-medium">SeguroMax</th>
                   <th class="text-center py-3 px-3 font-medium text-blue-400">AutoProtect</th>
                   <th class="text-center py-3 px-3 font-medium">GrupoAuto</th>
                 </tr>
               </thead>
-              <tbody class="text-slate-300">
-                <tr class="border-b border-slate-800"><td class="py-2.5 px-3 text-slate-400">Prima anual</td><td class="text-center py-2.5 px-3">$12,800</td><td class="text-center py-2.5 px-3 text-blue-400 font-semibold">$12,500</td><td class="text-center py-2.5 px-3">$13,200</td></tr>
-                <tr class="border-b border-slate-800"><td class="py-2.5 px-3 text-slate-400">Deducible</td><td class="text-center py-2.5 px-3">5%</td><td class="text-center py-2.5 px-3">5%</td><td class="text-center py-2.5 px-3">10%</td></tr>
-                <tr class="border-b border-slate-800"><td class="py-2.5 px-3 text-slate-400">Danos materiales</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td></tr>
-                <tr class="border-b border-slate-800"><td class="py-2.5 px-3 text-slate-400">Robo total</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td></tr>
-                <tr class="border-b border-slate-800"><td class="py-2.5 px-3 text-slate-400">Asistencia vial</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-red-400">No</td></tr>
-                <tr><td class="py-2.5 px-3 text-slate-400">Auto sustituto</td><td class="text-center py-2.5 px-3 text-red-400">No</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-red-400">No</td></tr>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-200"><td class="py-2.5 px-3 text-gray-500">Prima anual</td><td class="text-center py-2.5 px-3">$12,800</td><td class="text-center py-2.5 px-3 text-blue-400 font-semibold">$12,500</td><td class="text-center py-2.5 px-3">$13,200</td></tr>
+                <tr class="border-b border-gray-200"><td class="py-2.5 px-3 text-gray-500">Deducible</td><td class="text-center py-2.5 px-3">5%</td><td class="text-center py-2.5 px-3">5%</td><td class="text-center py-2.5 px-3">10%</td></tr>
+                <tr class="border-b border-gray-200"><td class="py-2.5 px-3 text-gray-500">Danos materiales</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td></tr>
+                <tr class="border-b border-gray-200"><td class="py-2.5 px-3 text-gray-500">Robo total</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td></tr>
+                <tr class="border-b border-gray-200"><td class="py-2.5 px-3 text-gray-500">Asistencia vial</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-red-400">No</td></tr>
+                <tr><td class="py-2.5 px-3 text-gray-500">Auto sustituto</td><td class="text-center py-2.5 px-3 text-red-400">No</td><td class="text-center py-2.5 px-3 text-green-400">Si</td><td class="text-center py-2.5 px-3 text-red-400">No</td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
         <div id="no-insurance-msg" class="hidden text-center py-10">
-          <div class="w-16 h-16 bg-slate-700 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-            <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <div class="w-16 h-16 bg-gray-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <h4 class="text-lg font-bold">Sin seguro</h4>
-          <p class="text-slate-400 text-sm mt-1">Puedes contratar un seguro despues desde tu perfil</p>
+          <p class="text-gray-500 text-sm mt-1">Puedes contratar un seguro despues desde tu perfil</p>
         </div>
       </div>
     </div>
 
     <!-- STEP 5: Confirmacion -->
     <div id="step-5" class="hidden">
-      <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6 mb-6">
+      <div class="bg-gray-100/60 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-6 mb-6">
         <h3 class="text-xl font-bold mb-6">Resumen de compra</h3>
 
         <!-- Vehicle Summary -->
-        <div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl mb-4">
-          <div class="w-16 h-14 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl flex items-center justify-center shrink-0">
-            <svg class="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 6h5l3 5v6h-2M3 17h2m0 0h10M5 17V9.5L7.5 6H13m-8 5h8"/></svg>
+        <div class="flex items-center gap-4 p-4 bg-white shadow-sm/50 rounded-xl mb-4">
+          <div class="w-16 h-14 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center shrink-0">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 6h5l3 5v6h-2M3 17h2m0 0h10M5 17V9.5L7.5 6H13m-8 5h8"/></svg>
           </div>
           <div>
             <h4 class="font-semibold">Honda CR-V 2023</h4>
-            <p class="text-sm text-slate-400">EX-L | 12,000 km | Blanco</p>
+            <p class="text-sm text-gray-500">EX-L | 12,000 km | Blanco</p>
           </div>
         </div>
 
         <!-- Financing Summary -->
-        <div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl mb-4">
+        <div class="flex items-center gap-4 p-4 bg-white shadow-sm/50 rounded-xl mb-4">
           <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center shrink-0">
             <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
             <h4 class="font-semibold text-sm">Financiamiento - BancoNorte</h4>
-            <p class="text-xs text-slate-400">48 meses a 12.5% | Mensualidad: $5,890</p>
+            <p class="text-xs text-gray-500">48 meses a 12.5% | Mensualidad: $5,890</p>
           </div>
         </div>
 
         <!-- Insurance Summary -->
-        <div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl mb-6">
+        <div class="flex items-center gap-4 p-4 bg-white shadow-sm/50 rounded-xl mb-6">
           <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center shrink-0">
             <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <div>
             <h4 class="font-semibold text-sm">Seguro Amplia - AutoProtect</h4>
-            <p class="text-xs text-slate-400">Cobertura completa + asistencia vial</p>
+            <p class="text-xs text-gray-500">Cobertura completa + asistencia vial</p>
           </div>
         </div>
 
         <!-- Total Breakdown -->
-        <div class="border-t border-slate-700 pt-4 space-y-3">
+        <div class="border-t border-gray-200 pt-4 space-y-3">
           <div class="flex justify-between text-sm">
-            <span class="text-slate-400">Vehiculo</span>
+            <span class="text-gray-500">Vehiculo</span>
             <span class="font-semibold">$285,000</span>
           </div>
           <div class="flex justify-between text-sm">
-            <span class="text-slate-400">Enganche (20%)</span>
+            <span class="text-gray-500">Enganche (20%)</span>
             <span class="font-semibold">$57,000</span>
           </div>
           <div class="flex justify-between text-sm">
-            <span class="text-slate-400">Financiamiento</span>
+            <span class="text-gray-500">Financiamiento</span>
             <span class="font-semibold">48 meses x $6,200</span>
           </div>
           <div class="flex justify-between text-sm">
-            <span class="text-slate-400">Seguro anual</span>
+            <span class="text-gray-500">Seguro anual</span>
             <span class="font-semibold">$12,500</span>
           </div>
-          <div class="border-t border-slate-700 pt-3 flex justify-between">
+          <div class="border-t border-gray-200 pt-3 flex justify-between">
             <span class="font-bold text-lg">Total inicial</span>
             <span class="font-bold text-lg text-blue-400">$69,500</span>
           </div>
-          <p class="text-xs text-slate-500 text-right">Enganche $57,000 + Seguro $12,500</p>
+          <p class="text-xs text-gray-400 text-right">Enganche $57,000 + Seguro $12,500</p>
         </div>
       </div>
 
       <!-- T&C -->
-      <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6">
+      <div class="bg-gray-100/60 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-6">
         <label class="flex items-start gap-3 cursor-pointer mb-6">
-          <input type="checkbox" id="tc-check" onchange="document.getElementById('confirm-btn').disabled=!this.checked" class="w-5 h-5 mt-0.5 rounded border-slate-600 bg-slate-900/50 text-blue-600 focus:ring-blue-500 focus:ring-offset-0">
-          <span class="text-sm text-slate-400">He leido y acepto los <a href="#" class="text-blue-400 hover:underline">Terminos y Condiciones</a>, la <a href="#" class="text-blue-400 hover:underline">Politica de Privacidad</a> y el <a href="#" class="text-blue-400 hover:underline">Contrato de Compraventa</a>.</span>
+          <input type="checkbox" id="tc-check" onchange="document.getElementById('confirm-btn').disabled=!this.checked" class="w-5 h-5 mt-0.5 rounded border-gray-300 bg-white shadow-sm/50 text-blue-600 focus:ring-blue-500 focus:ring-offset-0">
+          <span class="text-sm text-gray-500">He leido y acepto los <a href="#" class="text-blue-400 hover:underline">Terminos y Condiciones</a>, la <a href="#" class="text-blue-400 hover:underline">Politica de Privacidad</a> y el <a href="#" class="text-blue-400 hover:underline">Contrato de Compraventa</a>.</span>
         </label>
-        <button id="confirm-btn" disabled class="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 disabled:from-slate-700 disabled:to-slate-700 disabled:text-slate-500 text-white font-bold text-lg rounded-2xl shadow-lg shadow-green-500/25 disabled:shadow-none transition-all duration-200 transform hover:-translate-y-0.5 disabled:transform-none">
+        <button id="confirm-btn" disabled class="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 disabled:from-gray-200 disabled:to-gray-200 disabled:text-gray-400 text-gray-900 font-bold text-lg rounded-2xl shadow-lg shadow-green-500/25 disabled:shadow-none transition-all duration-200 transform hover:-translate-y-0.5 disabled:transform-none">
           Confirmar compra
         </button>
-        <p class="text-xs text-center text-slate-500 mt-3">Al confirmar, aceptas pagar el enganche y seguro dentro de 72 horas</p>
+        <p class="text-xs text-center text-gray-400 mt-3">Al confirmar, aceptas pagar el enganche y seguro dentro de 72 horas</p>
       </div>
     </div>
 
     <!-- Navigation Buttons -->
     <div class="flex justify-between mt-6 pb-8">
-      <button onclick="prevStep()" id="prev-btn" class="hidden px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700/50 text-white font-semibold rounded-xl transition-colors flex items-center gap-2">
+      <button onclick="prevStep()" id="prev-btn" class="hidden px-6 py-3 bg-gray-100 hover:bg-gray-200 border border-gray-200/50 text-gray-900 font-semibold rounded-xl transition-colors flex items-center gap-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
         Atras
       </button>
       <div class="flex-1"></div>
-      <button onclick="nextStep()" id="next-btn" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center gap-2">
+      <button onclick="nextStep()" id="next-btn" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-gray-900 font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center gap-2">
         Siguiente
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
       </button>
@@ -461,7 +461,7 @@
           (i < step ? 'step-done' : i === step ? 'step-active' : 'step-pending');
         if (i < step) circle.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
         else circle.textContent = i;
-        label.className = 'text-sm font-medium hidden sm:inline ' + (i <= step ? 'text-white' : 'text-slate-500');
+        label.className = 'text-sm font-medium hidden sm:inline ' + (i <= step ? 'text-gray-900' : 'text-gray-400');
       }
       for (let i = 1; i <= 4; i++) {
         document.getElementById('bar-'+i).style.width = (i < step ? '100%' : '0%');
@@ -476,23 +476,23 @@
     function toggleFinance(yes) {
       document.getElementById('finance-options').classList.toggle('hidden', !yes);
       document.getElementById('contado-msg').classList.toggle('hidden', yes);
-      document.getElementById('fin-yes').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (yes ? 'bg-blue-600 text-white' : 'text-slate-400');
-      document.getElementById('fin-no').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (!yes ? 'bg-blue-600 text-white' : 'text-slate-400');
+      document.getElementById('fin-yes').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (yes ? 'bg-blue-600 text-gray-900' : 'text-gray-500');
+      document.getElementById('fin-no').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (!yes ? 'bg-blue-600 text-gray-900' : 'text-gray-500');
     }
 
     function toggleInsurance(yes) {
       document.getElementById('insurance-options').classList.toggle('hidden', !yes);
       document.getElementById('no-insurance-msg').classList.toggle('hidden', yes);
-      document.getElementById('ins-yes').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (yes ? 'bg-blue-600 text-white' : 'text-slate-400');
-      document.getElementById('ins-no').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (!yes ? 'bg-blue-600 text-white' : 'text-slate-400');
+      document.getElementById('ins-yes').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (yes ? 'bg-blue-600 text-gray-900' : 'text-gray-500');
+      document.getElementById('ins-no').className = 'flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ' + (!yes ? 'bg-blue-600 text-gray-900' : 'text-gray-500');
     }
 
     function selectCoverage(btn) {
       btn.parentElement.querySelectorAll('button').forEach(b => {
         b.classList.remove('bg-blue-600/10','border-2','border-blue-500/30','ring-2','ring-blue-500/30');
-        b.classList.add('bg-slate-900/50','border','border-slate-700/50');
+        b.classList.add('bg-white shadow-sm/50','border','border-gray-200/50');
       });
-      btn.classList.remove('bg-slate-900/50','border','border-slate-700/50');
+      btn.classList.remove('bg-white shadow-sm/50','border','border-gray-200/50');
       btn.classList.add('bg-blue-600/10','border-2','border-blue-500/30','ring-2','ring-blue-500/30');
     }
 
