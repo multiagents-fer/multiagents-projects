@@ -193,9 +193,44 @@ Descripcion:
 | `proj-worker-marketplace-sync` | WRK-SYNC | - | SQS marketplace sync (existente) |
 | `proj-worker-diagnostic-sync` | WRK-DIAG | - | OBD-II diagnostics (existente) |
 
+### Sprint Progress
+
+#### Sprint 1 - Foundation & Setup (Completed 2026-03-27)
+
+| Ticket | Service | Repo | Status | Tests | Coverage |
+|--------|---------|------|--------|-------|----------|
+| [MKT-BE-001] API Gateway | SVC-GW | [svc-gateway](https://github.com/multiagents-fer/svc-gateway) | Done | 34 passed | 85% AC |
+| [MKT-BE-002] Vehicle Service Setup | SVC-VEH | [svc-vehicle](https://github.com/multiagents-fer/svc-vehicle) | Done | 16 passed | 95% cov |
+| [MKT-FE-001] Angular Design System | FE-CORE | [proj-front-marketplace-dashboard](https://github.com/multiagents-fer/proj-front-marketplace-dashboard) | Done | 26 files | 75% AC |
+| [MKT-INF-001] CI/CD Pipelines | INF-CI | [cicd-workflows](https://github.com/multiagents-fer/cicd-workflows) | Done | 6 workflows | 90% AC |
+| [MKT-INF-002] AWS Terraform | INF-NET | [infra-marketplace](https://github.com/multiagents-fer/infra-marketplace) | Done | 11 modules | 83% AC |
+
+**Key Deliverables:**
+- Hexagonal architecture established across all services
+- API Gateway with routing for 13 microservices, rate limiting (4 tiers), circuit breaker, JWT auth
+- Vehicle Service with domain model, Marshmallow validation, Flask factory pattern
+- Design System with 6 standalone components (Button, Input, Card, Modal, Toast, Skeleton), signal-based state management (Auth, Filters, Cart), light theme tokens
+- Reusable CI/CD: Python lint+test, Angular lint+test+build, Docker+ECR, ECS deploy, Trivy scan
+- Full AWS infrastructure: VPC (6 subnets, 2 AZs), ALB, ECS Fargate, RDS PostgreSQL 15, ElastiCache Redis 7, S3+CloudFront, Cognito, 5 SQS queues with DLQ, IAM least-privilege
+
+**Known Gaps (from PO Review):**
+- Gateway: JWKS/RS256 Cognito validation pending (uses HS256 decode)
+- Vehicle: Infrastructure adapters (SQLAlchemy, Redis cache, Alembic) are stubs
+- Angular: Tailwind v3.4 not v4; error interceptor not wired; no i18n
+- Terraform: ECS task definitions not yet created
+- CI/CD: Lint failures silently pass; no staging CD workflow
+
+#### New Repositories Created
+| Repo | Created | Purpose |
+|------|---------|---------|
+| [svc-vehicle](https://github.com/multiagents-fer/svc-vehicle) | 2026-03-27 | Vehicle catalog microservice |
+| [infra-marketplace](https://github.com/multiagents-fer/infra-marketplace) | 2026-03-27 | AWS Terraform infrastructure |
+| [cicd-workflows](https://github.com/multiagents-fer/cicd-workflows) | 2026-03-27 | Reusable GitHub Actions |
+
 ### How to Use This Repo
 
 1. All project management is tracked via [GitHub Issues](../../issues)
 2. Board view in [GitHub Projects](../../projects)
 3. Each issue has detailed acceptance criteria (10+ per story)
 4. Issues are designed for AI agents (Claude Code) to pick up and implement with full context
+5. Each service repo has a `CLAUDE.md` with stack, commands, and conventions for AI context
